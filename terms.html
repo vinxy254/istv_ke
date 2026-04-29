@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="istv Terms of Service - DMCA Compliance and Content Aggregator Policy.">
+    <meta name="theme-color" content="#0d0d0d">
+    <title>Terms of Service - istv</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-gold: #FABC1B;
+            --accent-green: #49FF35;
+            --bg-dark: #0d0d0d;
+            --bg-card: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --border-light: #2a2a2a;
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(13, 13, 13, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-light);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #FABC1B 0%, #49FF35 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: var(--transition-smooth);
+        }
+
+        nav a:hover {
+            color: var(--primary-gold);
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 100px;
+            padding: 4rem 0;
+            min-height: calc(100vh - 200px);
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #FABC1B 0%, #49FF35 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .last-updated {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 3rem;
+        }
+
+        .terms-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 3rem;
+            line-height: 2;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin: 2rem 0 1rem;
+            color: var(--primary-gold);
+            border-bottom: 2px solid var(--border-light);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 18px;
+            margin: 1.5rem 0 0.75rem;
+            color: var(--accent-green);
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        ul {
+            margin: 1rem 0 1rem 2rem;
+            color: var(--text-secondary);
+        }
+
+        li {
+            margin-bottom: 0.75rem;
+        }
+
+        strong {
+            color: var(--text-primary);
+        }
+
+        .highlight {
+            background: rgba(250, 188, 27, 0.1);
+            border-left: 4px solid var(--primary-gold);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .warning-box {
+            background: rgba(255, 87, 34, 0.1);
+            border-left: 4px solid var(--accent-green);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        code {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: var(--accent-green);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(13, 13, 13, 0.95) 100%);
+            border-top: 2px solid var(--border-light);
+            padding: 4rem 0;
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary-gold);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-section a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-gold);
+            transform: translateX(4px);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(250, 188, 27, 0.1);
+            border: 2px solid var(--border-light);
+            border-radius: 50%;
+            color: var(--primary-gold);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            font-size: 16px;
+        }
+
+        .social-icon:hover {
+            background: var(--primary-gold);
+            border-color: var(--primary-gold);
+            color: #000;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-light);
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .footer-bottom p {
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 0.75rem 0;
+            }
+
+            main {
+                margin-top: 80px;
+                padding: 2rem 0;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            .terms-content {
+                padding: 2rem;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            ul {
+                margin-left: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">istv</a>
+                <a href="index.html" style="color: var(--text-secondary); text-decoration: none;">← Back to Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>Terms of Service</h1>
+            <p class="last-updated">Last Updated: April 2026</p>
+
+            <div class="terms-content">
+                <h2>Agreement to Terms</h2>
+                <p>By accessing and using the istv service ("Platform"), you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.</p>
+
+                <h2>Platform Description</h2>
+                <p><strong>istv is a Free-to-Air content aggregator.</strong> Our primary function is to provide convenient access to publicly available television streams for Kenyan audiences across multiple devices.</p>
+
+                <h3>What We Do</h3>
+                <ul>
+                    <li>Aggregate and index publicly available television streams</li>
+                    <li>Provide links to external streaming sources</li>
+                    <li>Offer a unified, user-friendly interface to access Free-to-Air content</li>
+                    <li>Support multiple platforms: web, Android, Android TV, and LG WebOS</li>
+                </ul>
+
+                <h3>What We Don't Do</h3>
+                <ul>
+                    <li>Host, store, or serve video files on our servers</li>
+                    <li>Encode, transcode, or modify content in any way</li>
+                    <li>Claim ownership of any broadcast content</li>
+                    <li>Bypass any content protection or DRM systems</li>
+                </ul>
+
+                <div class="highlight">
+                    <strong>Important:</strong> istv merely provides links and indexes to publicly available streams. We are not a content provider but a content aggregator.
+                </div>
+
+                <h2>Content Rights & Copyright</h2>
+                <p>All content available through istv is offered under the Free-to-Air model and is intended for lawful viewing by the public. istv respects intellectual property rights and complies with applicable Kenyan copyright laws.</p>
+
+                <h2>DMCA Compliance</h2>
+                <p><strong>istv is fully committed to DMCA compliance.</strong> We promptly respond to all Copyright Infringement Notices and takedown requests.</p>
+
+                <h3>Copyright Holder Rights</h3>
+                <p>If you are a copyright holder and believe your content is being displayed without authorization on istv, you have the following options:</p>
+                <ul>
+                    <li>Contact us immediately with details of the infringing channel</li>
+                    <li>Provide proof of copyright ownership</li>
+                    <li>Submit a formal takedown notice</li>
+                </ul>
+
+                <h3>Our Removal Commitment</h3>
+                <div class="warning-box">
+                    <strong>24-Hour Removal Guarantee:</strong> Upon receipt of a valid copyright infringement notice, istv will remove the offending channel or stream within <strong>24 hours</strong>.
+                </div>
+
+                <p>No questions asked. No delays. This is our commitment to protecting copyright holders' rights.</p>
+
+                <h3>How to Report Copyright Infringement</h3>
+                <p>To report a channel or stream that violates your copyright:</p>
+                <ol style="margin-left: 2rem; color: var(--text-secondary);">
+                    <li>Send an email to: <code>copyright@istvkenya.com</code></li>
+                    <li>Include the following information:
+                        <ul style="margin-top: 0.5rem;">
+                            <li>Your full name and contact information</li>
+                            <li>The specific channel or stream that is infringing</li>
+                            <li>Description of the copyrighted work</li>
+                            <li>Proof of copyright ownership (if available)</li>
+                            <li>Statement that you have a good faith belief the use is unauthorized</li>
+                        </ul>
+                    </li>
+                    <li>We will investigate and remove within 24 hours if valid</li>
+                </ol>
+
+                <h2>Free Content & No Fees</h2>
+                <p><strong>All content provided through istv is offered free of charge.</strong></p>
+                <ul>
+                    <li>No subscription required</li>
+                    <li>No paywalls or hidden fees</li>
+                    <li>No account creation necessary</li>
+                    <li>Free streaming on all supported devices</li>
+                </ul>
+
+                <p>istv operates as a public service to provide accessible television content to Kenyan audiences.</p>
+
+                <h2>User Conduct</h2>
+                <p>When using istv, you agree to:</p>
+                <ul>
+                    <li>Use the platform only for lawful purposes and in ways that do not infringe upon the rights of others</li>
+                    <li>Not attempt to gain unauthorized access to our systems</li>
+                    <li>Not distribute malware or harmful code through our platform</li>
+                    <li>Not engage in any form of harassment or abuse</li>
+                    <li>Respect the intellectual property rights of content providers</li>
+                </ul>
+
+                <h2>Disclaimer</h2>
+                <p>istv provides the platform "as is" and makes no warranty regarding:</p>
+                <ul>
+                    <li>Availability or uninterrupted access to streams</li>
+                    <li>Quality of video or audio</li>
+                    <li>Accuracy or completeness of channel information</li>
+                    <li>Fitness for any particular purpose</li>
+                </ul>
+
+                <p>We do not guarantee that all streams will work at all times. Internet connectivity and stream availability are dependent on external factors beyond our control.</p>
+
+                <h2>Limitation of Liability</h2>
+                <p>In no event shall istv be liable for any indirect, incidental, special, consequential, or punitive damages, regardless of the cause of action or the theory of liability, even if advised of the possibility of such damages.</p>
+
+                <h2>Termination of Service</h2>
+                <p>istv reserves the right to terminate or restrict access to the platform at any time, for any reason, with or without notice. This includes:</p>
+                <ul>
+                    <li>Violation of these terms</li>
+                    <li>Abuse of the platform</li>
+                    <li>Legal compliance requirements</li>
+                    <li>Business decisions</li>
+                </ul>
+
+                <h2>Modifications to Terms</h2>
+                <p>istv reserves the right to modify these terms at any time. Changes will be effective immediately upon posting. Your continued use of the platform constitutes acceptance of any modified terms.</p>
+
+                <h2>Governing Law</h2>
+                <p>These Terms of Service are governed by and construed in accordance with the laws of Kenya, and you irrevocably submit to the exclusive jurisdiction of the courts located in Nairobi, Kenya.</p>
+
+                <h2>Contact & Notices</h2>
+                <p>For any questions, concerns, or notices regarding these Terms of Service:</p>
+                <p>
+                    <strong>Email:</strong> <a href="mailto:legal@istvkenya.com" style="color: var(--primary-gold);">legal@istvkenya.com</a><br>
+                    <strong>Address:</strong> Nairobi, Kenya
+                </p>
+
+                <div class="highlight">
+                    <strong>Final Note:</strong> istv operates with full transparency regarding our role as a content aggregator. We respect copyright, comply with DMCA, and are committed to maintaining a legal and ethical platform for Kenyan viewers.
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-home" style="width: 14px;"></i> Home</a></li>
+                        <li><a href="download.html"><i class="fas fa-download" style="width: 14px;"></i> Download</a></li>
+                        <li><a href="index.html#channels"><i class="fas fa-play-circle" style="width: 14px;"></i> Live TV</a></li>
+                        <li><a href="#"><i class="fas fa-calendar" style="width: 14px;"></i> Schedule</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="privacy.html"><i class="fas fa-shield-alt" style="width: 14px;"></i> Privacy Policy</a></li>
+                        <li><a href="terms.html"><i class="fas fa-file-contract" style="width: 14px;"></i> Terms of Service</a></li>
+                        <li><a href="terms.html#dmca"><i class="fas fa-copyright" style="width: 14px;"></i> DMCA Notice</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="mailto:support@istvkenya.com"><i class="fas fa-envelope" style="width: 14px;"></i> Support Email</a></li>
+                        <li><a href="mailto:privacy@istvkenya.com"><i class="fas fa-lock" style="width: 14px;"></i> Privacy Concerns</a></li>
+                        <li><a href="mailto:copyright@istvkenya.com"><i class="fas fa-exclamation-circle" style="width: 14px;"></i> DMCA Request</a></li>
+                    </ul>
+                </div>
+
+                <!-- Follow Us -->
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div style="margin-bottom: 1rem;">
+                        <p style="margin-bottom: 1rem; color: var(--text-secondary);">Connect with istv on social media</p>
+                        <div class="social-icons">
+                            <a href="https://www.tiktok.com/@istv_ke" target="_blank" class="social-icon" title="TikTok">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                            <a href="mailto:info@songatechnologies.co.ke" class="social-icon" title="Email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <a href="https://wa.me/254713278506" target="_blank" class="social-icon" title="WhatsApp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>&copy; 2026 <strong>istv</strong>. Kenya's Free-to-Air TV Streaming Platform. All rights reserved.</p>
+                <p>Based in Nairobi, Kenya | Streaming Free Kenyan Television Across All Devices</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Terms of Service - istv",
+        "url": "https://istvkenya.com/terms.html",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "istv"
+        }
+    }
+    </script>
+</body>
+</html>

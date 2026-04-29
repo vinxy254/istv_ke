@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="istv - Kenya's Free-to-Air TV streaming platform. Watch live sports, news, entertainment, and local Kenyan channels on Android, Android TV, LG WebOS, and web browsers.">
+    <meta name="keywords" content="Kenya Live TV, Free FTA Channels, Android TV APK, LG WebOS Streaming, istv Kenya">
+    <meta name="theme-color" content="#0d0d0d">
+    <meta property="og:title" content="istv - Kenya's Free-to-Air TV. Anywhere.">
+    <meta property="og:description" content="Stream live TV across all your devices. Watch sports, news, entertainment, and local Kenyan content.">
+    <meta property="og:type" content="website">
+    <title>istv - Kenya's Free-to-Air TV Streaming Platform</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-gold: #FABC1B;
+            --accent-green: #49FF35;
+            --bg-dark: #0d0d0d;
+            --bg-card: #1a1a1a;
+            --bg-hover: #252525;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --border-light: #2a2a2a;
+            --gradient-primary: linear-gradient(135deg, #FABC1B 0%, #49FF35 100%);
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(13, 13, 13, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-light);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-gold);
+            transition: var(--transition-smooth);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 70px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(250, 188, 27, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -100px;
+            left: -100px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(73, 255, 53, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -50px;
+            right: -100px;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        .hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-logo {
+            font-size: 120px;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            letter-spacing: -2px;
+            line-height: 1;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 700;
+            margin: 2rem 0;
+            line-height: 1.2;
+            color: var(--text-primary);
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Noto Sans', sans-serif;
+        }
+
+        .btn-primary {
+            background: var(--primary-gold);
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(250, 188, 27, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--accent-green);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-green);
+            color: #000;
+            transform: translateY(-3px);
+        }
+
+        /* Device Ecosystem */
+        .devices-bar {
+            margin-top: 4rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 1.2s ease-out 0.2s both;
+        }
+
+        .device-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition-smooth);
+        }
+
+        .device-item:hover {
+            transform: scale(1.1);
+        }
+
+        .device-icon {
+            font-size: 28px;
+            color: var(--primary-gold);
+        }
+
+        .device-item span {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        /* Channel Showcase */
+        .channels-section {
+            padding: 6rem 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 42px;
+            margin-bottom: 0.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-title p {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        /* How to Watch Section */
+        .howto-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, rgba(250, 188, 27, 0.05) 0%, rgba(73, 255, 53, 0.05) 100%);
+            border-top: 2px solid var(--border-light);
+            border-bottom: 2px solid var(--border-light);
+            margin: 4rem 0;
+        }
+
+        .howto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .howto-card {
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(26, 26, 26, 0.8) 100%);
+            border: 2px solid var(--border-light);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 380px;
+        }
+
+        .howto-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: var(--transition-smooth);
+            z-index: -1;
+        }
+
+        .howto-card:hover {
+            border-color: var(--primary-gold);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(250, 188, 27, 0.25);
+        }
+
+        .howto-card:hover::before {
+            opacity: 0.08;
+        }
+
+        .howto-icon {
+            font-size: 72px;
+            margin-bottom: 1.5rem;
+            color: var(--primary-gold);
+            display: block;
+            filter: drop-shadow(0 4px 12px rgba(250, 188, 27, 0.3));
+        }
+        .howto-icon-img {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 1.5rem;
+            display: block;
+            object-fit: contain;
+            object-position: center;
+            background: rgb(255, 255, 255);
+            border: 2px solid var(--border-light);
+            border-radius: 12px;
+            padding: 12px;
+            filter: drop-shadow(0 4px 12px rgba(250, 188, 27, 0.3));
+            transition: var(--transition-smooth);
+        }
+
+        .howto-card:hover .howto-icon-img {
+            transform: scale(1.1);
+            border-color: var(--primary-gold);
+            background: rgb(185, 177, 157);
+            filter: drop-shadow(0 6px 20px rgba(250, 188, 27, 0.5));
+        }
+
+        .howto-card h3 {
+            font-size: 26px;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .howto-card p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .howto-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--accent-green);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: var(--transition-smooth);
+            margin-top: auto;
+        }
+
+        .howto-link:hover {
+            color: var(--primary-gold);
+            transform: translateX(4px);
+        }
+
+        .channels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+            scroll-snap-type: x mandatory;
+            overflow-x: auto;
+            padding-bottom: 1rem;
+        }
+
+        .channel-card {
+            aspect-ratio: 1;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            scroll-snap-align: center;
+        }
+
+        .channel-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: var(--transition-smooth);
+            z-index: -1;
+        }
+
+        .channel-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .channel-card:hover {
+            border-color: var(--primary-gold);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(250, 188, 27, 0.2);
+        }
+
+        .channel-content {
+            text-align: center;
+            z-index: 10;
+        }
+
+        .channel-icon {
+            font-size: 40px;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .channel-card span {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px);
+            }
+            50% {
+                transform: translateY(30px) translateX(10px);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Intersection Observer - Fade In */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition-smooth);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Live Channel Carousel */
+        .carousel-section {
+            text-align: center;
+            padding: 5rem 0;
+            background: linear-gradient(180deg, rgba(250, 188, 27, 0.03) 0%, transparent 100%);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .carousel-section h2 {
+            font-size: 32px;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+            padding: 2rem 0;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 1.5rem;
+            animation: scroll-left 40s linear infinite;
+            padding: 0 2rem;
+        }
+
+        .carousel-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-100% - 1.5rem));
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .carousel-track {
+                animation: none;
+                display: flex;
+                overflow-x: auto;
+            }
+        }
+
+        .carousel-item {
+            flex: 0 0 200px;
+            height: 240px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: var(--transition-smooth);
+        }
+
+        .carousel-item:hover {
+            border-color: var(--primary-gold);
+            background: rgba(250, 188, 27, 0.08);
+            box-shadow: 0 10px 30px rgba(250, 188, 27, 0.2);
+        }
+
+        .carousel-logo {
+            width: 200px;
+            height: 200px;
+            /* background: linear-gradient(135deg, var(--primary-gold), var(--accent-green)); */
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            font-size: 24px;
+            color: #000;
+            overflow: hidden;
+            padding: 4px;
+        }
+
+        .carousel-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .carousel-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .carousel-tag {
+            display: inline-block;
+            font-size: 11px;
+            padding: 4px 8px;
+            background: rgba(73, 255, 53, 0.1);
+            color: var(--accent-green);
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        /* Statistics Dashboard */
+        .stats-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, rgba(73, 255, 53, 0.05) 0%, rgba(250, 188, 27, 0.05) 100%);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-card {
+            padding: 3rem 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            transition: var(--transition-smooth);
+        }
+
+        .stat-card:hover {
+            border-color: var(--primary-gold);
+            background: rgba(250, 188, 27, 0.08);
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            font-size: 48px;
+            color: var(--primary-gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* About istv Section */
+        .about-section {
+            padding: 5rem 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 42px;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-text p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(250, 188, 27, 0.1) 0%, rgba(73, 255, 53, 0.1) 100%);
+            border: 2px solid var(--border-light);
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tv-silhouette {
+            width: 200px;
+            height: 250px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 3px solid var(--primary-gold);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: inset 0 0 30px rgba(250, 188, 27, 0.3);
+        }
+
+        .tv-silhouette::before {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .tv-content {
+            font-size: 60px;
+            color: var(--primary-gold);
+            opacity: 0.7;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 5rem 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(250, 188, 27, 0.03) 100%);
+        }
+
+        .testimonials-section h2 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(26, 26, 26, 0.5) 100%);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 2rem;
+            position: relative;
+            transition: var(--transition-smooth);
+        }
+
+        .testimonial-card:hover {
+            border-color: var(--primary-gold);
+            box-shadow: 0 10px 40px rgba(250, 188, 27, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .quote-icon {
+            font-size: 32px;
+            color: var(--primary-gold);
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .testimonial-text {
+            font-size: 15px;
+            color: var(--text-secondary);
+            font-style: italic;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #000;
+            font-size: 18px;
+        }
+
+        .author-info {
+            flex: 1;
+        }
+
+        .author-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .author-role {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(13, 13, 13, 0.95) 100%);
+            border-top: 2px solid var(--border-light);
+            padding: 4rem 0;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary-gold);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-section a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-gold);
+            transform: translateX(4px);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(250, 188, 27, 0.1);
+            border: 2px solid var(--border-light);
+            border-radius: 50%;
+            color: var(--primary-gold);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            font-size: 16px;
+        }
+
+        .social-icon:hover {
+            background: var(--primary-gold);
+            border-color: var(--primary-gold);
+            color: #000;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-light);
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .footer-bottom p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero-logo {
+                font-size: 72px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .devices-bar {
+                gap: 1.5rem;
+            }
+
+            .section-title h2 {
+                font-size: 32px;
+            }
+
+            .carousel-section h2 {
+                font-size: 32px;
+            }
+
+            .carousel-item {
+                flex: 0 0 160px;
+                height: 200px;
+                padding: 1rem;
+            }
+
+            .carousel-logo {
+                width: 120px;
+                height: 120px;
+                font-size: 24px;
+            }
+
+            .carousel-name {
+                font-size: 12px;
+            }
+
+            .stats-grid {
+                gap: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 36px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-text h2 {
+                font-size: 28px;
+            }
+
+            .about-text p {
+                font-size: 14px;
+            }
+
+            .about-visual {
+                height: 250px;
+            }
+
+            .tv-silhouette {
+                width: 150px;
+                height: 200px;
+                border-width: 2px;
+            }
+
+            .testimonials-grid {
+                gap: 1.5rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">istv</div>
+                <ul>
+                    <li><a href="#channels">Channels</a></li>
+                    <li><a href="download.html">Download</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy.html">Privacy</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-logo">iSTV Kenya</div>
+                <h1>Watch Kenya's Free-to-Air TV.</h1>
+                <p>Stream local and international live sports, news, entertainment, and local channels across all your devices—anytime, anywhere.</p>
+                
+                <div class="hero-buttons">
+                    <a href="#live" class="btn btn-primary">
+                        <i class="fas fa-play"></i> Watch Live on Web
+                    </a>
+                    <a href="download.html" class="btn btn-secondary">
+                        <i class="fas fa-download"></i> Download App
+                    </a>
+                </div>
+
+                <!-- <div class="devices-bar">
+                    <div class="device-item">
+                        <i class="device-icon fas fa-mobile-alt"></i>
+                        <span>Android Phone</span>
+                    </div>
+                    <div class="device-item">
+                        <i class="device-icon fas fa-tv"></i>
+                        <span>Android TV</span>
+                    </div>
+                    <div class="device-item">
+                        <i class="device-icon fas fa-rectangle-landscape"></i>
+                        <span>LG WebOS</span>
+                    </div>
+                    <div class="device-item">
+                        <i class="device-icon fas fa-globe"></i>
+                        <span>Web Browser</span>
+                    </div>
+                </div> -->
+            </div>
+        </section>
+
+                <!-- Live Channel Carousel -->
+        <section class="carousel-section">
+            <div class="container">
+                <h2>Watch without limits</h2>
+                <p>Enjoy the best free local and international<br> tv shows without the limits on istv-kenya
+                your number one tv streaming platform </p>
+                <div class="carousel-wrapper">
+                    <div class="carousel-track" id="carouselTrack">
+                        <!-- Carousel items will be auto-duplicated by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Channel Showcase -->
+        <!-- <section class="channels-section">
+            <div class="container">
+                <div class="section-title fade-in">
+                    <h2>Stream Your Favorite Channels</h2>
+                    <p>Live sports, breaking news, entertainment, and local Kenyan content</p>
+                </div>
+
+                <div class="channels-grid" id="channels">
+                    <div class="channel-card fade-in">
+                        <div class="channel-content">
+                            <i class="channel-icon fas fa-futbol"></i>
+                            <span>Sports</span>
+                        </div>
+                    </div>
+                    <div class="channel-card fade-in">
+                        <div class="channel-content">
+                            <i class="channel-icon fas fa-newspaper"></i>
+                            <span>News</span>
+                        </div>
+                    </div>
+                    <div class="channel-card fade-in">
+                        <div class="channel-content">
+                            <i class="channel-icon fas fa-tv"></i>
+                            <span>Entertainment</span>
+                        </div>
+                    </div>
+                    <div class="channel-card fade-in">
+                        <div class="channel-content">
+                            <i class="channel-icon fas fa-map"></i>
+                            <span>Local Kenyan</span>
+                        </div>
+                    </div>
+                    <div class="channel-card fade-in">
+                        <div class="channel-content">
+                            <i class="channel-icon fas fa-music"></i>
+                            <span>Music</span>
+                        </div>
+                    </div>
+                    <div class="channel-card fade-in">
+                        <div class="channel-content">
+                            <i class="channel-icon fas fa-star"></i>
+                            <span>Premium</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+
+        <!-- How to Watch Section -->
+        <section class="howto-section">
+            <div class="container">
+                <div class="section-title fade-in">
+                    <h2>How to Watch istv</h2>
+                    <p>Stream on your favorite device—choose your platform and start watching instantly</p>
+                </div>
+
+                <div class="howto-grid">
+                    <!-- Android Phone -->
+                    <div class="howto-card fade-in">
+                        <img src="images/google-play-store.png" alt="Android Phone" class="howto-icon-img">
+                        <h3>Android Phone</h3>
+                        <p>Download from Google Play Store and stream live TV directly on your smartphone. Perfect for on-the-go viewing.</p>
+                        <a href="download.html" class="howto-link">
+                            Download Now <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <!-- Android TV -->
+                    <div class="howto-card fade-in">
+                        <img src="images/android tv.png" alt="Android TV" class="howto-icon-img">
+                        <h3>Android TV</h3>
+                        <p>Install directly via APK on your Android TV for a cinematic viewing experience. Full-screen streaming on the big screen.</p>
+                        <a href="download.html" class="howto-link">
+                            Get APK <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <!-- LG WebOS -->
+                    <div class="howto-card fade-in">
+                        <img src="images/lg-webos.png" alt="LG WebOS" class="howto-icon-img">
+                        <h3>LG WebOS</h3>
+                        <p>Download the official istv app from the LG Content Store. Seamless integration with your LG Smart TV.</p>
+                        <a href="download.html" class="howto-link">
+                            LG Store <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <!-- Web Streaming -->
+                    <div class="howto-card fade-in">
+                        <img src="images/web.png" alt="Web Browser" class="howto-icon-img">
+                        <h3>Web Browser</h3>
+                        <p>No download needed. Stream live channels directly from your desktop or mobile web browser. Watch instantly.</p>
+                        <a href="#live" class="howto-link">
+                            Watch Now <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Statistics Dashboard
+        <section class="stats-section">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-card fade-in">
+                        <div class="stat-icon">
+                            <i class="fas fa-tv"></i>
+                        </div>
+                        <div class="stat-number" data-target="150">0</div>
+                        <div class="stat-label">Live Channels</div>
+                    </div>
+                    <div class="stat-card fade-in">
+                        <div class="stat-icon">
+                            <i class="fas fa-download"></i>
+                        </div>
+                        <div class="stat-number" data-target="500">0</div>
+                        <div class="stat-label">K+ Installs</div>
+                    </div>
+                    <div class="stat-card fade-in">
+                        <div class="stat-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="stat-number" data-target="4">0</div>
+                        <div class="stat-label">Supported Platforms</div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+
+        <!-- About istv Section -->
+        <section class="about-section">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text fade-in">
+                        <h2>Who are we.</h2>
+                        <p>istv kenya is a next-generation streaming platform dedicated to providing Kenyans with instant access to Free-to-Air (FTA) television. No subscriptions. No hidden fees. We aggregate the best of local Kenyan content, breaking news, sports action, and music entertainment, optimized for your mobile data plan and Smart TV.</p>
+                        <p>Whether you're streaming on your Android phone during a commute, watching on your Smart TV at home, or catching up on your browser at work, istv delivers premium broadcast quality without the premium price tag.</p>
+                    </div>
+                    <div class="about-visual fade-in">
+                        <div class="tv-silhouette">
+                            <div class="tv-content">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text fade-in">
+                        <h2>For broadcaster</h2>
+                        <p>Still gambling on platforms and lisences? iSTV is the new way of reaching your audience without the high costs.</p>
+                        <p>With iSTV you get a consistent audience and a stable streaming platfrom. Goodbye to te days of signal outage and broadcaast downtimes. iSTV</p>
+                    </div>
+                    <div class="about-visual fade-in">
+                        <div class="tv-silhouette">
+                            <div class="tv-content">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials-section">
+            <div class="container">
+                <h2>What Our Viewers Say</h2>
+                <div class="testimonials-grid">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-card fade-in">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p class="testimonial-text">"This is a must-have app for any Kenyan looking to stream free-to-air television on their mobile devices."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">BO</div>
+                            <div class="author-info">
+                                <div class="author-name">Brian O.</div>
+                                <div class="author-role">Nakuru, Kenya</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-card fade-in">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p class="testimonial-text">"This app has been long overdue, i almost gave up on my tv Digital TV aerial now feels useless"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">WM</div>
+                            <div class="author-info">
+                                <div class="author-name">Wanjiku M.</div>
+                                <div class="author-role">Embu, Kenya</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-card fade-in">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p class="testimonial-text">"This app is a gamechanger congratulations to the iSTV team. Admin tuma paybill tukutumie kakitu joh. My LG WebOS TV is back!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">OJ</div>
+                            <div class="author-info">
+                                <div class="author-name">Omondi J.</div>
+                                <div class="author-role">Nairobi, Kenya</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-home" style="width: 14px;"></i> Home</a></li>
+                        <li><a href="download.html"><i class="fas fa-download" style="width: 14px;"></i> Download</a></li>
+                        <li><a href="index.html#channels"><i class="fas fa-play-circle" style="width: 14px;"></i> Live TV</a></li>
+                        <li><a href="#"><i class="fas fa-calendar" style="width: 14px;"></i> Schedule</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="privacy.html"><i class="fas fa-shield-alt" style="width: 14px;"></i> Privacy Policy</a></li>
+                        <li><a href="terms.html"><i class="fas fa-file-contract" style="width: 14px;"></i> Terms of Service</a></li>
+                        <li><a href="terms.html#dmca"><i class="fas fa-copyright" style="width: 14px;"></i> DMCA Notice</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="mailto:info@songatechnologies.co.ke"><i class="fas fa-envelope" style="width: 14px;"></i> Support Email</a></li>
+                        <li><a href="mailto:info@songatechnologies.co.ke"><i class="fas fa-lock" style="width: 14px;"></i> Privacy Concerns</a></li>
+                        <li><a href="mailto:info@songatechnologies.co.ke"><i class="fas fa-exclamation-circle" style="width: 14px;"></i> DMCA Request</a></li>
+                    </ul>
+                </div>
+
+                <!-- Follow Us -->
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div style="margin-bottom: 1rem;">
+                        <p style="margin-bottom: 1rem; color: var(--text-secondary);">Connect with istv on social media</p>
+                        <div class="social-icons">
+                            <a href="https://www.tiktok.com/@istv_ke" target="_blank" class="social-icon" title="TikTok">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                            <a href="mailto:info@songatechnologies.co.ke" class="social-icon" title="Email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <a href="https://wa.me/254713278506" target="_blank" class="social-icon" title="WhatsApp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>&copy; 2026 <strong>istv</strong>. Kenya's Free-to-Air TV Streaming Platform. All rights reserved.</p>
+                <p>Based in Nairobi, Kenya | Streaming Free Kenyan Television Across All Devices</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Channel Carousel Data
+        const channelData = [
+            { name: 'Citizen TV', tag: 'News', image: 'images/citizen tv.jpeg' },
+            { name: 'fifa+', tag: 'Sports', image: 'images/fifa+.png' },
+            { name: 'NTV Kenya', tag: 'News', image: 'images/ntv.jpeg' },
+            { name: 'KBC', tag: 'News', image: 'images/KBC_Kenya.png' },
+            { name: 'KTN', tag: 'News', image: 'images/KTNlogo.jpg'},
+            { name: 'PFL', tag: 'Sports', image: 'images/pfl.jpg' },
+            { name: 'bein sports xtra', tag: 'Sports', image:'images/bein-extra.png' },
+            { name: 'inooro', tag: 'Local', image: 'images/inooro.jpeg' },
+            { name: 'Just for Laughs', tag: 'Entertainment', image: 'images/just-for-laughs.webp' },
+            { name: 'Redbull TV', tag: 'Sports', image: 'images/redbull.gif' },
+            { name: 'Hope Channel', tag: 'Local', image: 'images/channels/hope-channel.png' },
+            { name: 'Spice TV', tag: 'Music', image: 'images/channels/spice-tv.png' },
+            { name: 'Kiss TV', tag: 'Music', image: 'images/channels/kiss-tv.png' }
+        ];
+
+        // Initialize Carousel
+        function initializeCarousel() {
+            const track = document.getElementById('carouselTrack');
+            if (!track) return;
+
+            // Number of channels to show before reset
+            const itemsToShow = 15; // Change this number to show more or fewer channels
+
+            // Create initial carousel items (limited to itemsToShow)
+            channelData.slice(0, itemsToShow).forEach(channel => {
+                const item = document.createElement('div');
+                item.className = 'carousel-item';
+                item.innerHTML = `
+                    <div class="carousel-logo">
+                        <img src="${channel.image}" alt="${channel.name}" style="width: 100%; height: 100%; object-fit: contain; object-position: center;">
+                    </div>
+                    <div class="carousel-name">${channel.name}</div>
+                    <div class="carousel-tag">${channel.tag}</div>
+                `;
+                track.appendChild(item);
+            });
+
+            // Duplicate items for seamless scroll
+            const items = track.querySelectorAll('.carousel-item');
+            items.forEach(item => {
+                const clone = item.cloneNode(true);
+                track.appendChild(clone);
+            });
+        }
+
+        // Count-up Animation for Statistics
+        function animateCountUp(element, target) {
+            const duration = 2000; // 2 seconds
+            const start = 0;
+            const increment = target / (duration / 16); // 60fps
+            let current = start;
+
+            const updateCount = () => {
+                current += increment;
+                if (current < target) {
+                    element.textContent = Math.floor(current);
+                    requestAnimationFrame(updateCount);
+                } else {
+                    element.textContent = target;
+                }
+            };
+
+            updateCount();
+        }
+
+        // Observe stats section for animation trigger
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.dataset.animated) {
+                    entry.target.dataset.animated = 'true';
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(el => {
+                        const target = parseInt(el.getAttribute('data-target'));
+                        animateCountUp(el, target);
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Initialize carousel on page load
+        window.addEventListener('load', () => {
+            initializeCarousel();
+        });
+
+        // Respect prefers-reduced-motion
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) {
+            const track = document.getElementById('carouselTrack');
+            if (track) {
+                track.style.animation = 'none';
+            }
+        }
+    </script>
+
+    <!-- JSON-LD Schema Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "istv",
+        "url": "https://istvkenya.com",
+        "logo": "https://istvkenya.com/istvlogo.png",
+        "description": "Kenya's Free-to-Air TV streaming platform",
+        "areaServed": "KE",
+        "sameAs": [
+            "https://www.tiktok.com/@istvkenya",
+            "https://whatsapp.com/channel/istvkenya"
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "istv",
+        "url": "https://istvkenya.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://istvkenya.com/search?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+</body>
+</html>

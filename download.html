@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Download istv - Available on Google Play Store, Android TV APK, LG WebOS, and Web Browser.">
+    <meta name="theme-color" content="#0d0d0d">
+    <title>Download - istv</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    
+    <style>
+        :root {
+            --primary-gold: #FABC1B;
+            --accent-green: #49FF35;
+            --bg-dark: #0d0d0d;
+            --bg-card: #1a1a1a;
+            --bg-hover: #252525;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --border-light: #2a2a2a;
+            --gradient-primary: linear-gradient(135deg, #FABC1B 0%, #49FF35 100%);
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(13, 13, 13, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-light);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+        }
+
+        nav a:hover {
+            color: var(--primary-gold);
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 100px;
+            padding: 4rem 0;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Download Grid */
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .download-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border-light);
+            border-radius: 16px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: var(--transition-smooth);
+            z-index: -1;
+        }
+
+        .download-card:hover {
+            border-color: var(--primary-gold);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(250, 188, 27, 0.2);
+        }
+
+        .download-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .card-icon {
+            font-size: 56px;
+            margin-bottom: 1.5rem;
+            color: var(--primary-gold);
+        }
+
+        .download-card h2 {
+            font-size: 24px;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .download-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 32px;
+            background: var(--primary-gold);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            text-decoration: none;
+            font-family: 'Noto Sans', sans-serif;
+            width: 100%;
+        }
+
+        .btn-download:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(250, 188, 27, 0.4);
+        }
+
+        .btn-download.secondary {
+            background: transparent;
+            color: var(--accent-green);
+            border: 2px solid var(--accent-green);
+        }
+
+        .btn-download.secondary:hover {
+            background: var(--accent-green);
+            color: #000;
+        }
+
+        /* QR Code Section */
+        .qr-section {
+            background: linear-gradient(135deg, rgba(250, 188, 27, 0.1) 0%, rgba(73, 255, 53, 0.05) 100%);
+            border: 2px solid var(--border-light);
+            border-radius: 16px;
+            padding: 3rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .qr-section h2 {
+            font-size: 32px;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .qr-section p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        #qrcode {
+            display: inline-block;
+            padding: 1.5rem;
+            background: var(--text-primary);
+            border-radius: 12px;
+            margin: 1.5rem 0;
+        }
+
+        #qrcode svg {
+            display: block;
+            width: 200px;
+            height: 200px;
+        }
+
+        .qr-options {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .qr-btn {
+            padding: 10px 20px;
+            border: 2px solid var(--border-light);
+            background: transparent;
+            color: var(--text-secondary);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-size: 14px;
+            font-family: 'Noto Sans', sans-serif;
+        }
+
+        .qr-btn:hover,
+        .qr-btn.active {
+            border-color: var(--primary-gold);
+            color: var(--primary-gold);
+        }
+
+        /* Download Instructions */
+        .instructions {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .instructions h2 {
+            font-size: 28px;
+            margin-bottom: 2rem;
+            color: var(--primary-gold);
+        }
+
+        .instruction-item {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .instruction-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .instruction-item h3 {
+            color: var(--accent-green);
+            margin-bottom: 0.5rem;
+            font-size: 18px;
+        }
+
+        .instruction-item p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .instruction-item ul {
+            margin-top: 1rem;
+            margin-left: 2rem;
+            color: var(--text-secondary);
+        }
+
+        .instruction-item li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(13, 13, 13, 0.95) 100%);
+            border-top: 2px solid var(--border-light);
+            padding: 4rem 0;
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary-gold);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-section a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-gold);
+            transform: translateX(4px);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(250, 188, 27, 0.1);
+            border: 2px solid var(--border-light);
+            border-radius: 50%;
+            color: var(--primary-gold);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            font-size: 16px;
+        }
+
+        .social-icon:hover {
+            background: var(--primary-gold);
+            border-color: var(--primary-gold);
+            color: #000;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-light);
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .footer-bottom p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .fade-in-delay-1 { animation-delay: 0.1s; }
+        .fade-in-delay-2 { animation-delay: 0.2s; }
+        .fade-in-delay-3 { animation-delay: 0.3s; }
+        .fade-in-delay-4 { animation-delay: 0.4s; }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 0.75rem 0;
+            }
+
+            main {
+                margin-top: 80px;
+                padding: 2rem 0;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            .download-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .qr-section {
+                padding: 2rem;
+            }
+
+            .instructions {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">istv</a>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="download.html">Download</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy.html">Privacy</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header fade-in">
+                <h1>Download istv</h1>
+                <p>Get istv on your favorite device and start streaming free Kenyan TV channels instantly.</p>
+            </div>
+
+            <!-- Download Cards Grid -->
+            <div class="download-grid">
+                <!-- Google Play Store -->
+                <div class="download-card fade-in fade-in-delay-1">
+                    <i class="card-icon fab fa-google-play"></i>
+                    <h2>Google Play Store</h2>
+                    <p>Download istv from the official Google Play Store for Android phones.</p>
+                    <a href="https://play.google.com/store/apps/details?id=com.istv.android" class="btn-download" target="_blank">
+                        <i class="fas fa-download"></i> Install Now
+                    </a>
+                </div>
+
+                <!-- Android TV / APK -->
+                <div class="download-card fade-in fade-in-delay-2">
+                    <i class="card-icon fas fa-tv"></i>
+                    <h2>Android TV & APK</h2>
+                    <p>Download the APK file for direct installation on Android TV and compatible devices.</p>
+                    <a href="https://download.istvkenya.com/istv.apk" class="btn-download" target="_blank">
+                        <i class="fas fa-download"></i> Download APK
+                    </a>
+                </div>
+
+                <!-- LG WebOS -->
+                <div class="download-card fade-in fade-in-delay-3">
+                    <i class="card-icon fas fa-rectangle-landscape"></i>
+                    <h2>LG WebOS</h2>
+                    <p>Stream istv on your LG Smart TV through the LG Content Store.</p>
+                    <a href="https://www.lg.com/us/en/get-support/webos-app-store" class="btn-download secondary" target="_blank">
+                        <i class="fas fa-external-link-alt"></i> LG App Store
+                    </a>
+                </div>
+
+                <!-- Web Browser -->
+                <div class="download-card fade-in fade-in-delay-4">
+                    <i class="card-icon fas fa-globe"></i>
+                    <h2>Web Browser</h2>
+                    <p>Watch live streams directly in your web browser on desktop or mobile.</p>
+                    <a href="index.html#live" class="btn-download">
+                        <i class="fas fa-play"></i> Watch Live
+                    </a>
+                </div>
+            </div>
+
+            <!-- QR Code Section -->
+            <div class="qr-section">
+                <h2>Quick Download via QR Code</h2>
+                <p>Scan the QR code below with your mobile device to download istv directly.</p>
+                
+                <div style="margin: 2rem 0;">
+                    <label style="color: var(--text-secondary); font-size: 14px; margin-right: 1rem;">Select Download Type:</label>
+                    <div class="qr-options">
+                        <button class="qr-btn active" onclick="generateQR('playstore')">Google Play Store</button>
+                        <button class="qr-btn" onclick="generateQR('apk')">Direct APK</button>
+                        <button class="qr-btn" onclick="generateQR('web')">Web Stream</button>
+                    </div>
+                </div>
+
+                <div id="qrcode" style="display: inline-block;"></div>
+
+                <p style="margin-top: 1rem; font-size: 12px; color: var(--text-secondary);">
+                    Point your device camera at the QR code to download istv instantly.
+                </p>
+            </div>
+
+            <!-- Download Instructions -->
+            <div class="instructions">
+                <h2>Installation Guide</h2>
+
+                <div class="instruction-item">
+                    <h3><i class="fas fa-mobile-alt" style="margin-right: 0.5rem; color: var(--primary-gold);"></i>Android Phone (Google Play)</h3>
+                    <ol style="margin-left: 2rem; color: var(--text-secondary);">
+                        <li>Open Google Play Store on your Android device</li>
+                        <li>Search for "istv" or use the link above</li>
+                        <li>Tap "Install" and wait for the download to complete</li>
+                        <li>Open istv and start streaming immediately</li>
+                    </ol>
+                </div>
+
+                <div class="instruction-item">
+                    <h3><i class="fas fa-tv" style="margin-right: 0.5rem; color: var(--primary-gold);"></i>Android TV (APK)</h3>
+                    <ol style="margin-left: 2rem; color: var(--text-secondary);">
+                        <li>Download the istv.apk file from the link above</li>
+                        <li>Transfer the file to your Android TV via USB or network</li>
+                        <li>Use a file manager to locate the APK file</li>
+                        <li>Select the file and tap "Install" or "Open"</li>
+                        <li>Grant necessary permissions and enjoy streaming on your big screen</li>
+                    </ol>
+                </div>
+
+                <div class="instruction-item">
+                    <h3><i class="fas fa-rectangle-landscape" style="margin-right: 0.5rem; color: var(--primary-gold);"></i>LG WebOS Smart TV</h3>
+                    <ol style="margin-left: 2rem; color: var(--text-secondary);">
+                        <li>On your LG Smart TV, press the Home button on the remote</li>
+                        <li>Navigate to the LG Content Store</li>
+                        <li>Search for "istv" in the app store</li>
+                        <li>Select istv and click "Install"</li>
+                        <li>Wait for installation to complete and launch the app</li>
+                    </ol>
+                </div>
+
+                <div class="instruction-item">
+                    <h3><i class="fas fa-globe" style="margin-right: 0.5rem; color: var(--primary-gold);"></i>Web Browser</h3>
+                    <ol style="margin-left: 2rem; color: var(--text-secondary);">
+                        <li>Visit <strong>https://istvkenya.com</strong> on your computer or mobile browser</li>
+                        <li>Click "Watch Live on Web" from the homepage</li>
+                        <li>Select a channel from the available streams</li>
+                        <li>Enjoy free FTA streaming instantly (no installation required)</li>
+                    </ol>
+                </div>
+
+                <div class="instruction-item">
+                    <h3 style="color: var(--accent-green);"><i class="fas fa-question-circle" style="margin-right: 0.5rem;"></i>Troubleshooting</h3>
+                    <p>If you encounter any issues:</p>
+                    <ul>
+                        <li>Ensure you have a stable internet connection (3G/4G/5G or WiFi)</li>
+                        <li>Clear the app cache and try again</li>
+                        <li>Make sure your device OS is up to date</li>
+                        <li>Contact our support team at <a href="mailto:support@istvkenya.com" style="color: var(--primary-gold);">support@istvkenya.com</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-home" style="width: 14px;"></i> Home</a></li>
+                        <li><a href="download.html"><i class="fas fa-download" style="width: 14px;"></i> Download</a></li>
+                        <li><a href="index.html#channels"><i class="fas fa-play-circle" style="width: 14px;"></i> Live TV</a></li>
+                        <li><a href="#"><i class="fas fa-calendar" style="width: 14px;"></i> Schedule</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="privacy.html"><i class="fas fa-shield-alt" style="width: 14px;"></i> Privacy Policy</a></li>
+                        <li><a href="terms.html"><i class="fas fa-file-contract" style="width: 14px;"></i> Terms of Service</a></li>
+                        <li><a href="terms.html#dmca"><i class="fas fa-copyright" style="width: 14px;"></i> DMCA Notice</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="mailto:support@istvkenya.com"><i class="fas fa-envelope" style="width: 14px;"></i> Support Email</a></li>
+                        <li><a href="mailto:privacy@istvkenya.com"><i class="fas fa-lock" style="width: 14px;"></i> Privacy Concerns</a></li>
+                        <li><a href="mailto:copyright@istvkenya.com"><i class="fas fa-exclamation-circle" style="width: 14px;"></i> DMCA Request</a></li>
+                    </ul>
+                </div>
+
+                <!-- Follow Us -->
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div style="margin-bottom: 1rem;">
+                        <p style="margin-bottom: 1rem; color: var(--text-secondary);">Connect with istv on social media</p>
+                        <div class="social-icons">
+                            <a href="https://www.tiktok.com/@istv_ke" target="_blank" class="social-icon" title="TikTok">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                            <a href="mailto:info@songatechnologies.co.ke" class="social-icon" title="Email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <a href="https://wa.me/254713278506" target="_blank" class="social-icon" title="WhatsApp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>&copy; 2026 <strong>istv</strong>. Kenya's Free-to-Air TV Streaming Platform. All rights reserved.</p>
+                <p>Based in Nairobi, Kenya | Streaming Free Kenyan Television Across All Devices</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // QR Code Generator
+        let currentQRType = 'playstore';
+
+        const qrUrls = {
+            playstore: 'https://play.google.com/store/apps/details?id=com.istv.android',
+            apk: 'https://download.istvkenya.com/istv.apk',
+            web: 'https://istvkenya.com'
+        };
+
+        function generateQR(type) {
+            currentQRType = type;
+
+            // Update active button
+            document.querySelectorAll('.qr-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Clear previous QR
+            document.getElementById('qrcode').innerHTML = '';
+
+            // Generate new QR
+            new QRCode(document.getElementById('qrcode'), {
+                text: qrUrls[type],
+                width: 200,
+                height: 200,
+                colorDark: '#000',
+                colorLight: '#fff',
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        }
+
+        // Initialize with Google Play QR code
+        window.addEventListener('load', () => {
+            new QRCode(document.getElementById('qrcode'), {
+                text: qrUrls.playstore,
+                width: 200,
+                height: 200,
+                colorDark: '#000',
+                colorLight: '#fff',
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        });
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Download - istv",
+        "url": "https://istvkenya.com/download.html",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "istv"
+        },
+        "description": "Download istv for Android, Android TV, LG WebOS, and Web Browser"
+    }
+    </script>
+</body>
+</html>

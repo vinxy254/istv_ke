@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="istv Privacy Policy - We respect your privacy and do not collect personal information.">
+    <meta name="theme-color" content="#0d0d0d">
+    <title>Privacy Policy - istv</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-gold: #FABC1B;
+            --accent-green: #49FF35;
+            --bg-dark: #0d0d0d;
+            --bg-card: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --border-light: #2a2a2a;
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(13, 13, 13, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-light);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #FABC1B 0%, #49FF35 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: var(--transition-smooth);
+        }
+
+        nav a:hover {
+            color: var(--primary-gold);
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 100px;
+            padding: 4rem 0;
+            min-height: calc(100vh - 200px);
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #FABC1B 0%, #49FF35 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .last-updated {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 3rem;
+        }
+
+        .privacy-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 3rem;
+            line-height: 2;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin: 2rem 0 1rem;
+            color: var(--primary-gold);
+            border-bottom: 2px solid var(--border-light);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 18px;
+            margin: 1.5rem 0 0.75rem;
+            color: var(--accent-green);
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        ul {
+            margin: 1rem 0 1rem 2rem;
+            color: var(--text-secondary);
+        }
+
+        li {
+            margin-bottom: 0.75rem;
+        }
+
+        strong {
+            color: var(--text-primary);
+        }
+
+        .highlight {
+            background: rgba(250, 188, 27, 0.1);
+            border-left: 4px solid var(--primary-gold);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(13, 13, 13, 0.95) 100%);
+            border-top: 2px solid var(--border-light);
+            padding: 4rem 0;
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary-gold);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-section a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-gold);
+            transform: translateX(4px);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(250, 188, 27, 0.1);
+            border: 2px solid var(--border-light);
+            border-radius: 50%;
+            color: var(--primary-gold);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            font-size: 16px;
+        }
+
+        .social-icon:hover {
+            background: var(--primary-gold);
+            border-color: var(--primary-gold);
+            color: #000;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-light);
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .footer-bottom p {
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 0.75rem 0;
+            }
+
+            main {
+                margin-top: 80px;
+                padding: 2rem 0;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            .privacy-content {
+                padding: 2rem;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            ul {
+                margin-left: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">istv</a>
+                <a href="index.html" style="color: var(--text-secondary); text-decoration: none;">← Back to Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>Privacy Policy</h1>
+            <p class="last-updated">Last Updated: April 2026</p>
+
+            <div class="privacy-content">
+                <h2>Our Privacy Commitment</h2>
+                <p>At <strong>istv</strong>, we are committed to protecting your privacy. This privacy policy explains how we handle your data when you use our services.</p>
+
+                <h2>Data Collection</h2>
+                <p><strong>istv does not collect, store, or process any personal information from our users.</strong></p>
+                <p>We operate as a viewer-only platform focused solely on streaming content. We do not:</p>
+                <ul>
+                    <li>Collect names, email addresses, phone numbers, or other personal identifiers</li>
+                    <li>Track browsing history or viewing preferences</li>
+                    <li>Store user account information or credentials</li>
+                    <li>Access your device's personal files, contacts, or media</li>
+                </ul>
+
+                <h2>Cookies & Tracking</h2>
+                <p><strong>We do not use cookies for tracking purposes.</strong></p>
+                <p>Our service operates without:</p>
+                <ul>
+                    <li>Persistent cookies that track user behavior</li>
+                    <li>Third-party analytics or advertising trackers</li>
+                    <li>Device fingerprinting or cross-site tracking</li>
+                </ul>
+
+                <h2>Required Permissions</h2>
+                <p>The istv app requires only minimal permissions to function:</p>
+                <ul>
+                    <li><strong>Internet Permission:</strong> Required to stream video content from our servers</li>
+                </ul>
+                <p>We do not request permissions for:</p>
+                <ul>
+                    <li>Camera or microphone access</li>
+                    <li>Location data</li>
+                    <li>Contact or calendar information</li>
+                    <li>File storage beyond what's needed for streaming</li>
+                </ul>
+
+                <div class="highlight">
+                    <strong>Key Point:</strong> The internet permission is exclusively used to enable video streaming. Your device remains completely private while using istv.
+                </div>
+
+                <h2>Viewer-Only Platform</h2>
+                <p><strong>istv is a viewer-only platform.</strong> We do not:</p>
+                <ul>
+                    <li>Create user accounts or profiles</li>
+                    <li>Store watch history or preferences</li>
+                    <li>Share your viewing data with third parties</li>
+                    <li>Monetize user data through advertising networks</li>
+                </ul>
+
+                <h2>Third-Party Services</h2>
+                <p>istv does not integrate with third-party data collection services. We do not use:</p>
+                <ul>
+                    <li>Google Analytics or similar analytics platforms</li>
+                    <li>Social media tracking pixels</li>
+                    <li>Advertising networks or demand-side platforms</li>
+                </ul>
+
+                <h2>Your Rights</h2>
+                <p>Since we do not collect personal data, there is no personal information for you to access, modify, or delete. You maintain complete privacy while using istv.</p>
+
+                <h2>Content & Legal Compliance</h2>
+                <p>While we prioritize user privacy, we comply with applicable Kenyan laws regarding content distribution and may remove channels if required by law or legitimate copyright claims.</p>
+
+                <h2>Changes to This Policy</h2>
+                <p>We may update this privacy policy from time to time. Any changes will be posted on this page with an updated "Last Updated" date. Your continued use of istv constitutes acceptance of any changes.</p>
+
+                <h2>Contact Us</h2>
+                <p>If you have questions about this privacy policy or our data practices, please contact us at:</p>
+                <p>
+                    <strong>Email:</strong> <a href="mailto:privacy@istvkenya.com" style="color: var(--primary-gold);">privacy@istvkenya.com</a><br>
+                    <strong>Location:</strong> Nairobi, Kenya
+                </p>
+
+                <div class="highlight">
+                    <strong>Bottom Line:</strong> Your privacy is paramount. We collect zero personal data, use no tracking cookies, and operate with complete transparency. Stream with confidence.
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-home" style="width: 14px;"></i> Home</a></li>
+                        <li><a href="download.html"><i class="fas fa-download" style="width: 14px;"></i> Download</a></li>
+                        <li><a href="index.html#channels"><i class="fas fa-play-circle" style="width: 14px;"></i> Live TV</a></li>
+                        <li><a href="#"><i class="fas fa-calendar" style="width: 14px;"></i> Schedule</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="privacy.html"><i class="fas fa-shield-alt" style="width: 14px;"></i> Privacy Policy</a></li>
+                        <li><a href="terms.html"><i class="fas fa-file-contract" style="width: 14px;"></i> Terms of Service</a></li>
+                        <li><a href="terms.html#dmca"><i class="fas fa-copyright" style="width: 14px;"></i> DMCA Notice</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="mailto:support@istvkenya.com"><i class="fas fa-envelope" style="width: 14px;"></i> Support Email</a></li>
+                        <li><a href="mailto:privacy@istvkenya.com"><i class="fas fa-lock" style="width: 14px;"></i> Privacy Concerns</a></li>
+                        <li><a href="mailto:copyright@istvkenya.com"><i class="fas fa-exclamation-circle" style="width: 14px;"></i> DMCA Request</a></li>
+                    </ul>
+                </div>
+
+                <!-- Follow Us -->
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div style="margin-bottom: 1rem;">
+                        <p style="margin-bottom: 1rem; color: var(--text-secondary);">Connect with istv on social media</p>
+                        <div class="social-icons">
+                            <a href="https://www.tiktok.com/@istv_ke" target="_blank" class="social-icon" title="TikTok">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                            <a href="mailto:info@songatechnologies.co.ke" class="social-icon" title="Email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <a href="https://wa.me/254713278506" target="_blank" class="social-icon" title="WhatsApp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>&copy; 2026 <strong>istv</strong>. Kenya's Free-to-Air TV Streaming Platform. All rights reserved.</p>
+                <p>Based in Nairobi, Kenya | Streaming Free Kenyan Television Across All Devices</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Privacy Policy - istv",
+        "url": "https://istvkenya.com/privacy.html",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "istv"
+        }
+    }
+    </script>
+</body>
+</html>
