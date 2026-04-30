@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <meta charset="UTF-8" />
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://kenyantv.live/index.html" />
+  <link href="https://vjs.zencdn.net/8.0.4/video-js.css" rel="stylesheet">
+  <meta name="description" content="Your all-in-one live TV stream. Enjoy the best selection of Kenyan channels, international networks, movies, music, and news. There is truly something for everyone.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kenyan TV Live Streaming</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary-bg: #1a1a24;
+      --accent: #ff6b6b;
+      --glass: rgba(255, 255, 255, 0.08);
+      --gradient: linear-gradient(145deg, #ff6b6b 0%, #ff5252 100%);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: var(--primary-bg);
+      color: white;
+      font-family: 'Segoe UI', system-ui;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .video-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 1;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    #player {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .channel-sidebar {
+      position: fixed;
+      left: -350px;
+      top: 0;
+      height: 100vh;
+      width: 350px;
+      background: rgba(31, 31, 42, 0.7);
+      backdrop-filter: blur(20px);
+      transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 3;
+      padding: 0;
+      overflow: hidden;
+      border-radius: 0 30px 30px 0;
+      box-shadow: 10px 0 30px rgba(0, 0, 0, 0.3);
+      display: flex;
+    }
+    .sidebar-trigger {
+      position: fixed;
+      left: 1.6%;
+      top: 50%;
+      transform: translateY(50%) rotate(-90deg);
+      transform-origin: left center;
+      font-size: 15px;
+      font-weight: bold;
+      color: #ffffff;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      background: var(--gradient);
+      border-radius: 0 15px 15px 0;
+      padding: 25px 15px;
+      border-radius: 20px;
+      z-index: 2;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+    .sidebar-trigger:hover + .channel-sidebar,
+    .channel-sidebar:hover {
+      left: 0;
+    }
+    /* Left panel: categories + contact us stacked */
+    .sidebar-left-panel {
+      width: 120px;
+      background: rgba(20, 20, 30, 0.9);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow-y: auto;
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .categories-side {
+      flex-shrink: 0;
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .categories-side h3 {
+      padding: 0 15px 10px 15px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 10px;
+    }
+    /* Contact Us Section - directly below categories */
+    .contact-us-section {
+      flex-shrink: 0;
+      padding: 15px 0 20px 0;
+      background: rgba(20, 20, 30, 0.9);
+    }
+    .contact-us-section h3 {
+      padding: 0 15px 10px 15px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 10px;
+    }
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 0 10px;
+    }
+    .contact-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 8px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.9);
+      text-decoration: none;
+      font-size: 11px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      text-align: center;
+    }
+    .contact-link i {
+      font-size: 18px;
+      margin-bottom: 6px;
+      transition: transform 0.2s;
+    }
+    .contact-link .fab.fa-tiktok { color: #25F4EE; }
+    .contact-link .fab.fa-facebook { color: #1877F2; }
+    .contact-link .fas.fa-envelope { color: #ff6b6b; }
+    .contact-link:hover {
+      background: rgba(255, 107, 107, 0.2);
+      color: white;
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .contact-link:hover i {
+      transform: scale(1.1);
+    }
+    .category-item {
+      padding: 12px 15px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.8);
+      border-left: 3px solid transparent;
+    }
+    .category-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+    .category-item.active {
+      background: rgba(255, 107, 107, 0.2);
+      border-left: 3px solid var(--accent);
+      color: white;
+    }
+    .category-item .category-name {
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .channels-side {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+    }
+    .channels-side h3 {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .channel-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      margin-bottom: 10px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(2px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .channel-card:hover {
+      transform: translateX(5px);
+      background: rgba(255, 255, 255, 0.15);
+    }
+    .channel-card.active {
+      border-left: 3px solid var(--accent);
+      background: rgba(255, 107, 107, 0.15);
+    }
+    .channel-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      object-fit: cover;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+    .channel-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .channel-info h3 {
+      font-size: 14px;
+      margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      border-bottom: none;
+      padding: 0;
+      color: white;
+    }
+    .channel-info p {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.6);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .channel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 5px;
+    }
+    #donationBanner {
+      position: fixed;
+      bottom: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      transition: all 0.5s ease-in-out;
+      max-width: 600px;
+      width: 90%;
+      cursor: pointer;
+      visibility: hidden;
+      padding: 0;
+    }
+    #donationBanner.active {
+      bottom: 20px;
+      visibility: visible;
+    }
+    #donationBanner img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      display: block;
+    }
+    @media (max-width: 767px) {
+      #donationBanner { width: 85%; max-width: 400px; }
+      #donationBanner img { max-height: 120px; }
+      #closeBannerBtn { top: 5px; right: 5px; width: 20px; height: 20px; font-size: 12px; }
+    }
+    @media (min-width: 768px) and (max-width: 1023px) {
+      #donationBanner { width: 75%; max-width: 500px; }
+      #donationBanner img { max-height: 150px; }
+    }
+    @media (min-width: 1024px) {
+      #donationBanner { width: 40%; max-width: 800px; }
+      #donationBanner img { max-height: 180px; }
+      #closeBannerBtn { top: 15px; right: 15px; width: 30px; height: 30px; font-size: 16px; }
+    }
+    #closeBannerBtn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      z-index: 1001;
+    }
+    .info-icon {
+      margin-left: auto;
+      color: yellow;
+      text-decoration: none;
+    }
+    .info-icon i { font-size: 1.2rem; }
+    .info-icon:hover { color: #ff9900; }
+    #chatButton {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: var(--gradient);
+      border-radius: 50%;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+    #chatButton:hover { transform: scale(1.1); }
+    #chatIcon { display: block; }
+    #closeChatIcon { display: none; }
+    #chatContainer {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 350px;
+      height: 450px;
+      background: transparent;
+      border-radius: 15px;
+      overflow: hidden;
+      z-index: 1000;
+      display: none;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+      opacity: 0.8;
+      transition: opacity 0.3s, transform 0.3s;
+      transform: translateY(20px);
+    }
+    #chatContainer.active { display: block; transform: translateY(0); }
+    .iframe-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 15px;
+    }
+    .chat-controls-floating {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 1001;
+      display: flex;
+      gap: 5px;
+      opacity: 0.3;
+      transition: opacity 0.3s ease;
+    }
+    .chat-controls-floating:hover { opacity: 1; }
+    .chat-controls-floating button {
+      background: rgba(0, 0, 0, 0.7);
+      border: none;
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #chatIframe {
+      width: 133.33%;
+      height: 133.33%;
+      transform: scale(0.75);
+      transform-origin: top left;
+      border: none;
+      background: transparent;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    #chatIframe.loaded { opacity: 1; }
+    #chatLoading {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      z-index: 10;
+    }
+    #chatLoading.hidden { display: none; }
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: var(--accent);
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    #loading {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 1.5rem;
+      z-index: 9999;
+      background: var(--glass);
+      padding: 20px 40px;
+      border-radius: 30px;
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    @media (max-width: 768px) {
+      #chatContainer { width: 300px; height: 400px; right: 10px; bottom: 80px; }
+      #chatButton { right: 10px; bottom: 10px; width: 50px; height: 50px; }
+    }
+    #my-video { width: 100%; height: 100%; display: block; }
+    .external-iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: transparent;
+      z-index: 1;
+    }
+    .blue-screen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #0000FF;
+      display: none;
+      z-index: 100;
+    }
+    .bouncing-text {
+      position: absolute;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      user-select: none;
+    }
+    .channel-display {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: #FF0000;
+      font-size: 28px;
+      font-weight: bold;
+      z-index: 101;
+      display: none;
+    }
+    .sidebar-close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(255, 107, 107, 0.8);
+      color: white;
+      border: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      z-index: 4;
+      transition: all 0.3s ease;
+      opacity: 0.7;
+    }
+    .sidebar-close-btn:hover {
+      background: rgba(255, 107, 107, 1);
+      opacity: 1;
+      transform: scale(1.1);
+    }
+    .sidebar-left-panel {
+      padding-top: 40px;
+    }
+    .channel-sidebar.closed { left: -350px !important; }
+  </style>
+</head>
+<body>
+ <h1 style="position: absolute; left: -9999px; top: -9999px;">Kenya Live TV: Watch live TV channels online</h1>
+  <div id="loading" style="display: none;">
+    <div class="spinner"></div>
+    <span>Initializing Player...</span>
+  </div>
+
+  <button id="chatButton" title="Show Live Chat">
+    <i id="chatIcon" class="fas fa-comments"></i>
+    <i id="closeChatIcon" class="fas fa-times"></i>
+  </button>
+  
+  <div id="chatContainer">
+    <div class="iframe-wrapper">
+      <div class="chat-controls-floating">
+        <button id="opacityUp" title="Increase Transparency">+</button>
+        <button id="opacityDown" title="Decrease Transparency">-</button>
+        <button id="closeChat" title="Close Chat">×</button>
+      </div>
+      <div id="chatLoading">
+        <div class="loading-spinner"></div>
+        <p>Connecting to chat...</p>
+      </div>
+      <iframe id="chatIframe" allowtransparency="true" sandbox="allow-same-origin allow-scripts allow-popups allow-forms" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+
+  <div class="sidebar-trigger">CHANNELS</div>
+  <aside class="channel-sidebar" id="channelList">
+    <button class="sidebar-close-btn" id="closeSidebar" title="Close Sidebar">
+      <i class="fas fa-times"></i>
+    </button>
+
+    <!-- Left panel: categories + contact us stacked (categories first, contact us directly after) -->
+   
+    <div class="sidebar-left-panel" id="sidebarLeftPanel">
+      <div class="categories-side" id="categoriesSide">
+         <div class="sidebar-logo">
+          <img src="istvlogo.png" alt="ISTV Logo">
+        </div>
+        <h3>CATEGORIES</h3>
+
+        <!-- Categories populated via JS -->
+
+      </div>
+      <div class="contact-us-section" id="contactUsSection">
+        <h3>CONTACT US</h3>
+        <div class="contact-links">
+          <a href="mailto:info@songatechnologies.co.ke" class="contact-link" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-envelope"></i>
+            <span>Email Us</span>
+          </a>
+          <a href="https://www.tiktok.com/@istv_ke" class="contact-link" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-tiktok"></i>
+            <span>TikTok</span>
+          </a>
+          <a href="https://wa.me/+254757090266" class="contact-link" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-whatsapp"></i>
+            <span>Whatsapp</span>
+          </a>
+          <h3>Terms and conditions apply</h3>
+        </div>
+      </div>
+    </div>
+    <div class="channels-side" id="channelsSide">
+      <h3>ALL CHANNELS</h3>
+    </div>
+  </aside>
+
+  <div id="donationBanner" onclick="donateNow()">
+    <img src="../mchange.jpg" alt="Support our service - Donate Now">
+    <button id="closeBannerBtn">&times;</button>
+  </div>
+
+  <div id="player" class="video-container">
+    <video id="my-video" poster="poster.png" class="video-js" controls preload="auto" data-setup='{}'>
+      <p class="vjs-no-js">Please enable JavaScript to watch this video.</p>
+    </video>
+    <div class="blue-screen" id="blue-screen">
+      <div class="bouncing-text" id="bouncing-text">No signal unsupported<br>or broken broadcast link</div>
+    </div>
+    <div class="channel-display" id="channel-display"></div>
+  </div>
+
+  <script src="https://vjs.zencdn.net/8.0.4/video.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@videojs/http-streaming@3.0.2/dist/videojs-http-streaming.min.js"></script>
+  <script src="smart-tv/js/channels.js"></script>
+  <script>
+    // Channel Configuration - Updated with categories
+
+
+    let hls = null; // HLS.js instance
+    let currentChannel = null; // Track current channel
+    let bannerVisible = false;
+    let bannerTimer = null;
+    let currentCategory = "All Channels"; // Track current category
+
+
+      //the following functions are used to manage video.js player
+      //channel blue screen
+      // Initialize Video.js player
+    const player = videojs('my-video');
+    const blueScreen = document.getElementById('blue-screen');
+    const bouncingText = document.getElementById('bouncing-text');
+    const channelDisplay = document.getElementById('channel-display');
+    
+
+    // Bouncing text animation variables
+    let animationId = null;
+    let posX = 100;
+    let posY = 100;
+    let velX = 1.2;  // Slower velocity
+    let velY = 1.0;  // Slower velocity
+    let textWidth = 0;
+    let textHeight = 0;
+
+
+
+    // Function to generate YouTube embed URL from channel ID
+    function getYouTubeEmbedUrl(channelId) {
+      return `https://www.youtube.com/embed/live_stream?channel=${channelId}&autoplay=1&rel=0&showinfo=0&enablejsapi=0&controls=0&disablekb=1&modestbranding=1`;
+    }
+    
+    // Function to get YouTube live chat URL from video ID
+    function getYouTubeChatUrl(videoId) {
+      return `https://www.youtube.com/live_chat?v=${videoId}&embed_domain=kenyantv.live`;
+    }
+
+    // Get all unique categories from channels
+   // Get all unique categories from channels with custom sorting
+  function getCategories() {
+    const categories = new Set();
+    channels.forEach(channel => {
+      categories.add(channel.category);
+    });
+    
+    // Define the desired order
+    const categoryOrder = [
+      "All Channels",  // This will be added separately
+      "National",
+      "Local",
+      "News",
+      "Business",
+      "Entertainment", 
+      "Sports",
+      "Movies",
+      "Music",
+      "Kids",     
+      "Comedy",
+      "Nature",
+      "Automotive",
+      "Science",
+      "Education",
+      "Weather"
+    ];
+    
+    // Get array from set
+    const categoriesArray = Array.from(categories);
+    
+    // Sort categories according to defined order
+    categoriesArray.sort((a, b) => {
+      const indexA = categoryOrder.indexOf(a);
+      const indexB = categoryOrder.indexOf(b);
+      
+      // If both are in the order list, sort by their position
+      if (indexA !== -1 && indexB !== -1) {
+        return indexA - indexB;
+      }
+      
+      // If only A is in the order list, it comes first
+      if (indexA !== -1) return -1;
+      
+      // If only B is in the order list, it comes first
+      if (indexB !== -1) return 1;
+      
+      // If neither is in the order list, sort alphabetically
+      return a.localeCompare(b);
+    });
+    
+    return categoriesArray;
+  }
+
+    // Initialize categories and channels
+    // Initialize categories and channels
+  function initChannels() {
+    const categoriesSide = document.getElementById("categoriesSide");
+    const channelsSide = document.getElementById("channelsSide");
+    
+    // Clear existing content
+    categoriesSide.innerHTML = '<h3>CATEGORIES</h3>';
+    channelsSide.innerHTML = '<h3>ALL CHANNELS</h3>';
+    
+    // Get all categories (already sorted in getCategories function)
+    const categories = getCategories();
+    
+    // Add "All Channels" category first
+    const allCategoryItem = document.createElement('div');
+    allCategoryItem.className = 'category-item active';
+    allCategoryItem.innerHTML = '<span class="category-name">All Channels</span>';
+    allCategoryItem.dataset.category = "All Channels";
+    categoriesSide.appendChild(allCategoryItem);
+    
+    // Add other categories in the sorted order
+    categories.forEach(category => {
+      // Skip if it's "All Channels" since we already added it
+      if (category === "All Channels") return;
+      
+      const categoryItem = document.createElement('div');
+      categoryItem.className = 'category-item';
+      categoryItem.innerHTML = `<span class="category-name">${category}</span>`;
+      categoryItem.dataset.category = category;
+      categoriesSide.appendChild(categoryItem);
+    });
+    
+    // Initialize with all channels
+    renderChannelsByCategory("All Channels");
+    
+    // Add click event listeners to categories
+    document.querySelectorAll('.category-item').forEach(item => {
+      item.addEventListener('click', function() {
+        // Remove active class from all categories
+        document.querySelectorAll('.category-item').forEach(c => {
+          c.classList.remove('active');
+        });
+        
+        // Add active class to clicked category
+        this.classList.add('active');
+        
+        // Update current category
+        currentCategory = this.dataset.category;
+        
+        // Update channels side header
+        const channelsSideHeader = document.querySelector('#channelsSide h3');
+        channelsSideHeader.textContent = currentCategory.toUpperCase();
+        
+        // Render channels for selected category
+        renderChannelsByCategory(currentCategory);
+      });
+    });
+  }
+
+    // Render channels based on selected category
+    function renderChannelsByCategory(category) {
+      const channelsSide = document.getElementById("channelsSide");
+      const channelsContainer = channelsSide.querySelector('.channels-container');
+      
+      // Remove existing channels container if it exists
+      if (channelsContainer) {
+        channelsContainer.remove();
+      }
+      
+      // Create new channels container
+      const newChannelsContainer = document.createElement('div');
+      newChannelsContainer.className = 'channels-container';
+      
+      // Filter channels based on category
+      let filteredChannels = channels;
+      if (category !== "All Channels") {
+        filteredChannels = channels.filter(channel => channel.category === category);
+      }
+      
+      // Create channel cards
+      filteredChannels.forEach((channel) => {
+        const infoIcon = channel.infoPage !== "N/A" ? `<a href="${channel.infoPage}" target="_blank" class="info-icon"><i class="fas fa-info-circle"></i></a>` : '';
+        const channelHTML = `
+          <div class="channel-card" data-channel-id="${channel.name}">
+            <img src="${channel.logo}" class="channel-logo">
+            <div class="channel-info">
+              <div class="channel-header">
+                <h3>${channel.name}</h3>
+                ${infoIcon}
+              </div>
+              <p>${channel.category}</p>
+            </div>
+          </div>
+        `;
+        newChannelsContainer.innerHTML += channelHTML;
+      });
+      
+      // Append channels container to channels side
+      channelsSide.appendChild(newChannelsContainer);
+      
+      // Add click event listeners to channel cards
+      newChannelsContainer.querySelectorAll(".channel-card").forEach((card) => {
+        card.addEventListener("click", async function () {
+          document.querySelectorAll(".channel-card").forEach((c) =>
+            c.classList.remove("active")
+          );
+          this.classList.add("active");
+
+          const channelName = this.dataset.channelId;
+          const channelData = channels.find((c) => c.name === channelName);
+          currentChannel = channelData; // Update current channel
+          
+          // Show/hide chat button based on channel type
+          //showBanner();
+          if (channelData.type === "youtube" && channelData.videoId) {
+            document.getElementById('chatButton').style.display = 'flex';
+          } else {
+            document.getElementById('chatButton').style.display = 'none';
+            document.getElementById('chatContainer').classList.remove('active');
+            resetChatButton();
+          }
+          
+          if (channelData.type === "youtube") {
+            const channelId = channelData.channelUrl;
+            if (channelId) {
+              loadYouTubeLive(channelId);
+            } else {
+              console.error("Invalid YouTube Channel ID");
+            }
+          } else if (channelData.type === "stream") {
+            loadStream(channelData.streamUrl);
+          } else if (channelData.type === "m3u8") {
+            playStream(channelData.streamUrl, channelData.name);
+          }
+
+          updateChannelInfo(channelData);
+         // handleChannelChange();
+        });
+      });
+    }
+
+    // Helper to stop any external iframe playback
+    function stopIframePlayback() {
+      const playerContainer = document.getElementById('player');
+      if (!playerContainer) return;
+      const iframe = playerContainer.querySelector('.external-iframe');
+      if (iframe) {
+        try {
+          // Clearing src stops playback for cross-origin embeds
+          iframe.src = 'about:blank';
+        } catch (e) {
+          console.warn('Failed to clear iframe src', e);
+        }
+        iframe.style.display = 'none';
+      }
+    }
+
+    // Function to load YouTube live stream by channel ID
+    function loadYouTubeLive(channelId) {
+      const embedUrl = getYouTubeEmbedUrl(channelId);
+      const playerContainer = document.getElementById("player");
+      const videoEl = document.getElementById('my-video');
+
+      // Stop any HLS instance and video playback
+      hideBlueScreen();
+      if (hls) {
+        try { hls.destroy(); } catch (e) { console.warn('Error destroying Hls instance', e); }
+        hls = null;
+      }
+      try { player.pause(); } catch (e) { /* ignore */ }
+      try { if (player.currentTime) player.currentTime(0); } catch (e) {}
+
+      // Hide the Video.js element
+      if (videoEl) videoEl.style.display = 'none';
+
+      // Stop any existing iframe playback before reusing
+      stopIframePlayback();
+
+      // Reuse or create a persistent iframe so we don't remove the video element
+      let iframe = playerContainer.querySelector('.external-iframe');
+      if (!iframe) {
+        iframe = document.createElement('iframe');
+        iframe.className = 'external-iframe';
+        iframe.width = '100%';
+        iframe.height = '100%';
+        iframe.frameBorder = '0';
+        iframe.allow = 'autoplay; encrypted-media';
+        iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+        iframe.allowFullscreen = true;
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        iframe.style.border = '0';
+        playerContainer.appendChild(iframe);
+      }
+      iframe.src = embedUrl;
+      iframe.style.display = 'block';
+    }
+
+    // Load HLS Stream
+    function loadHLS(url) {
+      // Use the existing Video.js player element instead of creating a new <video>
+      const playerContainer = document.getElementById("player");
+      const loading = document.getElementById("loading");
+      const videoEl = document.getElementById('my-video');
+
+      if (!playerContainer || !loading || !videoEl) {
+        console.error("Critical elements missing!");
+        return;
+      }
+
+      // Hide any external iframe
+      const iframe = playerContainer.querySelector('.external-iframe');
+      if (iframe) {
+        try { iframe.src = 'about:blank'; } catch (e) { console.warn('Failed clearing iframe src', e); }
+        iframe.style.display = 'none';
+      }
+
+      // Show video element
+      videoEl.style.display = 'block';
+
+      // Use Video.js to load HLS source (VHS) - fallback to Hls.js if necessary
+      try {
+        player.src({ src: url, type: 'application/x-mpegURL' });
+        loading.style.display = 'none';
+        player.play().catch(err => console.warn('Autoplay/play failed:', err));
+      } catch (e) {
+        // As a fallback, attempt Hls.js on the element
+        if (hls) { try { hls.destroy(); } catch (err) {} hls = null; }
+        if (Hls.isSupported()) {
+          hls = new Hls({ debug: true, enableWorker: true });
+          hls.loadSource(url);
+          hls.attachMedia(videoEl);
+          hls.on(Hls.Events.MANIFEST_PARSED, function() {
+            loading.style.display = 'none';
+            videoEl.play().catch(err => console.warn('Fallback play failed:', err));
+          });
+        } else if (videoEl.canPlayType('application/vnd.apple.mpegurl')) {
+          videoEl.src = url;
+          videoEl.addEventListener('loadedmetadata', function() {
+            loading.style.display = 'none';
+            videoEl.play();
+          });
+        }
+      }
+    }
+
+    // Update Channel Info in bottom panel
+    function updateChannelInfo(data) {
+      // Implementation remains the same
+    }
+
+    // Load Generic Stream
+    function loadStream(url) {
+      hideBlueScreen();
+      const playerContainer = document.getElementById("player");
+      const videoEl = document.getElementById('my-video');
+
+      // Hide the Video.js element and stop playback
+      if (videoEl) {
+        try { player.pause(); } catch (e) {}
+        try { if (player.currentTime) player.currentTime(0); } catch (e) {}
+        videoEl.style.display = 'none';
+      }
+
+      // Destroy any Hls instance to stop background buffering/playback
+      if (hls) { try { hls.destroy(); } catch (e) { console.warn('Error destroying hls', e); } hls = null; }
+
+      // Reuse or create persistent iframe
+      let iframe = playerContainer.querySelector('.external-iframe');
+      if (!iframe) {
+        iframe = document.createElement('iframe');
+        iframe.className = 'external-iframe';
+        iframe.width = '100%';
+        iframe.height = '100%';
+        iframe.frameBorder = '0';
+        iframe.allow = 'autoplay; encrypted-media';
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        iframe.style.border = '0';
+        playerContainer.appendChild(iframe);
+      }
+      iframe.src = url;
+      iframe.style.display = 'block';
+    }
+
+
+
+//video.js handler functions
+    // Function to update text dimensions
+    function updateTextDimensions() {
+        textWidth = bouncingText.offsetWidth;
+        textHeight = bouncingText.offsetHeight;
+    }
+    
+    // Function to animate bouncing text
+    function animateBouncingText() {
+        // Get container dimensions
+        const container = blueScreen;
+        const containerWidth = container.clientWidth;
+        const containerHeight = container.clientHeight;
+        
+        // Update position
+        posX += velX;
+        posY += velY;
+        
+        // Check for horizontal collisions
+        if (posX <= 0) {
+            posX = 0;
+            velX = Math.abs(velX) * (0.9 + Math.random() * 0.1);
+        } else if (posX + textWidth >= containerWidth) {
+            posX = containerWidth - textWidth;
+            velX = -Math.abs(velX) * (0.9 + Math.random() * 0.1);
+        }
+        
+        // Check for vertical collisions
+        if (posY <= 0) {
+            posY = 0;
+            velY = Math.abs(velY) * (0.9 + Math.random() * 0.1);
+        } else if (posY + textHeight >= containerHeight) {
+            posY = containerHeight - textHeight;
+            velY = -Math.abs(velY) * (0.9 + Math.random() * 0.1);
+        }
+        
+        // Apply new position
+        bouncingText.style.left = posX + 'px';
+        bouncingText.style.top = posY + 'px';
+        
+        // Continue animation
+        if (blueScreen.style.display === 'block') {
+            animationId = requestAnimationFrame(animateBouncingText);
+        }
+    }
+    
+    // Function to start bouncing animation
+    function startBouncingAnimation() {
+        // Stop any existing animation
+        if (animationId) {
+            cancelAnimationFrame(animationId);
+        }
+        
+        // Update text dimensions
+        updateTextDimensions();
+        
+        // Randomize starting position and velocity
+        const container = blueScreen;
+        posX = Math.random() * (container.clientWidth - textWidth);
+        posY = Math.random() * (container.clientHeight - textHeight);
+        velX = (Math.random() > 0.5 ? 1 : -1) * (0.8 + Math.random() * 0.8);
+        velY = (Math.random() > 0.5 ? 1 : -1) * (0.8 + Math.random() * 0.8);
+        
+        // Start animation
+        animationId = requestAnimationFrame(animateBouncingText);
+    }
+    
+    // Function to stop bouncing animation
+    function stopBouncingAnimation() {
+        if (animationId) {
+            cancelAnimationFrame(animationId);
+            animationId = null;
+        }
+    }
+    
+    // Function to show blue screen with bouncing text
+    function showBlueScreen() {
+        console.log('Showing blue screen - Unsupported format or broken stream');
+
+        blueScreen.style.display = 'block';
+        channelDisplay.style.display = 'none';
+        startBouncingAnimation();
+    }
+    
+    // Function to hide blue screen
+    function hideBlueScreen() {
+        blueScreen.style.display = 'none';
+        stopBouncingAnimation();
+    }
+    
+    // Function to load and play a stream
+    function playStream(url, channelName) {
+        // Hide blue screen
+        hideBlueScreen();
+        
+        // Show channel name briefly
+        if (channelName) {
+            channelDisplay.textContent = channelName;
+            channelDisplay.style.display = 'block';
+            
+            // Hide after 3 seconds
+            setTimeout(() => {
+                channelDisplay.style.display = 'none';
+            }, 5000);
+        }
+        
+        // Remove/hide any external iframe and show the Video.js element
+        const playerContainer = document.getElementById('player');
+          const iframe = playerContainer ? playerContainer.querySelector('.external-iframe') : null;
+          if (iframe) {
+            try { iframe.src = 'about:blank'; } catch (e) { console.warn('Failed clearing iframe src', e); }
+            iframe.style.display = 'none';
+          }
+
+        const videoEl = document.getElementById('my-video');
+        if (videoEl) videoEl.style.display = 'block';
+
+        // Set the stream source on the Video.js player
+        player.src({ src: url, type: 'application/x-mpegURL' });
+
+        // Try to play
+        player.play().catch(error => {
+          console.log('Initial play failed, but waiting for actual error detection:', error);
+        });
+    }
+    
+    // Set up error handling - ONLY for error code 4
+    player.on('error', function() {
+        const error = player.error();
+        
+        // Log all errors for debugging
+        if (error) {
+            console.log('Player error detected:', {
+                code: error.code,
+                message: error.message,
+                type: 'MEDIA_ERR_' + 
+                    (error.code === 1 ? 'ABORTED' :
+                        error.code === 2 ? 'NETWORK' :
+                        error.code === 3 ? 'DECODE' :
+                        error.code === 4 ? 'SRC_NOT_SUPPORTED' : 'UNKNOWN')
+            });
+        }
+        
+        // ONLY show blue screen for error code 4
+        if (error && error.code === 4) {
+            console.log('ERROR CODE 4 DETECTED: MEDIA_ERR_SRC_NOT_SUPPORTED');
+            console.log('Message:', error.message);
+
+            showBlueScreen();
+        } else {
+            // For all other errors, just log but don't show blue screen
+            if (error) {
+                console.log('Non-critical error ignored (not code 4):', error.code);
+            }
+            hideBlueScreen(); // Make sure blue screen is hidden
+        }
+    });
+    
+    // Set up playing event to hide blue screen
+    player.on('playing', function() {
+        console.log('Stream playing successfully');
+        hideBlueScreen();
+    });
+    
+    // Set up loadeddata event to confirm stream is supported
+    player.on('loadeddata', function() {
+        console.log('Stream data loaded - format is supported');
+        hideBlueScreen();
+    });
+    
+    // Set up waiting event (buffering) - don't show blue screen
+    player.on('waiting', function() {
+        console.log('Player buffering...');
+        hideBlueScreen(); // Keep blue screen hidden during buffering
+    });
+    
+    // Set up ended event - don't show blue screen
+    player.on('ended', function() {
+        console.log('Stream ended normally');
+        hideBlueScreen();
+    });
+    
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        if (blueScreen.style.display === 'block') {
+            updateTextDimensions();
+            
+            const containerWidth = blueScreen.clientWidth;
+            const containerHeight = blueScreen.clientHeight;
+            
+            if (posX + textWidth > containerWidth) {
+                posX = containerWidth - textWidth;
+            }
+            
+            if (posY + textHeight > containerHeight) {
+                posY = containerHeight - textHeight;
+            }
+            
+            bouncingText.style.left = posX + 'px';
+            bouncingText.style.top = posY + 'px';
+        }
+    });
+    
+    // Initialize text dimensions
+    updateTextDimensions();
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Toggle chat button icon
+   function toggleChatIcon(isOpen) {
+      if (isOpen) {
+        document.getElementById('chatIcon').style.display = 'none';
+        document.getElementById('closeChatIcon').style.display = 'block';
+      } else {
+        document.getElementById('chatIcon').style.display = 'block';
+        document.getElementById('closeChatIcon').style.display = 'none';
+      }
+    }
+    
+    // Reset chat button to default state
+    function resetChatButton() {
+      toggleChatIcon(false);
+    }
+
+    // Floating Chat Functionality - Optimized
+   document.getElementById('chatButton').addEventListener('click', function() {
+        const chatContainer = document.getElementById('chatContainer');
+        const isOpening = !chatContainer.classList.contains('active');
+        
+        if (isOpening && currentChannel && currentChannel.videoId) {
+          // Show loading state
+          document.getElementById('chatLoading').classList.remove('hidden');
+          document.getElementById('chatIframe').classList.remove('loaded');
+          
+          // Set the chat URL
+          document.getElementById('chatIframe').src = getYouTubeChatUrl(currentChannel.videoId);
+          
+          // Show chat container
+          chatContainer.classList.add('active');
+          toggleChatIcon(true);
+          
+          // Listen for iframe load event
+          document.getElementById('chatIframe').onload = function() {
+            // Hide loading indicator and show chat
+            document.getElementById('chatLoading').classList.add('hidden');
+            this.classList.add('loaded');
+          };
+        } else {
+          // Close chat
+          chatContainer.classList.remove('active');
+          toggleChatIcon(false);
+        }
+      });
+      
+      document.getElementById('closeChat').addEventListener('click', function() {
+        document.getElementById('chatContainer').classList.remove('active');
+        resetChatButton();
+      });
+    
+    // Chat transparency controls
+    document.getElementById('opacityUp').addEventListener('click', function() {
+      const chatContainer = document.getElementById('chatContainer');
+      let opacity = parseFloat(chatContainer.style.opacity) || 0.8;
+      opacity = Math.min(1, opacity + 0.1);
+      chatContainer.style.opacity = opacity;
+    });
+    
+    document.getElementById('opacityDown').addEventListener('click', function() {
+      const chatContainer = document.getElementById('chatContainer');
+      let opacity = parseFloat(chatContainer.style.opacity) || 0.8;
+      opacity = Math.max(0.2, opacity - 0.1);
+      chatContainer.style.opacity = opacity;
+    });
+    
+    // Close chat when clicking outside
+    document.addEventListener('click', function(event) {
+      const chatContainer = document.getElementById('chatContainer');
+      const chatButton = document.getElementById('chatButton');
+      
+      if (chatContainer.classList.contains('active') && 
+          !chatContainer.contains(event.target) && 
+          event.target !== chatButton) {
+        chatContainer.classList.remove('active');
+        resetChatButton();
+      }
+    });
+
+
+
+    //close panel event listeners
+    // Sidebar close button functionality
+    document.getElementById('closeSidebar').addEventListener('click', function(e) {
+        e.stopPropagation(); // Prevent triggering sidebar hover
+        const sidebar = document.querySelector('.channel-sidebar');
+        sidebar.classList.add('closed');
+    });
+
+    // Make sure sidebar opens when trigger is hovered (even after being closed)
+    document.querySelector('.sidebar-trigger').addEventListener('mouseenter', function() {
+        const sidebar = document.querySelector('.channel-sidebar');
+        sidebar.classList.remove('closed');
+    });
+
+    // Also open sidebar when clicking on the trigger (for mobile/touch devices)
+    document.querySelector('.sidebar-trigger').addEventListener('click', function() {
+        const sidebar = document.querySelector('.channel-sidebar');
+        sidebar.classList.remove('closed');
+    });
+
+    // Close sidebar when clicking outside of it (on the main video area)
+    document.getElementById('player').addEventListener('click', function() {
+        const sidebar = document.querySelector('.channel-sidebar');
+        if (!sidebar.classList.contains('closed')) {
+            sidebar.classList.add('closed');
+        }
+    });
+
+    // Don't close sidebar when clicking inside it
+    document.querySelector('.channel-sidebar').addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+
+
+
+
+
+
+
+    // Donation Banner Functions
+    function showBanner() {
+      if(bannerVisible) return;
+      
+      const banner = document.getElementById('donationBanner');
+      banner.classList.add('active');
+      bannerVisible = true;
+      
+      setTimeout(() => {
+        closeBanner(); // Hide after 10 seconds
+      }, 15000);
+    }
+
+    function closeBanner() {
+      const banner = document.getElementById('donationBanner');
+      banner.classList.remove('active');
+      bannerVisible = false;
+    }
+
+    function startBannerTimer() {
+      bannerTimer = setTimeout(() => {
+        //showBanner();
+        startBannerTimer(); // Restart timer after showing
+      }, 600000); // 10 minutes
+    }
+
+    function resetBannerTimer() {
+      clearTimeout(bannerTimer);
+      startBannerTimer();
+    }
+
+    // Call this when channel changes
+    function handleChannelChange() {
+      if(!bannerVisible) {
+        //showBanner();
+      }
+      resetBannerTimer();
+    }
+
+    // Update your channel card event listeners
+    document.querySelectorAll('.channel-card').forEach((card) => {
+      card.addEventListener('click', handleChannelChange);
+    });
+
+    // Initialize timer when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      startBannerTimer();
+    });
+
+    function donateNow() {
+      //window.open('https://play.google.com/store/apps/details?id=com.mykenyantv', '_blank');
+      window.open('https://www.mchanga.africa/fundraiser/112622', '_blank');
+    }
+  
+    // Close banner when clicking the close button
+    document.getElementById('closeBannerBtn').addEventListener('click', (e) => {
+      e.stopPropagation(); // Prevent triggering donateNow() when closing
+      closeBanner();
+    });
+
+    // Redirect to donation page when clicking the banner
+    document.getElementById('donationBanner').addEventListener('click', donateNow);
+
+    // Start the initial banner timer
+    document.addEventListener('DOMContentLoaded', () => {
+      startBannerTimer();
+    });
+
+    // Update initial load logic
+    document.addEventListener("DOMContentLoaded", async function () {
+      initChannels();
+      const firstChannel = channels[0];
+      currentChannel = firstChannel; // Set current channel
+      
+      // Show chat button if first channel supports it
+      if (firstChannel.type === "youtube" && firstChannel.videoId) {
+        document.getElementById('chatButton').style.display = 'flex';
+      }
+      
+      if (firstChannel.type === "youtube") {
+        const channelId = firstChannel.channelUrl;
+        if (channelId) loadYouTubeLive(channelId);
+      } else if (firstChannel.type === "m3u8") {
+        playStream(firstChannel.streamUrl, firstChannel.name);
+      } else if (firstChannel.type === "stream") {
+        loadStream(firstChannel.streamUrl);
+      }
+      
+      updateChannelInfo(firstChannel);
+      
+      // Activate first channel card
+      setTimeout(() => {
+        const firstChannelCard = document.querySelector('.channel-card');
+        if (firstChannelCard) {
+          firstChannelCard.classList.add('active');
+        }
+      }, 100);
+      
+      document.getElementById('videojsContainer').style.display = 'none';
+    });
+  </script>
+</body>
+</html>
+

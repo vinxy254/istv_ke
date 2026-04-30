@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <meta charset="UTF-8" />
+  <link rel="canonical" href="https://kenyantv.live/index.html" />
+  <meta name="description" content="Watch Citizen tv, Ntv , Ktn tv live online. Stream zora citizentv, Maria citizen tv, Becky citizen tv, watch shows on Ntv Kenya">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kenyan TV Live Streaming</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary-bg: #1a1a24;
+      --accent: #ff6b6b;
+      --glass: rgba(255, 255, 255, 0.08);
+      --gradient: linear-gradient(145deg, #ff6b6b 0%, #ff5252 100%);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: var(--primary-bg);
+      color: white;
+      font-family: 'Segoe UI', system-ui;
+      height: 100vh;
+      overflow: hidden;
+    }
+    /* Glossy Video Container */
+    .video-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 1;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    #player {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    /* Channel Sidebar with Glassmorphism */
+    .channel-sidebar {
+      position: fixed;
+      left: -300px;
+      top: 0;
+      height: 100vh;
+      width: 300px;
+      background: rgba(31, 31, 42, 0.7); /* Increased transparency */
+      backdrop-filter: blur(20px); /* Increased blur effect */
+      transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 3;
+      padding: 25px;
+      overflow-y: auto;
+      border-radius: 0 30px 30px 0;
+      box-shadow: 10px 0 30px rgba(0, 0, 0, 0.3);
+    }
+    .sidebar-trigger {
+      position: fixed;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 100px;
+      z-index: 2;
+      cursor: pointer;
+      background: var(--gradient);
+      border-radius: 0 15px 15px 0;
+      transition: all 0.3s ease;
+    }
+    .sidebar-trigger:hover + .channel-sidebar,
+    .channel-sidebar:hover {
+      left: 0;
+    }
+
+    /* Channel Cards */
+    .channel-card {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      background: rgba(255, 255, 255, 0.2); /* Increased transparency */
+      backdrop-filter: blur(2px); /* Added blur effect */
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .channel-card:hover {
+      transform: translateX(10px);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)); /* Adjusted transparency */
+    }
+    
+    .channel-card.active {
+      border-left: 4px solid var(--accent);
+      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    .channel-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Ad Container Styles */
+    #donationBanner {
+      position: fixed;
+      bottom: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      transition: all 0.5s ease-in-out;
+      max-width: 600px;
+      width: 80%;
+      cursor: pointer;
+      visibility: hidden;
+      padding: 0; /* Remove padding to avoid spacing issues */
+    }
+
+    .banner-image-wrapper {
+      position: relative; /* Key: Creates a positioning context for the close button */
+      width: 100%;
+    }
+
+    #donationBanner.active {
+      bottom: 20px;
+      visibility: visible;
+    }
+
+    #donationBanner img {
+      width: 100%; /* Image fills the wrapper */
+      height: auto; /* Maintain aspect ratio */
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      display: block; /* Remove extra space below the image */
+    }
+    #closeBannerBtn {
+      position: absolute;
+      top: 10px; /* Distance from the top of the image */
+      right: 10px; /* Distance from the right of the image */
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      z-index: 1001; /* Ensure the button is above the image */
+    }
+
+    #closeBannerBtn:hover {
+      background: rgba(0, 0, 0, 0.9);
+    }
+    @media (max-width: 768px) {
+      #donationBanner img {
+        width: 75%; /* Larger image on mobile */
+        height: auto; /* Maintain aspect ratio */
+      }
+
+      #closeBannerBtn {
+        top: 0px; /* Distance from the top of the image */
+        right: 100px; /* Distance from the right of the image */
+      }
+    }
+
+    .info-icon {
+      margin-left: auto;
+      color: yellow;
+      text-decoration: none;
+    }
+
+    .info-icon i {
+      font-size: 1.2rem;
+    }
+
+    .info-icon:hover {
+      color: #ff9900;
+    }
+
+    .channel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    
+    /* Floating Chat Button - Optimized */
+        #chatButton {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: var(--gradient);
+      border-radius: 50%;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+    
+    #chatButton:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+    }
+    
+    #chatIcon {
+      display: block;
+    }
+    
+    #closeChatIcon {
+      display: none;
+    }
+    
+    /* Floating Chat Container - Optimized */
+    #chatContainer {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 350px;
+      height: 450px;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 15px;
+      overflow: hidden;
+      z-index: 1000;
+      display: none;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+      opacity: 0.8; /* Initial transparency */
+      transition: opacity 0.3s, transform 0.3s;
+      transform: translateY(20px);
+    }
+    
+    #chatContainer.active {
+      display: block;
+      transform: translateY(0);
+    }
+    
+    .chat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px;
+      background: rgba(0, 0, 0, 0.6);
+    }
+    
+    .chat-controls {
+      display: flex;
+      gap: 5px;
+    }
+    
+    .chat-controls button {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background 0.2s;
+    }
+    
+    .chat-controls button:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    
+    #chatIframe {
+      width: 100%;
+      height: calc(100% - 40px);
+      border: none;
+      background: transparent;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    #chatIframe.loaded {
+      opacity: 1;
+    }
+    
+    /* Chat Loading Indicator */
+    #chatLoading {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      z-index: 10;
+    }
+    
+    #chatLoading.hidden {
+      display: none;
+    }
+    
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: var(--accent);
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* Loading Animation */
+    #loading {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 1.5rem;
+      z-index: 9999;
+      background: var(--glass);
+      padding: 20px 40px;
+      border-radius: 30px;
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    #loading .spinner {
+      width: 24px;
+      height: 24px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s linear infinite;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      #chatContainer {
+        width: 300px;
+        height: 400px;
+        right: 10px;
+        bottom: 80px;
+      }
+      
+      #chatButton {
+        right: 10px;
+        bottom: 10px;
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+ <h1 style="position: absolute; left: -9999px; top: -9999px;">Kenya Live TV: Watch live TV channels online</h1>
+  <!-- Loading Element -->
+  <div id="loading" style="display: none;">
+    <div class="spinner"></div>
+    <span>Initializing Player...</span>
+  </div>
+
+  <div class="video-container">
+    <div id="player"></div>
+  </div>
+
+  <!-- Floating Chat Elements - Optimized -->
+  <button id="chatButton" title="Show Live Chat">
+    <i id="chatIcon" class="fas fa-comments"></i>
+    <i id="closeChatIcon" class="fas fa-times"></i>
+  </button>
+  
+  <div id="chatContainer">
+    <div class="chat-header">
+      <h3>Live Chat</h3>
+      <div class="chat-controls">
+        <button id="opacityUp" title="Increase Transparency">+</button>
+        <button id="opacityDown" title="Decrease Transparency">-</button>
+        <button id="closeChat" title="Close Chat">×</button>
+      </div>
+    </div>
+    <div id="chatLoading">
+      <div class="loading-spinner"></div>
+      <p>Connecting to chat...</p>
+    </div>
+    <iframe id="chatIframe" allowtransparency="true"></iframe>
+  </div>
+
+  <div class="sidebar-trigger"></div>
+  <aside class="channel-sidebar" id="channelList">
+    <!-- Channels populated by JavaScript -->
+  </aside>
+
+  <div id="donationBanner" onclick="donateNow()">
+    <img src="../mchange.jpg" 
+         alt="Support our service - Donate Now">
+    <button id="closeBannerBtn">&times;</button>
+  </div>
+
+  <script>
+    // Channel Configuration - Removed Meru TV
+    const channels = [
+      {
+        name: "NTV Kenya",
+        type: "youtube",
+        channelUrl: "UCqBJ47FjJcl61fmSbcadAVg",
+        videoId: "p4BWnK2xeHw", // Replace with actual video ID
+        logo: "https://static.ntvkenya.co.ke/assets/brand-logos/ntv-logo-white.png",
+        nowPlaying: "Live Broadcast",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "Citizen TV",
+        type: "youtube",
+        channelUrl: "UChBQgieUidXV1CmDxSdRm3g",
+        videoId: "CURRENT_LIVE_VIDEO_ID", // Replace with actual video ID
+        logo: "https://static.wikia.nocookie.net/logopedia/images/7/70/Citizen_TV_%28Kenya%29_logo.png",
+        nowPlaying: "Live Broadcast",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "KTN Home",
+        type: "youtube",
+        channelUrl: "UCKVsdeoHExltrWMuK0hOWmg",
+        videoId: "CURRENT_LIVE_VIDEO_ID", // Replace with actual video ID
+        logo: "https://upload.wikimedia.org/wikipedia/en/thumb/e/ec/KTN.2014-present_logo.jpg/250px-KTN.2014-present_logo.jpg",
+        nowPlaying: "Live Broadcast",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "K24 TV",
+        type: "m3u8",
+        streamUrl: "https://livecdn.premiumfree.tv/afxpstr/K24Main/index.m3u8",
+        logo: "../images/k24-live.jpeg",
+        nowPlaying: "Live Broadcast",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "KBC Channel 1",
+        type: "youtube",
+        channelUrl: "UCypNjM5hP1qcUqQZe57jNfg",
+        logo: "https://livetvcentral.com/imgs/tvs/3304.jpg",
+        nowPlaying: "Live Broadcast",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "Aljazeera",
+        type: "youtube",
+        channelUrl: "UCNye-wNBqNL5ZzHSJj3l8Bg",
+        logo: "https://logos-world.net/wp-content/uploads/2023/04/Al-Jazeera-Logo-500x281.png",
+        nowPlaying: "World News",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
+      {
+        name: "CNN",
+        type: "m3u8",
+        streamUrl: "https://turnerlive.warnermediacdn.com/hls/live/586495/cnngo/cnn_slate/VIDEO_0_3564000.m3u8",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/CNN_International_logo.svg/960px-CNN_International_logo.svg.png",
+        nowPlaying: "World News",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
+      {
+        name: "France 24",
+        type: "m3u8",
+        streamUrl: "https://a-cdn.klowdtv.com/live2/france24_720p/playlist.m3u8",
+        logo: "https://upload.wikimedia.org/wikipedia/en/thumb/6/65/FRANCE_24_logo.svg/200px-FRANCE_24_logo.svg.png",
+        nowPlaying: "World News",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
+      {
+        name: "Ebru Africa",
+        type: "stream",
+        streamUrl: "https://embed.twitch.tv?autoplay=true&channel=ebrutvkenya&height=100%25&layout=video&parent=kenyantv.live&width=100%25&embed-chat=false",
+        logo: "../images/ebru-tv-live.jpg",
+        nowPlaying: "Live Broadcast",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "TV 47",
+        type: "stream",
+        streamUrl: "https://embed.twitch.tv?autoplay=true&channel=tvfortyseven&height=100%25&layout=video&parent=kenyantv.live&width=100%25&embed-chat=false",
+        logo: "../images/tv47.png",
+        nowPlaying: "Live Broadcast",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "Lookuptv",
+        type: "stream",
+        streamUrl: "//ok.ru/videoembed/2352940981899",
+        logo: "../images/lookuptv-live.png",
+        nowPlaying: "Live Broadcast",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "Inooro TV",
+        type: "m3u8",
+        streamUrl: "https://stream-74937.castr.net/5ea49827ff3b5d7b22708777/live_6382dd401ce311f097d41d161154da2f/index.m3u8",
+        logo: "https://keonline.eu-central-1.linodeobjects.com/uploads/logo/nf0fohGccEB5orpXeraqamkEo3Q8sNPrYWtGvIaW.jpg",
+        nowPlaying: "Live Broadcast",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "Ramogi TV",
+        type: "stream",
+        streamUrl: "https://player.castr.com/live_9b761ff063f511eca12909b8ef1524b4?autoplay=1&mute=0&enablejsapi=1&rel=0&showinfo=0&mute=0",
+        logo: "https://kenyalivetv.co.ke/uploads/tv/3_icon_ramogitv.webp",
+        nowPlaying: "Live Broadcast",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "KASS TV",
+        type: "stream",
+        streamUrl: "https://goliveafrica.media/live/1/kasstv&embed=1",
+        logo: "https://lh3.googleusercontent.com/3XKtcKiWjlpm6BcBqN50QIx2yqvSRh4ppKmonV2c-kHmjT-6ThHlXc5Nn_UjtNOZXn-W=s200",
+        nowPlaying: "Live Broadcast",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "Lolwe TV",
+        type: "stream",
+        streamUrl: "https://goliveafrica.media/live/1/LOLWETV?embed=1&mute=0",
+        logo: "https://lolwetv.co.ke/wp-content/uploads/2023/10/MASTER-LOGO-OCT-EDIT-1.png",
+        nowPlaying: "Live Broadcast",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "Romanza Africa",
+        type: "m3u8",
+        streamUrl: "https://origin3.afxp.telemedia.co.za/PremiumFree/romanza/playlist.m3u8",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Romanza%2B%C3%81frica_logo.jpg",
+        nowPlaying: "Soap Operas",
+        Rating: "PG",
+        infoPage: "N/A"
+      },
+      {
+        name: "CGTN+",
+        type: "m3u8",
+        streamUrl: "https://amg00405-rakutentv-cgtndocumentary-rakuten-0ql8j.amagi.tv/master480p.m3u8",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/2/25/CGTN.png",
+        nowPlaying: "Documentaries",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "Nickelodeon Jr",
+        type: "m3u8",
+        streamUrl: "https://fl5.moveonjoy.com/NICK_JR/index.m3u8",
+        logo: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhojXucO7YQMjJjynua9IX3BN1AZIFnoNeOqRBN2_9TIaFlMwmbMq6XrWhg5_wIKmAf9PcUxSI2etgz95Pmi12Foqxe4F_ghNctgEhbVflI7n6Lttq6pMdQXNhaf4_ho32HNfy32bV2lURpJfdTuij15RasZ2gqVGC38nMz30XHzBZtcMEGgSpq/s400/nick-jr-logo-2023_3.jpg",
+        nowPlaying: "Cartoon",
+        Rating: "PG",
+        infoPage: "N/A"
+      },
+      {
+        name: "KIDDO+",
+        type: "m3u8",
+        streamUrl: "https://streams2.sofast.tv/ptnr-stirr/genre-Education/lang-English/ctgr-Kids/title-KIDDO-ENG/sofastplayout/8258122f-b4c0-416b-a2db-8407847f0c3c_1000015692_HLS/master.m3u8",
+        logo: "https://play-lh.googleusercontent.com/Z1LsqXqvYMagG76953Fauhz5uOQehL3V-xCGRDDahc94mZYB-rMwoosoTbpqs_bGqpH8=w240-h480",
+        nowPlaying: "Kids",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
+      {
+        name: "Ninja Kids",
+        type: "m3u8",
+        streamUrl: "https://playworksdigital-ninjakidztv-1-us.xumo.wurl.tv/playlist.m3u8",
+        logo: "https://images-na.ssl-images-amazon.com/images/I/71SJhmdG3sS._UL1200_.jpg",
+        nowPlaying: "Kids",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
+      {
+        name: "Avengers Assemble",
+        type: "stream",
+        streamUrl: "https://www.youtube.com/embed/13GZtHqYrLY",
+        logo: "https://i.etsystatic.com/42838726/r/il/c3f230/5083723956/il_fullxfull.5083723956_p1qr.jpg",
+        nowPlaying: "Kids",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
+      {
+        name: "Cartoon Central",
+        type: "m3u8",
+        streamUrl: "https://apollo.production-public.tubi.io/live/ac-kartoon.m3u8",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz-mXwFEqGmKjf3orXFl0su7J5jCPIFP0IVw&s",
+        nowPlaying: "Kids",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
+      {
+        name: "Tiny PoP",
+        type: "m3u8",
+        streamUrl: "https://jmp2.uk/sam-GBBD3200003T6.m3u8",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThy2jwW3kx8hUMHRg92ezA3kW2pbA8sfyCX99EFfwd4ceb2v1ltigfYtXEoUrEPyKSOtE&usqp=CAU",
+        nowPlaying: "Kids",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
+      {
+        name: "Sponge Bob TV",
+        type: "youtube",
+        channelUrl: "UCx27Pkk8plpiosF14qXq-VA",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzrcXNXIy_q6rzLC77a1g7IgAt4JuyRvtFqA&s",
+        nowPlaying: "Kids",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
+      {
+        name: "Weather Spy",
+        type: "m3u8",
+        streamUrl: "https://epg.provider.plex.tv/library/parts/5e20b730f2f8d5003d739db7-5f0ff266d71dcb00449ec030.m3u8?includeAllStreams=1&X-Plex-Product=Plex+Mediaverse&X-Plex-Token=ruP6Rq1Yhc8V8zWpiKoA",
+        logo: "https://www.tubefilter.com/wp-content/uploads/2020/07/weather-spy-1920x1131.jpg",
+        nowPlaying: "Weather",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "Chelsea TV",
+        type: "youtube",
+        channelUrl: "UCU2PacFf99vhb3hNiYDmxww",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROszwWjb7R-oGWkyhdJqI3sQU143Wdogg55w&s",
+        nowPlaying: "Sports",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
+      {
+        name: "Madrid TV",
+        type: "m3u8",
+        streamUrl: "https://rmtv.akamaized.net/hls/live/2043153/rmtv-es-web/master.m3u8",
+        logo: "https://yt3.googleusercontent.com/TyNbisxuIwzUBjjNkUg8mOqR9_L2eKYShayM5A-kjpFeb0p47QCail4wuUn5KfCbDmB8yQ8RnD4=s900-c-k-c0x00ffffff-no-rj",
+        nowPlaying: "Sports",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
+      {
+        name: "BeIN sports xtra",
+        type: "m3u8",
+        streamUrl: "https://bein-beinxtrasports-firetv.amagi.tv/playlist.m3u8",
+        logo: "https://dj7fdt04hl8tv.cloudfront.net/acm/media/shop/mar/bein-sports.png",
+        nowPlaying: "Sports",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
+      {
+        name: "Afro sports",
+        type: "m3u8",
+        streamUrl: "https://newproxy3.vidivu.tv/vidivu_afrosport/index.m3u8",
+        logo: "https://yt3.googleusercontent.com/wMuev6s9r-rYBzXbbaNHZnv6NMMdHt76zWbuPqLqdzEvWzU6NH_MHbUTPchace_mx_evc6rP7A=s900-c-k-c0x00ffffff-no-rj",
+        nowPlaying: "Sports",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
+      {
+        name: "FIFA+",
+        type: "m3u8",
+        streamUrl: "https://a62dad94.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWV1X0ZJRkFQbHVzRW5nbGlzaF9ITFM/playlist.m3u8",
+        logo: "https://cdn.mos.cms.futurecdn.net/Tdvb4DPB6XfaMgAdxV4aZB.png",
+        nowPlaying: "Sports",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
+      {
+        name: "DAZN combat",
+        type: "m3u8",
+        streamUrl: "https://dazn-combat-rakuten.amagi.tv/hls/amagi_hls_data_rakutenAA-dazn-combat-rakuten/CDN/master.m3u8",
+        logo: "https://static.wikia.nocookie.net/logopedia/images/7/7c/DAZN.svg",
+        nowPlaying: "Kids",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
+      {
+        name: "PFL TV",
+        type: "m3u8",
+        streamUrl: "https://epg.provider.plex.tv/library/parts/5e20b730f2f8d5003d739db7-643f0ecd76de2b4015ae6c01.m3u8?includeAllStreams=1&X-Plex-Product=Plex+Mediaverse&X-Plex-Token=UKyqGbEvtArWA27VxhD5",
+        logo: "https://pflmma-prod.s3.us-east-1.amazonaws.com/assets/img/base/shield-logo-international.png",
+        nowPlaying: "Boxing",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "Redbull TV",
+        type: "m3u8",
+        streamUrl: "https://dms.redbull.tv/v5/destination/rbtv/linear-borb/personal_computer/http/ke/en/playlist.m3u8",
+        logo: "https://i.ytimg.com/vi/Ao-Rbi8qq7c/maxresdefault.jpg",
+        nowPlaying: "Sports",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
+      {
+        name: "Just for Laughs",
+        type: "m3u8",
+        streamUrl: "https://streams2.sofast.tv/sofastplayout/4c727f82-d2ec-4a07-870c-49a6f22ee6f9_0_HLS/master.m3u8",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVNmQpa8NPoHlt0qllQrNCmEALB2bPFJRZRA&s",
+        nowPlaying: "comedy",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
+      {
+        name: "LOL network",
+        type: "m3u8",
+        streamUrl: "https://apollo.production-public.tubi.io/live/lol-network3.m3u8",
+        logo: "https://yt3.googleusercontent.com/wfugK-_Y4Hr89XKEAOEi2wiK8sRfqz4xvj2B_N7xEcFyiuBmcrM7519oFOnyM7aUpnXUyi5t-w=s900-c-k-c0x00ffffff-no-rj",
+        nowPlaying: "comedy",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
+      {
+        name: "LOL standup",
+        type: "stream",
+        streamUrl: "https://www.youtube.com/embed/ctyzvJLoid0",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_s_YiRZRzNuu0ant8TPhSHnlzTINsOhUU5A&s",
+        nowPlaying: "comedy",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
+      {
+        name: "We love cars",
+        type: "m3u8",
+        streamUrl: "https://30a-tv.com/feeds/vidaa/cars.m3u8",
+        logo: "https://www.usnews.com/object/image/00000191-d821-d8b8-adf7-f97944b10000/chevrolet-corvette-zr1-coupe-001.jpg?update-time=1725907944302&size=listiclePhoto",
+        nowPlaying: "Motorsport",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "Motorsport TV",
+        type: "m3u8",
+        streamUrl: "https://epg.provider.plex.tv/library/parts/5e20b730f2f8d5003d739db7-6408c82eebb23ab878e8ddbb.m3u8?includeAllStreams=1&X-Plex-Product=Plex+Mediaverse&X-Plex-Token=kqz-_pzPUsowvS7tRYNS",
+        logo: "https://w7.pngwing.com/pngs/695/799/png-transparent-motors-tv-television-channel-motorsport-auto-racing-others.png",
+        nowPlaying: "Motorsport",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "Garage TV",
+        type: "m3u8",
+        streamUrl: "https://stream1.sersat.com/hls/garagetv.m3u8",
+        logo: "https://e7.pngegg.com/pngimages/926/901/png-clipart-el-garage-tv-television-publica-argentina-television-channel-logo-nick-jr-television-emblem.png",
+        nowPlaying: "Motorsport",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "MAV TV",
+        type: "m3u8",
+        streamUrl: "https://d3h07n6l1exhds.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-0z2yyo4dxctc7/playlist.m3u8",
+        logo: "https://assets.starsnationaltour.com/data/2024/02/MAVTV-Logo-300x170.webp",
+        nowPlaying: "vehicles",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "Bloomberg Business",
+        type: "youtube",
+        channelUrl: "UCIALMKvObZNtJ6AmdCLP7Lg",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCcoa9v_bfnbt-5juVimdr1EJI2TeY9vLcRw&s",
+        nowPlaying: "Business",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "Love Nature",
+        type: "stream",
+        streamUrl: "https://www.youtube.com/embed/daqB3i9WYIY",
+        logo: "https://static.wikia.nocookie.net/logos/images/c/c2/Love_Nature_4K.png/revision/latest/scale-to-width-down/340?cb=20211105035409&path-prefix=vi",
+        nowPlaying: "Wildlife",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "Wild Earth",
+        type: "m3u8",
+        streamUrl: "https://d2f9g9rfw2kx84.cloudfront.net/playlist/amg01290-wildearth-oando/cb553d167e6c64899dd43e64d4ef42a1d92414fc087a8d6933fb4b926bc10f41edbdf0c8fd37b63619d70f96690c0257596cdb5b987600c4da64a848240b4227c1c7ad79d9981209b3d80e3a5cea384b07a1460ad126573c89ab5e0ed53bb47a0046bd443b0261d4f058ac2052d8895cd92b3489abd46739780c0ecb5e0ee2c23799d7d9a89a4f5d8180367aeb5357dcfc178d8c49f9dc8505ca00a457cb26e8f7d01707ddb0aca716ec15ed240c224237f9d23ffbcd2c13444872abcc5b083f7237ad44e5073d1ccc376649eaf0dbba2ade1edd9d20936436b63a8e25a21d8571a305abe001f5e3eb9f0a7968f59f1b4d2eaef0b8cae36d658230aff9a9cf6526c8a5403617802dff2728339fb29944d59345c7e672c592600f3dc69e5dd4cce1d7a1e0ff2df640e6cefa8d25380d09632f8947ab9661da53b25ea1dc1627535504e0da79cd88cc4672056b839355c01c0bb3b8dad687ee5a06a6fbf98ebfbb2976bc061f0002776417a2a4c8b1/158/640x360_1020800/index.m3u8",
+        logo: "https://images.plex.tv/photo?size=large-1920&scale=1&url=https%3A%2F%2Fprovider-static.plex.tv%2Fepg%2Fcms%2Fproduction%2F458264fd-11c7-4568-9177-2373626ff752%2FWildEarth_artwork_Horizontal_logordx.jpg",
+        nowPlaying: "Wildlife",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "NatGeo Animals",
+        type: "youtube",
+        channelUrl: "UCDPk9MG2RexnOMGTD-YnSnA",
+        logo: "https://cdn.iconscout.com/icon/free/png-256/free-national-geographic-logo-icon-download-in-svg-png-gif-file-formats--major-websites-set-pack-logos-icons-461820.png?f=webp",
+        nowPlaying: "Wildlife",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "Nature time",
+        type: "m3u8",
+        streamUrl: "https://shls-live-ak.akamaized.net/out/v1/b06a89a463764d3688cda337d40dc5bf/index.m3u8",
+        logo: "https://www.cxtv.com.br/img/Tvs/Logo/webp-l/76c1f7bf76617738201aa7ad7ca01972.webp",
+        nowPlaying: "Wildlife",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "Movie Sphere",
+        type: "m3u8",
+        streamUrl: "https://moviesphereuk-samsunguk.amagi.tv/playlist.m3u8",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpbuBJSz2d0gABEl6oH7_ULbFhjBwvBGswLA&s",
+        nowPlaying: "Motorsport",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "Gravitas movies",
+        type: "m3u8",
+        streamUrl: "https://epg.provider.plex.tv/library/parts/5e20b730f2f8d5003d739db7-5efe1de7e0b3f5003f5d9f8e.m3u8?includeAllStreams=1&X-Plex-Product=Plex+Mediaverse&X-Plex-Token=5GyvscYVi1TK-m1Xr5-T",
+        logo: "https://images.plex.tv/photo?size=large-1920&scale=1&url=https%3A%2F%2Fprovider-static.plex.tv%2Fepg%2Fcms%2Fproduction%2F8890bb6e-82d6-4484-825c-369033ad664e%2FAlways_in_Season_Military_Logo_with_Background_1920x1080.jpg",
+        nowPlaying: "Motorsport",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "Wu Tang collection",
+        type: "m3u8",
+        streamUrl: "https://livechannel.mdc.akamaized.net/stitch/livechannel/1279/master.m3u8?channel=live_stream_1279",
+        logo: "https://images.plex.tv/photo?size=large-1920&scale=1&url=https%3A%2F%2Fprovider-static.plex.tv%2Fepg%2Fimages%2Fott_channels%2Farts%2Fwu-tang-collection.jpg",
+        nowPlaying: "Movies",
+        Rating: "PG",
+        infoPage: "N/A"
+      },
+      {
+        name: "Hollywood classic",
+        type: "m3u8",
+        streamUrl: "https://epg.provider.plex.tv/library/parts/5e20b730f2f8d5003d739db7-66be944f8711311880995280.m3u8?includeAllStreams=1&X-Plex-Product=Plex+Mediaverse&X-Plex-Token=SHLUc5JKDYes9d_z94Cw",
+        logo: "https://images.plex.tv/photo?size=large-1920&scale=1&url=https%3A%2F%2Fprovider-static.plex.tv%2Fepg%2Fcms%2Fproduction%2F6d941e2d-2852-4b6e-83e0-99a10920ddb3%2FAction_Hollywood_Movies_artwork_horizontal_-_Angela_ChanRDX.jpg",
+        nowPlaying: "Movies",
+        Rating: "PG",
+        infoPage: "N/A"
+      }
+    ];
+
+    let hls = null; // HLS.js instance
+    let currentChannel = null; // Track current channel
+    let bannerVisible = false;
+    let bannerTimer = null;
+
+    // Function to generate YouTube embed URL from channel ID
+    function getYouTubeEmbedUrl(channelId) {
+      return `https://www.youtube.com/embed/live_stream?channel=${channelId}&autoplay=1&rel=0&showinfo=0&enablejsapi=0&controls=0&disablekb=1&modestbranding=1`;
+    }
+    
+    // Function to get YouTube live chat URL from video ID
+    function getYouTubeChatUrl(videoId) {
+      return `https://www.youtube.com/live_chat?v=${videoId}&embed_domain=kenyantv.live`;
+    }
+
+    // Initialize channels list
+    function initChannels() {
+      const channelList = document.getElementById("channelList");
+      channels.forEach((channel) => {
+        const infoIcon = channel.infoPage !== "N/A" ? `<a href="${channel.infoPage}" target="_blank" class="info-icon"><i class="fas fa-info-circle"></i></a>` : '';
+        const channelHTML = `
+          <div class="channel-card" data-channel-id="${channel.name}">
+            <img src="${channel.logo}" class="channel-logo">
+            <div class="channel-info">
+              <div class="channel-header">
+                <h3>${channel.name}</h3>
+                ${infoIcon}
+              </div>
+              <p>${channel.nowPlaying}</p>
+            </div>
+          </div>
+        `;
+        channelList.innerHTML += channelHTML;
+      });
+
+      document.querySelectorAll(".channel-card").forEach((card) => {
+        card.addEventListener("click", async function () {
+          document.querySelectorAll(".channel-card").forEach((c) =>
+            c.classList.remove("active")
+          );
+          this.classList.add("active");
+
+          const channelName = this.dataset.channelId;
+          const channelData = channels.find((c) => c.name === channelName);
+          currentChannel = channelData; // Update current channel
+          
+          // Show/hide chat button based on channel type
+          if (channelData.type === "youtube" && channelData.videoId) {
+            document.getElementById('chatButton').style.display = 'flex';
+          } else {
+            document.getElementById('chatButton').style.display = 'none';
+            document.getElementById('chatContainer').classList.remove('active');
+            resetChatButton();
+          }
+          
+          if (channelData.type === "youtube") {
+            const channelId = channelData.channelUrl;
+            if (channelId) {
+              loadYouTubeLive(channelId);
+            } else {
+              console.error("Invalid YouTube Channel ID");
+            }
+          } else if (channelData.type === "stream") {
+            loadStream(channelData.streamUrl);
+          } else if (channelData.type === "m3u8") {
+            loadHLS(channelData.streamUrl);
+          }
+
+          updateChannelInfo(channelData);
+          handleChannelChange();
+        });
+      });
+    }
+
+    // Function to load YouTube live stream by channel ID
+    function loadYouTubeLive(channelId) {
+      const embedUrl = getYouTubeEmbedUrl(channelId);
+      const playerContainer = document.getElementById("player");
+      playerContainer.innerHTML = `
+        <iframe width="100%" height="100%"
+          src="${embedUrl}"
+          frameborder="0"
+          allow="autoplay; encrypted-media"
+          allowfullscreen>
+        </iframe>
+      `;
+    }
+
+    // Load HLS Stream
+    function loadHLS(url) {
+      const playerContainer = document.getElementById("player");
+      const loading = document.getElementById("loading");
+      if (!playerContainer || !loading) {
+        console.error("Critical elements missing!");
+        return;
+      }
+      playerContainer.innerHTML = "";
+      const video = document.createElement("video");
+      video.controls = true;
+      video.style.width = "100%";
+      video.style.height = "100%";
+      video.muted = false;
+
+      if (hls) hls.destroy();
+
+      if (Hls.isSupported()) {
+        hls = new Hls({
+          debug: true,
+          enableWorker: true,
+        });
+        hls.loadSource(url);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+           loading.style.display = "none";
+           hls.subtitleTrack = -1;
+           video.play().catch((error) => {
+                console.warn("Autoplay failed:", error);
+           });
+        });
+      } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+        video.src = url;
+        video.addEventListener("loadedmetadata", () => {
+          loading.style.display = "none";
+          video.play();
+        });
+      }
+      playerContainer.appendChild(video);
+    }
+
+    // Update Channel Info in bottom panel
+    function updateChannelInfo(data) {
+      // Implementation remains the same
+    }
+
+    // Load Generic Stream
+    function loadStream(url) {
+      const playerContainer = document.getElementById("player");
+      playerContainer.innerHTML = `
+        <iframe width="100%" height="105%"
+          src="${url}" frameborder="0" mute="false"
+          allow="autoplay; encrypted-media"
+          allowfullscreen>
+        </iframe>
+      `;
+    }
+
+    // Toggle chat button icon
+   function toggleChatIcon(isOpen) {
+      if (isOpen) {
+        document.getElementById('chatIcon').style.display = 'none';
+        document.getElementById('closeChatIcon').style.display = 'block';
+      } else {
+        document.getElementById('chatIcon').style.display = 'block';
+        document.getElementById('closeChatIcon').style.display = 'none';
+      }
+    }
+    
+    // Reset chat button to default state
+    function resetChatButton() {
+      toggleChatIcon(false);
+    }
+
+    // Floating Chat Functionality - Optimized
+    document.getElementById('chatButton').addEventListener('click', function() {
+      const chatContainer = document.getElementById('chatContainer');
+      const isOpening = !chatContainer.classList.contains('active');
+      
+      if (isOpening && currentChannel && currentChannel.videoId) {
+        // Show loading state
+        document.getElementById('chatLoading').classList.remove('hidden');
+        document.getElementById('chatIframe').classList.remove('loaded');
+        
+        // Set the chat URL
+        document.getElementById('chatIframe').src = getYouTubeChatUrl(currentChannel.videoId);
+        
+        // Show chat container
+        chatContainer.classList.add('active');
+        toggleChatIcon(true);
+        
+        // Listen for iframe load event
+        document.getElementById('chatIframe').onload = function() {
+          // Hide loading indicator and show chat
+          document.getElementById('chatLoading').classList.add('hidden');
+          this.classList.add('loaded');
+        };
+      } else {
+        // Close chat
+        chatContainer.classList.remove('active');
+        toggleChatIcon(false);
+      }
+    });
+    
+    document.getElementById('closeChat').addEventListener('click', function() {
+      document.getElementById('chatContainer').classList.remove('active');
+      resetChatButton();
+    });
+    
+    // Chat transparency controls
+    document.getElementById('opacityUp').addEventListener('click', function() {
+      const chatContainer = document.getElementById('chatContainer');
+      let opacity = parseFloat(chatContainer.style.opacity) || 0.8;
+      opacity = Math.min(1, opacity + 0.1);
+      chatContainer.style.opacity = opacity;
+    });
+    
+    document.getElementById('opacityDown').addEventListener('click', function() {
+      const chatContainer = document.getElementById('chatContainer');
+      let opacity = parseFloat(chatContainer.style.opacity) || 0.8;
+      opacity = Math.max(0.2, opacity - 0.1);
+      chatContainer.style.opacity = opacity;
+    });
+    
+    // Close chat when clicking outside
+    document.addEventListener('click', function(event) {
+      const chatContainer = document.getElementById('chatContainer');
+      const chatButton = document.getElementById('chatButton');
+      
+      if (chatContainer.classList.contains('active') && 
+          !chatContainer.contains(event.target) && 
+          event.target !== chatButton) {
+        chatContainer.classList.remove('active');
+        resetChatButton();
+      }
+    });
+
+    // Donation Banner Functions
+    function showBanner() {
+      if(bannerVisible) return;
+      
+      const banner = document.getElementById('donationBanner');
+      banner.classList.add('active');
+      bannerVisible = true;
+      
+      setTimeout(() => {
+        closeBanner(); // Hide after 10 seconds
+      }, 10000);
+    }
+
+    function closeBanner() {
+      const banner = document.getElementById('donationBanner');
+      banner.classList.remove('active');
+      bannerVisible = false;
+    }
+
+    function startBannerTimer() {
+      bannerTimer = setTimeout(() => {
+        showBanner();
+        startBannerTimer(); // Restart timer after showing
+      }, 600000); // 10 minutes
+    }
+
+    function resetBannerTimer() {
+      clearTimeout(bannerTimer);
+      startBannerTimer();
+    }
+
+    // Call this when channel changes
+    function handleChannelChange() {
+      if(!bannerVisible) {
+        showBanner();
+      }
+      resetBannerTimer();
+    }
+
+    // Update your channel card event listeners
+    document.querySelectorAll('.channel-card').forEach((card) => {
+      card.addEventListener('click', handleChannelChange);
+    });
+
+    // Initialize timer when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      startBannerTimer();
+    });
+
+    function donateNow() {
+      window.open('https://www.mchanga.africa/fundraiser/112622', '_blank');
+    }
+  
+    // Close banner when clicking the close button
+    document.getElementById('closeBannerBtn').addEventListener('click', (e) => {
+      e.stopPropagation(); // Prevent triggering donateNow() when closing
+      closeBanner();
+    });
+
+    // Redirect to donation page when clicking the banner
+    document.getElementById('donationBanner').addEventListener('click', donateNow);
+
+    // Start the initial banner timer
+    document.addEventListener('DOMContentLoaded', () => {
+      startBannerTimer();
+    });
+
+    // Update initial load logic
+    document.addEventListener("DOMContentLoaded", async function () {
+      initChannels();
+      const firstChannel = channels[0];
+      currentChannel = firstChannel; // Set current channel
+      
+      // Show chat button if first channel supports it
+      if (firstChannel.type === "youtube" && firstChannel.videoId) {
+        document.getElementById('chatButton').style.display = 'flex';
+      }
+      
+      if (firstChannel.type === "youtube") {
+        const channelId = firstChannel.channelUrl;
+        if (channelId) loadYouTubeLive(channelId);
+      } else if (firstChannel.type === "m3u8") {
+        loadHLS(firstChannel.streamUrl);
+      } else if (firstChannel.type === "stream") {
+        loadStream(firstChannel.streamUrl);
+      }
+      
+      updateChannelInfo(firstChannel);
+      document.querySelector(".channel-card").classList.add("active");
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Livestream · Auto‑play & Enter Toggle</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+    }
+
+    body {
+      background: linear-gradient(145deg, #0b0f15 0%, #1a1f2a 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .card {
+      max-width: 960px;
+      width: 100%;
+      background: rgba(22, 28, 36, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 32px;
+      padding: 24px 24px 30px;
+      box-shadow: 0 25px 40px -10px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.2s ease;
+    }
+
+    h2 {
+      color: #f0f3f8;
+      font-weight: 500;
+      font-size: 1.8rem;
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .live-badge {
+      background: #cc0000;
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 40px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 8px rgba(204, 0, 0, 0.4);
+      animation: pulse-live 2.2s infinite;
+    }
+
+    @keyframes pulse-live {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.75; }
+    }
+
+    .player-wrapper {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 */
+      margin: 18px 0 20px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 30px -8px black, 0 0 0 1px rgba(255, 255, 255, 0.03);
+      background: #000;
+    }
+
+    #youtube-player {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .info-panel {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+      color: #ccd6e0;
+      margin-top: 8px;
+    }
+
+    .key-hint {
+      background: #232a33;
+      padding: 10px 22px;
+      border-radius: 60px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      border: 1px solid #3f4a56;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .key-hint kbd {
+      background: #0e1419;
+      color: #f2f7ff;
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      border: 1px solid #5a6a7a;
+      box-shadow: 0 2px 0 #0b0f12;
+      letter-spacing: 1px;
+    }
+
+    .status-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #1e262e;
+      padding: 8px 22px;
+      border-radius: 60px;
+      border: 1px solid #3c4a58;
+    }
+
+    #state-indicator {
+      font-weight: 600;
+      color: #bdd3ff;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+
+    .play-icon, .pause-icon {
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
+    .footnote {
+      margin-top: 18px;
+      font-size: 0.9rem;
+      color: #9aaebb;
+      text-align: center;
+      border-top: 1px dashed #2e3a45;
+      padding-top: 18px;
+    }
+
+    .footnote i {
+      font-style: normal;
+      background: #1e2a33;
+      padding: 2px 8px;
+      border-radius: 20px;
+      margin: 0 3px;
+    }
+
+    button {
+      background: none;
+      border: none;
+      color: inherit;
+    }
+  </style>
+</head>
+<body>
+<div class="card">
+  <div style="display: flex; align-items: center; justify-content: space-between;">
+    <h2>
+      <span>🔴 YouTube Live</span>
+      <span class="live-badge">LIVE</span>
+    </h2>
+  </div>
+  
+  <!-- YouTube player container -->
+  <div class="player-wrapper">
+    <div id="youtube-player"></div>
+  </div>
+  
+  <div class="info-panel">
+    <div class="key-hint">
+      <span style="opacity:0.9;">⏎</span>
+      <kbd>ENTER</kbd>
+      <span style="margin-left: 5px;">↻ Play / Pause</span>
+    </div>
+    <div class="status-badge" id="player-state-ui">
+      <span class="play-icon">▶️</span>
+      <span id="state-indicator">LOADING</span>
+    </div>
+  </div>
+  
+  <div class="footnote">
+    <i>⚡ Autoplay starts muted (browser policy).</i> 
+    <i>🎬 Default banner appears before stream begins.</i><br>
+    <span style="display: inline-block; margin-top: 8px;">Press <kbd style="background:#1a232c; padding:2px 12px;">Enter</kbd> anywhere to toggle play/pause.</span>
+  </div>
+</div>
+
+<script>
+  // -------------------------------------------------------------
+  // YouTube IFrame API: auto‑play livestream, Enter key toggles
+  // -------------------------------------------------------------
+  
+  // The live stream video ID – using a popular 24/7 lofi radio (always live)
+  // You can replace with any live stream ID (e.g., from a channel's live tab)
+  const LIVE_VIDEO_ID = 'ZRDj5GXNezw';  // Lofi Girl live stream
+  
+  let player = null;
+  let playerState = -1;        // -1 = unstarted, 1 = playing, 2 = paused, etc.
+  let autoUnmuteTimer = null;
+  let hasUnmuted = false;
+
+
+  // UI elements for state feedback
+  const stateIndicator = document.getElementById('state-indicator');
+  const playerStateUI = document.getElementById('player-state-ui');
+  
+  // Helper to update UI based on player state
+  function updateUIState(state) {
+    const playIconSpan = playerStateUI.querySelector('.play-icon') || document.createElement('span');
+    if (!playerStateUI.contains(playIconSpan)) {
+      playerStateUI.prepend(playIconSpan);
+    }
+    
+    if (state === YT.PlayerState.PLAYING) {
+      stateIndicator.textContent = 'PLAYING';
+      stateIndicator.style.color = '#7ef0ba';
+      playIconSpan.textContent = '▶️';
+      playIconSpan.style.opacity = '1';
+    } else if (state === YT.PlayerState.PAUSED) {
+      stateIndicator.textContent = 'PAUSED';
+      stateIndicator.style.color = '#ffb870';
+      playIconSpan.textContent = '⏸️';
+      playIconSpan.style.opacity = '1';
+    } else if (state === YT.PlayerState.BUFFERING) {
+      stateIndicator.textContent = 'BUFFERING';
+      stateIndicator.style.color = '#9fc5ff';
+      playIconSpan.textContent = '⏳';
+    } else if (state === YT.PlayerState.ENDED) {
+      stateIndicator.textContent = 'ENDED';
+      stateIndicator.style.color = '#b0b9c5';
+      playIconSpan.textContent = '⏹️';
+    } else {
+      stateIndicator.textContent = 'UNSTARTED';
+      stateIndicator.style.color = '#a0aaba';
+      playIconSpan.textContent = '⏺️';
+    }
+  }
+  
+  // Toggle play/pause when Enter is pressed
+  function togglePlayPause() {
+    if (!player || typeof player.getPlayerState !== 'function') {
+      console.warn('Player not ready yet.');
+      return;
+    }
+    
+    const currentState = player.getPlayerState();
+    console.log(`[Enter] Current state: ${currentState}`);
+    
+    if (currentState === YT.PlayerState.PLAYING || currentState === YT.PlayerState.BUFFERING) {
+      player.pauseVideo();
+    } else if (currentState === YT.PlayerState.PAUSED || currentState === YT.PlayerState.UNSTARTED || currentState === YT.PlayerState.ENDED) {
+      player.playVideo();
+    } else {
+      // fallback: try to play if not defined
+      player.playVideo();
+    }
+  }
+  
+  // Keyboard event handler (Enter key)
+  function onKeyDown(e) {
+    // Check if the key is 'Enter'
+    if (e.key === 'Enter') {
+      // Prevent default browser behavior (like scrolling or activating links)
+      e.preventDefault();
+      
+      // Only toggle if the player exists and we're not typing in an input (just safety)
+      const tagName = e.target.tagName;
+      if (tagName === 'INPUT' || tagName === 'TEXTAREA' || e.target.isContentEditable) {
+        return; // don't interfere with text input
+      }
+      
+      togglePlayPause();
+    }
+  }
+  
+  // Called automatically when YouTube IFrame API is ready
+  function onYouTubeIframeAPIReady() {
+    console.log('YouTube IFrame API ready. Creating player...');
+    
+    player = new YT.Player('youtube-player', {
+      videoId: LIVE_VIDEO_ID,
+      playerVars: {
+        autoplay: 1,           // auto-start playback
+        mute: 0,               // muted autoplay (required by most browsers)
+        controls: 0,           // show player controls
+        modestbranding: 1,     // less YouTube branding
+        rel: 0,                // do not show related videos at the end
+        fs: 1,                 // allow fullscreen
+        iv_load_policy: 3,     // hide annotations
+        cc_load_policy: 0,     // closed captions off by default
+        disablekb: 0,          // allow keyboard controls (we override Enter globally anyway)
+        playsinline: 1,        // inline playback on mobile
+        live: 1,               // hint that it's a live stream (improves behavior)
+      },
+      events: {
+        onReady: onPlayerReady,
+        onStateChange: onPlayerStateChange,
+        onError: onPlayerError
+      }
+    });
+  }
+  
+  // Player is ready — ensure it starts playing, set up listeners
+  function onPlayerReady(event) {
+    console.log('✅ Player ready. Attempting to play livestream...');
+    
+    // The player is ready; try to play (autoplay=1 should already trigger)
+    // but we call playVideo() explicitly to be sure.
+    event.target.playVideo();
+    
+    // Update UI with initial state (may be BUFFERING then PLAYING)
+    const initialState = event.target.getPlayerState();
+    updateUIState(initialState);
+    
+    // Add global keyboard listener for Enter key
+    document.addEventListener('keydown', onKeyDown);
+    console.log('⌨️  Press ENTER to toggle play/pause (anywhere on page)');
+    
+    // Optional: if the stream is live but muted due to autoplay policy,
+    // user can unmute manually via YouTube controls. We keep it muted for autoplay.
+    // (We can add a small note that sound is muted by default)
+  }
+  
+  // Track state changes for UI and internal state
+  function onPlayerStateChange(event) {
+    const state = event.data;
+    playerState = state;
+    console.log(`🎬 State changed: ${state} (${getStateName(state)})`);
+    updateUIState(state);
+    
+    // If state becomes UNSTARTED (-1) but we want to keep trying to play (rare for live)
+    // Live streams often start as BUFFERING (3) then PLAYING (1)
+    if (state === YT.PlayerState.UNSTARTED) {
+      // For live, sometimes a small delay helps. But autoplay should handle.
+      setTimeout(() => {
+        if (player && player.playVideo) {
+          player.playVideo();
+        }
+      }, 200);
+    }
+
+        // --- NEW: Auto‑unmute after 3 seconds of playing ---
+    if (state === YT.PlayerState.PLAYING && !hasUnmuted) {
+      // Clear any previous timer (safety)
+      if (autoUnmuteTimer) clearTimeout(autoUnmuteTimer);
+      
+      autoUnmuteTimer = setTimeout(() => {
+        if (player && typeof player.unMute === 'function') {
+          player.unMute();
+          console.log('🔊 Auto‑unmuted after 3 seconds');
+          hasUnmuted = true;
+          // Optional: update UI to reflect unmuted state
+        }
+        autoUnmuteTimer = null;
+      }, 3000); // 3 seconds
+    }
+  }
+  
+  function onPlayerError(event) {
+    console.error('⚠️ YouTube player error:', event.data);
+    // Common errors: video not allowed, embedding disabled, etc.
+    stateIndicator.textContent = 'ERROR';
+    stateIndicator.style.color = '#ff7b7b';
+    const iconSpan = playerStateUI.querySelector('.play-icon');
+    if (iconSpan) iconSpan.textContent = '⚠️';
+  }
+  
+  // Helper to get state name for logging
+  function getStateName(stateCode) {
+    const states = {
+      '-1': 'UNSTARTED',
+      '0': 'ENDED',
+      '1': 'PLAYING',
+      '2': 'PAUSED',
+      '3': 'BUFFERING',
+      '5': 'CUED'
+    };
+    return states[stateCode] || 'UNKNOWN';
+  }
+  
+  // Fallback: if API script loads late, we define the callback globally.
+  // Already defined as onYouTubeIframeAPIReady.
+  
+  // Clean up event listener on page unload (good practice)
+  window.addEventListener('beforeunload', function() {
+    document.removeEventListener('keydown', onKeyDown);
+  });
+  
+  // If the API script somehow loads after we define the function, it's fine.
+  // The global onYouTubeIframeAPIReady will be called.
+  
+  // For extra safety: if the API fails to call the callback (rare), we can poll.
+  // But the standard approach is sufficient.
+  
+  // Note: If you want to test with a different livestream, change LIVE_VIDEO_ID above.
+  // Example: NASA live: '21X5lGlDOfg' or a channel's live broadcast ID.
+  
+  // Additional UX: When user clicks on player controls, it's fine.
+  // Enter key toggles play/pause even if player is not focused.
+  
+  // (Optional) If you want to unmute automatically on first user interaction:
+  // Not required, but we could add: on first Enter press, unmute? But spec only asks for play/pause.
+  
+  console.log('📺 YouTube Livestream embed ready — waiting for API...');
+</script>
+
+<!-- Load YouTube IFrame API asynchronously -->
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<!-- 
+  Explanation: 
+  - The player is initialized with autoplay=1 and mute=1 (autoplay policy).
+  - When ready, it attempts to play the live stream.
+  - The default channel banner (if stream hasn't started) will show until the stream begins.
+  - Pressing "Enter" anywhere (except input fields) toggles play/pause.
+  - UI shows current player state.
+-->
+</body>
+</html>
