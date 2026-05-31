@@ -823,7 +823,7 @@
           }
 
           updateChannelInfo(channelData);
-         // handleChannelChange();
+          handleChannelChange();
         });
       });
     }
@@ -1334,7 +1334,7 @@
 
     function startBannerTimer() {
       bannerTimer = setTimeout(() => {
-        //showBanner();
+        showBanner();
         startBannerTimer(); // Restart timer after showing
       }, 600000); // 10 minutes
     }
@@ -1347,7 +1347,7 @@
     // Call this when channel changes
     function handleChannelChange() {
       if(!bannerVisible) {
-        //showBanner();
+        showBanner();
       }
       resetBannerTimer();
     }
