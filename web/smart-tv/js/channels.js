@@ -48,6 +48,15 @@ const channels = [
         Rating: "N/A",
         infoPage: "N/A"
       },
+     {  name: "Parliament TV",
+        type: "youtube",
+        channelUrl: "UCXuseB7juWB7DIgTJcwtHFQ",
+        videoId: "aszsHfAKjfk",
+        logo: "images/parliamenttv.jpeg",
+        category: "National",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
       {
         name: "TV 47",
         type: "youtube",
@@ -77,8 +86,19 @@ const channels = [
       },
       {
         name: "Inooro TV",
-        type: "m3u8",
-        streamUrl: "https://stream-74937.castr.net/5ea49827ff3b5d7b22708777/live_6382dd401ce311f097d41d161154da2f/index.m3u8",
+        type: "youtube",
+        //streamUrl: "https://stream-74937.castr.net/5ea49827ff3b5d7b22708777/live_6382dd401ce311f097d41d161154da2f/index.m3u8",
+        channelUrl:"UCZlNMLTVNxzwB0axilK-rDw",
+        logo: "https://keonline.eu-central-1.linodeobjects.com/uploads/logo/nf0fohGccEB5orpXeraqamkEo3Q8sNPrYWtGvIaW.jpg",
+        category: "Local",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "Kameme TV",
+        type: "youtube",
+        //streamUrl: "https://stream-74937.castr.net/5ea49827ff3b5d7b22708777/live_6382dd401ce311f097d41d161154da2f/index.m3u8",
+        channelUrl:"UCd9nkc2XA77NMxBvQz35I2Q",
         logo: "https://keonline.eu-central-1.linodeobjects.com/uploads/logo/nf0fohGccEB5orpXeraqamkEo3Q8sNPrYWtGvIaW.jpg",
         category: "Local",
         Rating: "N/A",
@@ -86,9 +106,10 @@ const channels = [
       },
       {
         name: "Ramogi TV",
-        type: "stream",
-        streamUrl: "https://player.castr.com/live_9b761ff063f511eca12909b8ef1524b4?autoplay=1&mute=0&enablejsapi=1&rel=0&showinfo=0&mute=0",
-        logo: "https://kenyalivetv.co.ke/uploads/tv/3_icon_ramogitv.webp",
+        type: "youtube",
+        channelUrl:"UCE0YXdRyT9WC96KZfn7C9mQ",
+        //streamUrl: "https://player.castr.com/live_9b761ff063f511eca12909b8ef1524b4?autoplay=1&mute=0&enablejsapi=1&rel=0&showinfo=0&mute=0",
+        logo: "images/kamemetv.png",
         category: "Local",
         Rating: "N/A",
         infoPage: "N/A"
