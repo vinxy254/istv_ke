@@ -170,6 +170,15 @@ const channels = [
         infoPage: "N/A"
       },
       {
+        name: "Capuchin TV",
+        type: "stream",
+        streamUrl: "https://goliveafrica.media/live/1/CapuchinTelevisionNetwork?embed=1",
+        logo: "images/capuchin-tv-live.jpeg",
+        category: "National",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
         name: "HopeTV",
         type: "stream",
         streamUrl: "https://iframe.dacast.com/live/c27b4ca6-1dc4-2e19-9e94-2282b041e658/c4cf5692-c80d-c79c-b10a-830c04147959?autoplay=1&loop=1&mute=0",
