@@ -3,7 +3,7 @@ const channels = [
      {
         name: "NTV Kenya",
         type: "stream",
-        streamUrl: "https://www.youtube.com/embed/ZRDj5GXNezw?si=-RnQnwRvzBkspDoA",
+        streamUrl: "https://www.youtube.com/embed/ZRDj5GXNezw",
         //channelUrl:"UCqBJ47FjJcl61fmSbcadAVg",
         videoId: "_wQ79STCPxQ",
         logo: "https://static.ntvkenya.co.ke/assets/brand-logos/ntv-logo-white.png",
