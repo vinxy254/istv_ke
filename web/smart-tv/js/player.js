@@ -1,13 +1,15 @@
-// YouTube helper functions - UPDATED with autoplay parameters
+// Player and streaming functionality
+
+// YouTube helper functions
 function getYouTubeEmbedUrl(channelId) {
-    // Add autoplay and unmute parameters
-    return `https://www.youtube.com/embed/live_stream?channel=${channelId}&autoplay=1&mute=0&enablejsapi=1&controls=1&playsinline=1`;
+    // ✅ Muted autoplay to satisfy browser/WebView policies
+    // ✅ enablejsapi=1 required for IFrame API control (YT.Player)
+    return `https://www.youtube.com/embed/live_stream?channel=${channelId}&autoplay=1&mute=1&enablejsapi=1`;
 }
 
 // YouTube iframe API control
 let youtubeIframe = null;
-let ytPlayer = null;
-let autoplayAttempted = false;
+let ytPlayer = null; // Global reference for API control
 
 // Initialize Video.js player
 const player = videojs('my-video');
@@ -39,7 +41,6 @@ function destroyYouTubePlayer() {
     if (ytIframe) {
         ytIframe.remove();
     }
-    autoplayAttempted = false;
 }
 
 // Load channel
@@ -65,7 +66,7 @@ function loadChannel(channelData) {
     currentChannel = channelData;
 }
 
-// Load YouTube live stream by channel ID - UPDATED
+// Load YouTube live stream by channel ID
 function loadYouTubeLive(channelId) {
     const embedUrl = getYouTubeEmbedUrl(channelId);
     const playerContainer = document.getElementById("player");
@@ -93,26 +94,19 @@ function loadYouTubeLive(channelId) {
 
     // Create fresh iframe with API‑ready src
     const iframe = document.createElement('iframe');
-    iframe.id = 'youtube-api-iframe';
+    iframe.id = 'youtube-api-iframe'; // fixed ID for API binding
     iframe.className = 'external-iframe';
     iframe.width = '100%';
     iframe.height = '100%';
-    iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
+    iframe.allow = 'autoplay; encrypted-media';
     iframe.referrerPolicy = 'strict-origin-when-cross-origin';
     iframe.allowFullscreen = true;
     iframe.style.width = '100%';
     iframe.style.height = '100%';
     iframe.style.border = '0';
-    iframe.src = embedUrl;
+    iframe.src = embedUrl; // URL now includes autoplay=1&mute=1
     iframe.style.display = 'block';
     playerContainer.appendChild(iframe);
-
-    // Force focus on iframe for TV remote control
-    setTimeout(() => {
-        iframe.focus();
-        // Additional hack: click the iframe to ensure it's active
-        iframe.click();
-    }, 100);
 
     // If IFrame API is already loaded, create player immediately
     if (window.YT && YT.Player) {
@@ -123,107 +117,6 @@ function loadYouTubeLive(channelId) {
     }
 }
 
-function initializeYTPlayer() {
-    if (ytPlayer) {
-        // Destroy previous instance to avoid conflicts
-        try { ytPlayer.destroy(); } catch (e) {}
-    }
-    
-    ytPlayer = new YT.Player('youtube-api-iframe', {
-        events: {
-            onReady: onYTReady,
-            onStateChange: onYTStateChange,
-            onError: onYTError
-        },
-        playerVars: {
-            'autoplay': 1,
-            'mute': 0,
-            'controls': 1,
-            'playsinline': 1,
-            'rel': 0,
-            'fs': 1,
-            'modestbranding': 1
-        }
-    });
-}
-
-function onYTReady(event) {
-    console.log('✅ YouTube IFrame API ready');
-    autoplayAttempted = false;
-    
-    // Multiple autoplay attempts for reliability
-    tryAutoPlay(event.target);
-    
-    // Shift focus back to document body to enable remote control functions
-    setTimeout(() => {
-        document.body.focus();
-    }, 500);
-}
-
-function tryAutoPlay(player) {
-    if (autoplayAttempted) return;
-    
-    // Attempt 1: Immediate play with unmute
-    player.playVideo();
-    player.unMute();
-    
-    // Attempt 2: Delayed play with unmute (safety measure)
-    setTimeout(() => {
-        if (player.getPlayerState() !== 1) { // Not playing
-            player.playVideo();
-            player.unMute();
-        }
-    }, 500);
-    
-    // Attempt 3: Another delayed attempt
-    setTimeout(() => {
-        if (player.getPlayerState() !== 1) { // Not playing
-            player.playVideo();
-            player.unMute();
-        }
-    }, 1500);
-    
-    // Attempt 4: Final attempt with volume set
-    setTimeout(() => {
-        if (player.getPlayerState() !== 1) { // Not playing
-            player.playVideo();
-            player.unMute();
-            player.setVolume(100);
-        }
-    }, 3000);
-    
-    autoplayAttempted = true;
-}
-
-function onYTStateChange(event) {
-    console.log('YouTube state changed:', event.data);
-    
-    // YT.PlayerState.UNSTARTED (-1)
-    // YT.PlayerState.ENDED (0)
-    // YT.PlayerState.PLAYING (1)
-    // YT.PlayerState.PAUSED (2)
-    // YT.PlayerState.BUFFERING (3)
-    // YT.PlayerState.CUED (5)
-    
-    if (event.data === YT.PlayerState.PLAYING) {
-        hideBlueScreen();
-        // Ensure unmuted when playing
-        if (event.target.isMuted && event.target.isMuted()) {
-            event.target.unMute();
-        }
-    }
-    
-    // If buffering, show loading state if needed
-    if (event.data === YT.PlayerState.BUFFERING) {
-        // Optional: Show loading indicator
-    }
-}
-
-function onYTError(event) {
-    console.error('YouTube player error:', event.data);
-    showBlueScreen();
-}
-
 // Clean up previous iframe playback
 function stopIframePlayback() {
     if (ytPlayer) {
@@ -231,7 +124,47 @@ function stopIframePlayback() {
     }
 }
 
-// Load external stream (YouTube, etc.)
+// Initialize YouTube IFrame API player
+function initializeYTPlayer() {
+    if (ytPlayer) {
+        // Destroy previous instance to avoid conflicts
+        try { ytPlayer.destroy(); } catch (e) {}
+    }
+    ytPlayer = new YT.Player('youtube-api-iframe', {
+        events: {
+            onReady: onYTReady,
+            onStateChange: onYTStateChange,
+            onError: onYTError
+        }
+    });
+}
+
+// YouTube event handlers
+function onYTReady(event) {
+    console.log('✅ YouTube IFrame API ready');
+    // Play video (belt‑and‑suspenders, should already be playing because of autoplay)
+    event.target.playVideo();
+
+    // Wait for video to actually start, then unmute
+    setTimeout(() => {
+        try {
+            event.target.unMute();
+            console.log('🔊 Unmuted YouTube player');
+        } catch (e) {
+            console.warn('Failed to unmute:', e);
+        }
+    }, 800); // 800 ms is usually enough for the video to begin
+}
+
+function onYTStateChange(event) {
+    // Optional: handle state changes
+}
+
+function onYTError(event) {
+    console.error('YouTube player error:', event.data);
+}
+
+// Load external stream (non-YouTube iframes)
 function loadExternalStream(url) {
     destroyYouTubePlayer();
 
@@ -301,22 +234,3 @@ player.on('error', function() {
 
 player.on('playing', hideBlueScreen);
 player.on('loadeddata', hideBlueScreen);
-
-// Additional workaround for TV platforms
-// Add a click listener to the document to help with autoplay
-document.addEventListener('click', function() {
-    if (ytPlayer && ytPlayer.getPlayerState && ytPlayer.getPlayerState() !== 1) {
-        ytPlayer.playVideo();
-        ytPlayer.unMute();
-    }
-});
-
-// Handle visibility change (when app comes to foreground)
-document.addEventListener('visibilitychange', function() {
-    if (!document.hidden && ytPlayer) {
-        try {
-            ytPlayer.playVideo();
-            ytPlayer.unMute();
-        } catch(e) {}
-    }
-});
