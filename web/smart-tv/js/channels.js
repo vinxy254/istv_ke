@@ -2,8 +2,9 @@
 const channels = [
      {
         name: "NTV Kenya",
-        type: "youtube",
-        channelUrl:"UCqBJ47FjJcl61fmSbcadAVg",
+        type: "stream",
+        streamUrl: "https://www.youtube-nocookie.com/embed/ZRDj5GXNezw?si=nB1pmdbHTFs6UabU",
+        //channelUrl:"UCqBJ47FjJcl61fmSbcadAVg",
         videoId: "_wQ79STCPxQ",
         logo: "https://static.ntvkenya.co.ke/assets/brand-logos/ntv-logo-white.png",
         category: "National",
@@ -41,8 +42,9 @@ const channels = [
       },
       {
         name: "KBC Channel 1",
-        type: "stream",
-        streamUrl: "https://www.youtube.com/embed/live_stream?channel=UCegApUZsuaWaXYf5g9W8Mzw&autoplay=1&rel=0&showinfo=0&enablejsapi=1&origin=https%3A%2F%2Fwww.kenyantv.live",
+        type: "youtube",
+        channelUrl: "UCypNjM5hP1qcUqQZe57jNfg",
+        //streamUrl: "https://www.youtube.com/embed/live_stream?channel=UCegApUZsuaWaXYf5g9W8Mzw&autoplay=1&rel=0&showinfo=0&enablejsapi=1&origin=https%3A%2F%2Fwww.kenyantv.live",
         logo: "https://livetvcentral.com/imgs/tvs/3304.jpg",
         category: "National",
         Rating: "N/A",
