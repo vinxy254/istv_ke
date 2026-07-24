@@ -731,7 +731,7 @@ const channels = [
         name: "Racer INT",
         type: "m3u8",
         streamUrl: "https://amg00378-mavtv-amg00378c2-rakuten-us-1048.playouts.now.amagi.tv/playlist/amg00378-mavtvfast-motorsportsnetwork-rakutenus/playlist.m3u8",
-        logo: "https://www.freelivesports.tv/wp-content/uploads/2025/04/racer-int-212.png",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/5/53/Racer_Magazine_logo.svg",
         category: "Sports",
         Rating: "N/A",
         infoPage: "N/A"
