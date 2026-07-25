@@ -139,7 +139,7 @@ const channels = [
         name: "MOF TV",
         type: "m3u8",
         streamUrl: "https://goliveafrica.media:9998/live/6425a6efa15c8/index.m3u8",
-        logo: "https://kenyalivetv.co.ke/uploads/tv/20_icon_jambutv.webp",
+        logo: "https://goliveafrica.media/videos/userPhoto/photo715.png?cache=1706551902_1706551902",
         category: "Local",
         Rating: "N/A",
         infoPage: "N/A"
@@ -148,7 +148,16 @@ const channels = [
         name: "Morning Cloud TV",
         type: "m3u8",
         streamUrl: "https://livecdn.live247stream.com/mc/tv/playlist.m3u8",
-        logo: "https://kenyalivetv.co.ke/uploads/tv/20_icon_jambutv.webp",
+        logo: "https://play-lh.googleusercontent.com/d7dLYMN1AvimTjpi6Uh3rRKvDipnoT01dHNICPcF2aAAalsZQvSmdJwudH2En3xDoAmc3XOB8lpPuwxof8lZGg",
+        category: "Local",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "Truth TV",
+        type: "m3u8",
+        streamUrl: "https://goliveafrica.media:9998/live/6a479dc9e258a/index.m3u8",
+        logo: "https://lh3.googleusercontent.com/a-/AD5-WCkPUIDkiRJryQwNFge3wDHHHmH3gN7EAgLHnBge=s96-c",
         category: "Local",
         Rating: "N/A",
         infoPage: "N/A"
@@ -158,6 +167,15 @@ const channels = [
         type: "m3u8",
         streamUrl: "https://goliveafrica.media:9998/live/628e5c1991061/index.m3u8",
         logo: "images/meru-tv-live.png",
+        category: "Local",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "Elevate TV",
+        type: "m3u8",
+        streamUrl: "https://goliveafrica.media:9998/live/6a296d78b155e/index.m3u8",
+        logo: "https://lh3.googleusercontent.com/a-/ALV-UjURX8Z-0JG41zTDxJdHQ2BmyZhITEmQ2-GIzUEKWnk9Iw=s96-c",
         category: "Local",
         Rating: "N/A",
         infoPage: "N/A"
@@ -211,7 +229,7 @@ const channels = [
         name: "Younib TV",
         type: "m3u8",
         streamUrl: "https://goliveafrica.media:9998/live/6257fbe7383d6/index.m3u8",
-        logo: "images/family-tv-live.jpeg",
+        logo: "https://livetvke.com/images/younibtv.jpg",
         category: "National",
         Rating: "N/A",
         infoPage: "N/A"
@@ -220,7 +238,7 @@ const channels = [
         name: "Dodoma TV",
         type: "m3u8",
         streamUrl: "https://goliveafrica.media:9998/live/625965017ed69/index.m3u8",
-        logo: "images/family-tv-live.jpeg",
+        logo: "https://lh3.googleusercontent.com/a-/AD_cMMR0lBpD9uFFx7JAzF5clpcHZKC9TFbtDT9Hbmejlg=s96-c",
         category: "National",
         Rating: "N/A",
         infoPage: "N/A"
@@ -272,11 +290,10 @@ const channels = [
         infoPage: "N/A"
       },
      {
-        name: "Chelsea TV",
-        type: "youtube",
-        channelUrl: "UCU2PacFf99vhb3hNiYDmxww",
-        videoId: "YY1B0zue_cI",
-        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROszwWjb7R-oGWkyhdJqI3sQU143Wdogg55w&s",
+        name: "Barca TV",
+        type: "m3u8",
+        streamUrl: "https://amg17560-fcb-amg17560c1-rakuten-uk-4891.playouts.now.amagi.tv/playlist/amg17560-fcbarcelona-topbarcaenglish-rakutenuk/playlist.m3u8",
+        logo: "https://www.cxtv.com.br/img/Tvs/Logo/webp-m/73cde5990fa4d395e807a2780b68b333.webp",
         category: "Sports",
         Rating: "GE",
         infoPage: "N/A"
@@ -317,6 +334,15 @@ const channels = [
         Rating: "GE",
         infoPage: "N/A"
       },
+     {
+        name: "People are awesome",
+        type: "m3u8",
+        streamUrl: "https://jukin-peopleareawesome-2-ca.samsung.wurl.tv/playlist.m3u8",
+        logo: "https://www.cxtv.com.br/img/Tvs/Logo/webp-m/e55d3f6f2a75879017f1850561af0d1c.webp",
+        category: "Entertainment",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
       {
         name: "Chopper town",
         type: "m3u8",
@@ -346,6 +372,15 @@ const channels = [
         Rating: "GE",
         infoPage: "N/A"
       },
+     {
+        name: "UFC",
+        type: "m3u8",
+        streamUrl: "https://linear-894.frequency.stream/mt/plex-br/894/hls/master/playlist_1920x1080.m3u8",
+        logo: "https://www.cxtv.com.br/img/Tvs/Logo/webp-m/cdaae9d13a4961f1c6603a4a6b0bbbd2.webp",
+        category: "Sports",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
       {
         name: "DAZN Ringside",
         type: "m3u8",
@@ -369,6 +404,15 @@ const channels = [
         type: "m3u8",
         streamUrl: "https://dms.redbull.tv/v5/destination/rbtv/linear-borb/personal_computer/http/ke/en/playlist.m3u8",
         logo: "https://i.ytimg.com/vi/Ao-Rbi8qq7c/maxresdefault.jpg",
+        category: "Sports",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
+     {
+        name: "Drive Channel",
+        type: "m3u8",
+        streamUrl: "https://d39yjeivnywvts.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-ww9fq2xfgtfog/playlist.m3u8",
+        logo: "https://www.cxtv.com.br/img/Tvs/Logo/webp-m/42cb09180fe07eee094bcdf4b3f76feb.webp",
         category: "Sports",
         Rating: "GE",
         infoPage: "N/A"
@@ -432,8 +476,17 @@ const channels = [
       {
         name: "Motorvision",
         type: "m3u8",
-        streamUrl: "https://mvg-mv-xumo.otteravision.com/mvg/mv/mv.m3u8",
+        streamUrl: "https://amg00115-amg00115c1-nascar-northamerica-6927.playouts.now.amagi.tv/playlist1080p-cc.m3u8",
         logo: "https://static.wikia.nocookie.net/logopedia/images/1/18/Motorvision_TV_2016_II.png",
+        category: "Sports",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "Nascar",
+        type: "m3u8",
+        streamUrl: "https://mvg-mv-xumo.otteravision.com/mvg/mv/mv.m3u8",
+        logo: "https://www.cxtv.com.br/img/Tvs/Logo/webp-m/de4fba8103e3122c5964ebad24e041b0.webp",
         category: "Sports",
         Rating: "N/A",
         infoPage: "N/A"
@@ -724,6 +777,15 @@ const channels = [
         type: "m3u8",
         streamUrl: "https://channels.trace.plus/Traceprod/CARIBBEAN_hd/index.m3u8",
         logo: "https://upload.wikimedia.org/wikipedia/commons/e/e0/TRACE_Hits.png",
+        category: "Music",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+     {
+        name: "That's 80s",
+        type: "m3u8",
+        streamUrl: "https://lightning-now80s-rakuten.amagi.tv/playlist.m3u8",
+        logo: "https://www.cxtv.com.br/img/Tvs/Logo/webp-m/cdcf0e0f226888e2e9e521b911842177.webp",
         category: "Music",
         Rating: "N/A",
         infoPage: "N/A"
