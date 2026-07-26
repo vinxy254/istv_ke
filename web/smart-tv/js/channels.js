@@ -325,7 +325,7 @@ const channels = [
     type: "m3u8",
     streamUrl: "https://digicom.hls.iptvdc.com/canalmotor/index.m3u8",
     logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5wFMC2V2Qqo3pADMqNbuRDSjxvenPKMS3jA&s",
-    category: "Sports",
+    category: "Motorsport",
     Rating: "GE",
     infoPage: "N/A"
   },
@@ -388,7 +388,7 @@ const channels = [
     type: "m3u8",
     streamUrl: "https://play.redbull.com/main/v1/rbtv/en/ke/personal_computer/http/rrn:content:video-channels:fd4ed3c9-1800-477b-9909-53255da06632.m3u88",
     logo: "https://i.ytimg.com/vi/Ao-Rbi8qq7c/maxresdefault.jpg",
-    category: "Sports",
+    category: "Motorsport",
     Rating: "GE",
     infoPage: "N/A"
   },
@@ -397,7 +397,7 @@ const channels = [
     type: "m3u8",
     streamUrl: "https://amg02873-kravemedia-mtrspt1-distrotv-mnsrl.amagi.tv/playlist/amg02873-kravemedia-mtrspt1-distrotv/playlist.m3u8",
     logo: "https://www.cxtv.com.br/img/Tvs/Logo/webp-m/32d3e5276a20e66e81a4cb59242f37df.webp",
-    category: "Sports",
+    category: "Motorsport",
     Rating: "GE",
     infoPage: "N/A"
   },
@@ -406,7 +406,7 @@ const channels = [
     type: "m3u8",
     streamUrl: "https://d39yjeivnywvts.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-ww9fq2xfgtfog/playlist.m3u8",
     logo: "https://www.cxtv.com.br/img/Tvs/Logo/webp-m/42cb09180fe07eee094bcdf4b3f76feb.webp",
-    category: "Sports",
+    category: "Motorsport",
     Rating: "GE",
     infoPage: "N/A"
   },
@@ -415,7 +415,7 @@ const channels = [
     type: "m3u8",
     streamUrl: "https://30a-tv.com/feeds/vidaa/cars.m3u8",
     logo: "https://www.usnews.com/object/image/00000191-d821-d8b8-adf7-f97944b10000/chevrolet-corvette-zr1-coupe-001.jpg?update-time=1725907944302&size=listiclePhoto",
-    category: "Sports",
+    category: "Motorsport",
     Rating: "N/A",
     infoPage: "N/A"
   },
@@ -424,7 +424,7 @@ const channels = [
     type: "m3u8",
     streamUrl: "https://amg00115-amg00115c1-nascar-northamerica-6927.playouts.now.amagi.tv/playlist1080p-cc.m3u8",
     logo: "https://static.wikia.nocookie.net/logopedia/images/1/18/Motorvision_TV_2016_II.png",
-    category: "Sports",
+    category: "Motorsport",
     Rating: "N/A",
     infoPage: "N/A"
   },
@@ -433,7 +433,7 @@ const channels = [
     type: "m3u8",
     streamUrl: "https://mvg-mv-xumo.otteravision.com/mvg/mv/mv.m3u8",
     logo: "https://www.cxtv.com.br/img/Tvs/Logo/webp-m/de4fba8103e3122c5964ebad24e041b0.webp",
-    category: "Sports",
+    category: "Motorsport",
     Rating: "N/A",
     infoPage: "N/A"
   },
@@ -451,7 +451,7 @@ const channels = [
     type: "m3u8",
     streamUrl: "https://amg00378-mavtv-amg00378c3-plex-us-1322.playouts.now.amagi.tv/mavtv-smn-xm/playlistR1080p.m3u8",
     logo: "https://upload.wikimedia.org/wikipedia/commons/5/53/Racer_Magazine_logo.svg",
-    category: "Sports",
+    category: "Motorsport",
     Rating: "N/A",
     infoPage: "N/A"
   },
@@ -576,7 +576,7 @@ const channels = [
     name: "Jewelry TV",
     type: "m3u8",
     streamUrl: "https://content.jwplatform.com/live/broadcast/oe7UD7Ag.m3u8",
-    logo: "https://static.wikia.nocookie.net/logopedia/images/2/2c/Television_Jamaica_Logo.png/",
+    logo: "https://yt3.googleusercontent.com/ytc/AIdro_ktCd8vUWO7ayVxsdJVTZard-pJaGzcrkWCP5X1cetv0Q=s900-c-k-c0x00ffffff-no-rj",
     category: "Entertainment",
     Rating: "N/A",
     infoPage: "N/A"
@@ -957,7 +957,7 @@ const channels = [
     type: "m3u8",
     streamUrl: "https://amg00378-mavtv-amg00378c3-plex-us-1322.playouts.now.amagi.tv/playlist/amg00378-mavtvfast-motorsportsnetworkint-plexus/playlist.m3u8",
     logo: "https://assets.starsnationaltour.com/data/2024/02/MAVTV-Logo-300x170.webp",
-    category: "Lifestyle",
+    category: "Motorsport",
     Rating: "N/A",
     infoPage: "N/A"
   },
@@ -1076,6 +1076,7 @@ function getCategories() {
     "Local",
     "News",
     "Sports",
+    "Motorsport",
     "Movies",
     "Music",
     "Kids",
