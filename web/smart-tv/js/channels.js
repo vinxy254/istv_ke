@@ -1080,10 +1080,8 @@ function getCategories() {
     "Music",
     "Kids",
     "Entertainment",
-    "Nature"
-    "Lifestyle",
-  
-    
+    "Nature",
+    "Lifestyle"
   ];
   
   // Get array from set
