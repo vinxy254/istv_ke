@@ -292,7 +292,7 @@ const channels = [
     category: "News",
     Rating: "N/A",
     infoPage: "N/A"
-  }
+  },
   {
     name: "Africa news.",
     type: "m3u8",
