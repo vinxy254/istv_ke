@@ -284,6 +284,15 @@ const channels = [
     Rating: "N/A",
     infoPage: "N/A"
   },
+    {
+    name: "CGTN biz",
+    type: "m3u8",
+    streamUrl: "https://amg01314-amg01314c6-distrotv-us-10220.playouts.now.amagi.tv/playlist/amg01314-cgtn-cgtnglobalbiz-distrotvus/playlist.m3u8?ads.dpname=distrotv&ads.app_domain=&ads.app_name=DistroTV&ads.app_store_url=&ads.coppa=0&ads.dnt=0&ads.c_producer=CGTN&ads.device_model=&ads.did=&ads.ifa_type=localStorage&ads.url=https%3A%2F%2Fwww.google.com%2F&ads.content_livestream=1&ads.ic=IAB3&ads.iu=&ads.idtype=Web&ads.lmt=&ads.gpp=&ads.gpp_sid=&ads.prodq=0&ads.inv_partner_domain=http%3A%2F%2Fdistro.tv&ads.schain=1&ads.islive=1&ads.streamtype=live&ads.vf=zhW0MpP7jy8",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/2/25/CGTN.png",
+    category: "News",
+    Rating: "N/A",
+    infoPage: "N/A"
+  }
   {
     name: "Africa news.",
     type: "m3u8",
@@ -1051,15 +1060,7 @@ const channels = [
     Rating: "N/A",
     infoPage: "N/A"
   },
-  {
-    name: "CGTN biz",
-    type: "m3u8",
-    streamUrl: "https://amg01314-amg01314c6-distrotv-us-10220.playouts.now.amagi.tv/playlist/amg01314-cgtn-cgtnglobalbiz-distrotvus/playlist.m3u8?ads.dpname=distrotv&ads.app_domain=&ads.app_name=DistroTV&ads.app_store_url=&ads.coppa=0&ads.dnt=0&ads.c_producer=CGTN&ads.device_model=&ads.did=&ads.ifa_type=localStorage&ads.url=https%3A%2F%2Fwww.google.com%2F&ads.content_livestream=1&ads.ic=IAB3&ads.iu=&ads.idtype=Web&ads.lmt=&ads.gpp=&ads.gpp_sid=&ads.prodq=0&ads.inv_partner_domain=http%3A%2F%2Fdistro.tv&ads.schain=1&ads.islive=1&ads.streamtype=live&ads.vf=zhW0MpP7jy8",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/2/25/CGTN.png",
-    category: "Business",
-    Rating: "N/A",
-    infoPage: "N/A"
-  }
+
 ];
 
 // Function to get sorted categories
@@ -1074,14 +1075,15 @@ function getCategories() {
     "National",
     "Local",
     "News",
-    "Business",
-    "Entertainment",
     "Sports",
     "Movies",
     "Music",
     "Kids",
-    "Lifestyle",
+    "Entertainment",
     "Nature"
+    "Lifestyle",
+  
+    
   ];
   
   // Get array from set
