@@ -409,6 +409,24 @@ const channels = [
         infoPage: "N/A"
       },
      {
+        name: "Redbull Motorsport",
+        type: "m3u8",
+        streamUrl: "https://play.redbull.com/main/v1/rbtv/en/ke/personal_computer/http/rrn:content:video-channels:fd4ed3c9-1800-477b-9909-53255da06632.m3u88",
+        logo: "https://i.ytimg.com/vi/Ao-Rbi8qq7c/maxresdefault.jpg",
+        category: "Sports",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
+          {
+        name: "Motorsport 1",
+        type: "m3u8",
+        streamUrl: "https://amg02873-kravemedia-mtrspt1-distrotv-mnsrl.amagi.tv/playlist/amg02873-kravemedia-mtrspt1-distrotv/playlist.m3u8",
+        logo: "https://www.cxtv.com.br/img/Tvs/Logo/webp-m/32d3e5276a20e66e81a4cb59242f37df.webp",
+        category: "Sports",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
+     {
         name: "Drive Channel",
         type: "m3u8",
         streamUrl: "https://d39yjeivnywvts.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-ww9fq2xfgtfog/playlist.m3u8",
@@ -422,6 +440,15 @@ const channels = [
         type: "m3u8",
         streamUrl: "https://hdmovix.cc/api/live/proxy?url=http%3A%2F%2F40.160.24.53%2FNAT_GEO%2Findex.m3u8",
         logo: "https://cdn.iconscout.com/icon/free/png-256/free-national-geographic-logo-icon-download-in-svg-png-gif-file-formats--major-websites-set-pack-logos-icons-461820.png?f=webp",
+        category: "Entertainment",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
+     {
+        name: "Fail Army",
+        type: "m3u8",
+        streamUrl: "https://failarmy-international-in.samsung.wurl.tv/playlist.m3u8",
+        logo: "https://www.cxtv.com.br/img/Tvs/Logo/webp-m/f990725f0f639b3385929a43d9e454a7.webp",
         category: "Entertainment",
         Rating: "GE",
         infoPage: "N/A"
@@ -977,6 +1004,15 @@ const channels = [
         streamUrl: "https://aegis-cloudfront-1.tubi.video/c95700f8-e51c-4a36-ad46-56f70fc9f1d9/playlist.m3u8",
         logo: "https://static.wikia.nocookie.net/logopedia/images/4/40/Britbox_2021_Stacked.svg",
         category: "Entertainment",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+     {
+        name: "Dove Channel",
+        type: "m3u8",
+        streamUrl: "https://linear-896.frequency.stream/dist/xumo/896/hls/master/playlist.m3u8",
+        logo: "https://www.cxtv.com.br/img/Tvs/Logo/webp-m/37f04d7a278b2362e52f0e06d1216bed.webp",
+        category: "Movies",
         Rating: "N/A",
         infoPage: "N/A"
       },
