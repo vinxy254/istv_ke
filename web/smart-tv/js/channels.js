@@ -387,7 +387,7 @@ const channels = [
   {
     name: "Redbull Motorsport",
     type: "m3u8",
-    streamUrl: "https://play.redbull.com/main/v1/rbtv/en/ke/personal_computer/http/rrn:content:video-channels:fd4ed3c9-1800-477b-9909-53255da06632.m3u88",
+    streamUrl: "https://play.redbull.com/main/v1/rbtv/en/ke/personal_computer/http/rrn:content:video-channels:fd4ed3c9-1800-477b-9909-53255da06632.m3u8",
     logo: "https://i.ytimg.com/vi/Ao-Rbi8qq7c/maxresdefault.jpg",
     category: "Motorsport",
     Rating: "GE",
