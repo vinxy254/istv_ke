@@ -125,7 +125,7 @@ const channels = [
   {
     name: "HopeTV",
     type: "stream",
-    streamUrl: "https://iframe.dacast.com/live/c27b4ca6-1dc4-2e19-9e94-2282b041e658/c4cf5692-c80d-c79c-b10a-830c04147959?autoplay=1&loop=1&mute=0",
+    streamUrl: "https://cdn-cloudfront.us-east-1.prod.ingest.aws-infra.dacast.com/live/c4cf5692-c80d-c79c-b10a-830c04147959/source/index.m3u8",
     logo: "images/hope-tv-live.jpg",
     category: "National",
     Rating: "N/A",
