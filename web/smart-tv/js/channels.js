@@ -79,8 +79,8 @@ const channels = [
   },
   {
     name: "TV 47",
-    type: "youtube",
-    channelUrl: "UC_zA9UIWE1fB-jfFk_DBSYw",
+    type: "m3u8",
+    streamUrl: "https://wowstrm.xyz/hls/sk_D4lAF8E0YpHmsB3PMQ4wo65UQ42k1P9y/main_stream.m3u8",
     logo: "images/tv47.png",
     category: "National",
     Rating: "N/A",
