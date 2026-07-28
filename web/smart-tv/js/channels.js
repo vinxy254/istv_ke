@@ -43,8 +43,17 @@ const channels = [
   {
     name: "K24 TV",
     type: "m3u8",
-    streamUrl: "https://livecdn.premiumfree.tv/afxpstr/K24Main/index.m3u8",
+    streamUrl: "https://hdmovix.cc/api/live/proxy?url=https%3A%2F%2Flivecdn.premiumfree.tv%2Fafxpstr%2FK24Backup%2Findex.m3u8",
     logo: "images/k24-live.jpeg",
+    category: "National",
+    Rating: "N/A",
+    infoPage: "N/A"
+  },
+  {
+    name: "K24 Digital",
+    type: "m3u8",
+    streamUrl: "https://livecdn.premiumfree.tv/afxpstr/K24Main/index.m3u8",
+    logo: "https://play-lh.googleusercontent.com/v6X50R44BL7RIWzu_GayZ8dxx3y_tOyodJ7oTSTBun0H2f-EG5nHampE4wzRRoeYFzmhkbJqihiKF6YvAXp4OdI",
     category: "National",
     Rating: "N/A",
     infoPage: "N/A"
