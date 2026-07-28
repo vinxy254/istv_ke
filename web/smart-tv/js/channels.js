@@ -25,7 +25,7 @@ const channels = [
     name: "Citizen Xtra",
     type: "m3u8",
     streamUrl: "https://live-onesignal.royalmedia.co.ke/live/jgB35emfPsiW5aFjKJjbjg.m3u8",
-    logo: "https://static.wikia.nocookie.net/logopedia/images/7/70/Citizen_TV_%28Kenya%29_logo.png",
+    logo: "https://yt3.googleusercontent.com/qNOl0qel8802XzWSyi0E03JPOF0krKnA7Z3UAdN93LCPsd5w0WqvdoziaLix6oTYVaJQkLy-kw=s900-c-k-c0x00ffffff-no-rj",
     category: "National",
     Rating: "N/A",
     infoPage: "N/A"
