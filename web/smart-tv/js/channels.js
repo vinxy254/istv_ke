@@ -151,8 +151,8 @@ const channels = [
   },
   {
     name: "Inooro TV",
-    type: "youtube",
-    channelUrl: "UCZlNMLTVNxzwB0axilK-rDw",
+    type: "m3u8",
+    streamUrl: "https://live-onesignal.royalmedia.co.ke/live/T-MxRsFebq6zx7k2QFMbLw.m3u8",
     logo: "https://keonline.eu-central-1.linodeobjects.com/uploads/logo/nf0fohGccEB5orpXeraqamkEo3Q8sNPrYWtGvIaW.jpg",
     category: "Local",
     Rating: "N/A",
@@ -169,8 +169,8 @@ const channels = [
   },
   {
     name: "Ramogi TV",
-    type: "youtube",
-    channelUrl: "UCE0YXdRyT9WC96KZfn7C9mQ",
+    type: "m3u8",
+    streamUrl: "https://live-onesignal.royalmedia.co.ke/live/-gEXRHc6nSl5aFegh5MrOg.m3u8",
     logo: "https://keonline.eu-central-1.linodeobjects.com/uploads/logo/nf0fohGccEB5orpXeraqamkEo3Q8sNPrYWtGvIaW.jpg",
     category: "Local",
     Rating: "N/A",
