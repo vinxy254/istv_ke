@@ -188,7 +188,7 @@ const channels = [
   {
     name: "KASS TV",
     type: "stream",
-    streamUrl: "https://goliveafrica.media/live/1/kasstv&embed=1",
+    streamUrl: "https://player.twitch.tv/?channel=kassmedia&parent=istvkenya.live",
     logo: "https://lh3.googleusercontent.com/3XKtcKiWjlpm6BcBqN50QIx2yqvSRh4ppKmonV2c-kHmjT-6ThHlXc5Nn_UjtNOZXn-W=s200",
     category: "Local",
     Rating: "N/A",
