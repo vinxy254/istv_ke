@@ -116,7 +116,7 @@ const channels = [
   {
     name: "Capuchin TV",
     type: "stream",
-    streamUrl: "https://goliveafrica.media/live/1/CapuchinTelevisionNetwork?embed=1",
+    streamUrl: "https://goliveafrica.media:9998/live/64227f58b8413/index.m3u8",
     logo: "images/capuchin-tv-live.jpeg",
     category: "National",
     Rating: "N/A",
