@@ -441,7 +441,7 @@ const channels = [
   {
     name: "Motorvision",
     type: "m3u8",
-    streamUrl: "https://amg00115-amg00115c1-nascar-northamerica-6927.playouts.now.amagi.tv/playlist1080p-cc.m3u8",
+    streamUrl: "https://mvg-mv-xumo.otteravision.com/mvg/mv/mv.m3u8",
     logo: "https://static.wikia.nocookie.net/logopedia/images/1/18/Motorvision_TV_2016_II.png",
     category: "Motorsport",
     Rating: "N/A",
@@ -450,7 +450,7 @@ const channels = [
   {
     name: "Nascar",
     type: "m3u8",
-    streamUrl: "https://mvg-mv-xumo.otteravision.com/mvg/mv/mv.m3u8",
+    streamUrl: "https://amg00115-amg00115c1-nascar-northamerica-6927.playouts.now.amagi.tv/playlist1080p-cc.m3u8",
     logo: "https://www.cxtv.com.br/img/Tvs/Logo/webp-m/de4fba8103e3122c5964ebad24e041b0.webp",
     category: "Motorsport",
     Rating: "N/A",
