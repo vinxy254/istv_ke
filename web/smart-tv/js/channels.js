@@ -2,8 +2,8 @@
 const channels = [
   {
     name: "NTV Kenya",
-    type: "stream",
-    streamUrl: "https://www.youtube.com/embed/ZRDj5GXNezw",
+    type: "youtube",
+    channelUrl: "UCqBJ47FjJcl61fmSbcadAVg",
     videoId: "_wQ79STCPxQ",
     logo: "https://static.ntvkenya.co.ke/assets/brand-logos/ntv-logo-white.png",
     category: "National",
@@ -124,7 +124,7 @@ const channels = [
   },
   {
     name: "HopeTV",
-    type: "stream",
+    type: "m3u8",
     streamUrl: "https://cdn-cloudfront.us-east-1.prod.ingest.aws-infra.dacast.com/live/c4cf5692-c80d-c79c-b10a-830c04147959/source/index.m3u8",
     logo: "images/hope-tv-live.jpg",
     category: "National",
