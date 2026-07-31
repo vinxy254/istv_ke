@@ -838,7 +838,7 @@ const channels = [
   {
     name: "Caribbean World Channel",
     type: "m3u8",
-    streamUrl: "https://live-us-cdn-1.tvstartupengine.com/live/playlist-prod-da1ba36f-39ba-4347-acce-c3a31de907f3/index.m3u8",
+    streamUrl: "https://live-us-cdn-1.tvstartupengine.com/live/playlist-prod-7c267fbf-8af9-48fd-946a-c005ebd6c2b9/index.m3u8",
     logo: "https://image.roku.com/developer_channels/prod/dd96e4e395f9b87ded4e034c080aa9cf1bef0b9c251f0b73405fb1189c01b156.png",
     category: "Music",
     Rating: "N/A",
