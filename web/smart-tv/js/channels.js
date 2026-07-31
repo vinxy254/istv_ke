@@ -43,7 +43,7 @@ const channels = [
   {
     name: "K24 TV",
     type: "m3u8",
-    streamUrl: "https://hdmovix.cc/api/live/proxy?url=https%3A%2F%2Flivecdn.premiumfree.tv%2Fafxpstr%2FK24Backup%2Findex.m3u8",
+    streamUrl: "https://livecdn.premiumfree.tv/afxpstr/K24Backup/index.m3u8",
     logo: "images/k24-live.jpeg",
     category: "National",
     Rating: "N/A",
