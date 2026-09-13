@@ -59,6 +59,15 @@ const channels = [
     infoPage: "N/A"
   },
   {
+    name: "iSTV",
+    type: "stream",
+    streamUrl: "https://player.kick.com/iSTVkenya",
+    logo: "https://istvkenya.live/web/smart-tv/istvlogo.png",
+    category: "National",
+    Rating: "N/A",
+    infoPage: "N/A"
+  },
+  {
     name: "KBC Channel 1",
     type: "youtube",
     channelUrl: "UCypNjM5hP1qcUqQZe57jNfg",
