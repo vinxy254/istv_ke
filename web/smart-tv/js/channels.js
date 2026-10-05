@@ -328,6 +328,15 @@ const channels = [
 
 
   //SPORTS
+    {
+    name: "MUTV",
+    type: "m3u8",
+    streamUrl: "https://fastly.live.brightcove.com/6374054671112/eu-west-1/6058004203001/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJob3N0IjoiYXplMnp5LmVncmVzcy55ODN1ZWIiLCJhY2NvdW50X2lkIjoiNjA1ODAwNDIwMzAwMSIsImVobiI6ImZhc3RseS5saXZlLmJyaWdodGNvdmUuY29tIiwiaXNzIjoiYmxpdmUtcGxheWJhY2stc291cmNlLWFwaSIsInN1YiI6InBhdGhtYXB0b2tlbiIsImF1ZCI6WyI2MDU4MDA0MjAzMDAxIl0sImp0aSI6IjYzNzQwNTQ2NzExMTIifQ.3FmuTna3DAmY7xlhK5fk6LMrosrtrR5VsU2QOgYO5y4/playlist-hls.m3u8",
+    logo: "https://www.cxtv.com.br/img/Tvs/Logo/webp-m/73cde5990fa4d395e807a2780b68b333.webp",
+    category: "Sports",
+    Rating: "GE",
+    infoPage: "N/A"
+  },
   {
     name: "Barca TV",
     type: "m3u8",
@@ -356,6 +365,24 @@ const channels = [
     infoPage: "N/A"
   },
   {
+      name: "FIFA+ 2",
+    type: "m3u8",
+    streamUrl: "https://d2w9q46ikgrcwx.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-of5cbk3sav3w5/v1/sysdata_s_p_a_fifa_7/samsungheadend_us/latest/main/hls/playlist.m3u8",
+    logo: "https://cdn.mos.cms.futurecdn.net/Tdvb4DPB6XfaMgAdxV4aZB.png",
+    category: "Sports",
+    Rating: "GE",
+    infoPage: "N/A"
+  },
+    {
+    name: "Fast&fun",
+    type: "m3u8",
+    streamUrl: "https://dash3.antik.sk/live/test_fast_and_funbox_medium_atk/playlist.m3u8",
+    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpFlZSTSis5wrKOkLTRdX3Mso7Rb5VIcxNaDU80Ks0-itahJ4zWAVorBs&s=10",
+    category: "Sports",
+    Rating: "GE",
+    infoPage: "N/A"
+  },
+  {
     name: "BeIN sports xtra",
     type: "m3u8",
     streamUrl: "https://hdmovix.cc/api/live/proxy?url=https%3A%2F%2Fbein-xtra-bein.amagi.tv%2Fplaylist.m3u8",
@@ -374,6 +401,17 @@ const channels = [
     Rating: "GE",
     infoPage: "N/A"
   },
+
+  {
+    name: "Hard Knocks",
+    type: "m3u8",
+    streamUrl: "https://d3uyzhwvmemdyf.cloudfront.net/v1/master/9d062541f2ff39b5c0f48b743c6411d25f62fc25/HardKnocks-PLEX/121.m3u8",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/9/90/HK_Logo_Wiki.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail_unscaled",
+    category: "Sports",
+    Rating: "GE",
+    infoPage: "N/A"
+  },
+  
   {
     name: "DAZN Ringside",
     type: "m3u8",
@@ -442,19 +480,19 @@ const channels = [
     infoPage: "N/A"
   },
   {
-    name: "Motorsport 1",
+    name: "Rally TV",
     type: "m3u8",
-    streamUrl: "https://amg02873-kravemedia-mtrspt1-distrotv-mnsrl.amagi.tv/playlist/amg02873-kravemedia-mtrspt1-distrotv/playlist.m3u8",
+    streamUrl: "https://rally-tv-live.akamaized.net/hls/live/2117704/RallyTV-Pri/master.m3u8",
     logo: "https://www.cxtv.com.br/img/Tvs/Logo/webp-m/32d3e5276a20e66e81a4cb59242f37df.webp",
     category: "Motorsport",
     Rating: "GE",
     infoPage: "N/A"
   },
   {
-    name: "Drive Channel",
+    name: "Flo Racing",
     type: "m3u8",
-    streamUrl: "https://d39yjeivnywvts.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-ww9fq2xfgtfog/playlist.m3u8",
-    logo: "https://www.cxtv.com.br/img/Tvs/Logo/webp-m/42cb09180fe07eee094bcdf4b3f76feb.webp",
+    streamUrl: "https://amg02278-amg02278c1-flosports-worldwide-7592.playouts.now.amagi.tv/playlist.m3u8",
+    logo: "https://www.flosports.tv/assets/images/logos/hawkflo.svg?v=dfa82f3",
     category: "Motorsport",
     Rating: "GE",
     infoPage: "N/A"
@@ -948,19 +986,28 @@ const channels = [
 
   //KIDS  
   {
-    name: "Nickelodeon Junior",
+    name: "Tom & Jerry",
     type: "m3u8",
-    streamUrl: "https://tvsen7.aynascope.net/nicklodean/index.m3u8",
-    logo: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhojXucO7YQMjJjynua9IX3BN1AZIFnoNeOqRBN2_9TIaFlMwmbMq6XrWhg5_wIKmAf9PcUxSI2etgz95Pmi12Foqxe4F_ghNctgEhbVflI7n6Lttq6pMdQXNhaf4_ho32HNfy32bV2lURpJfdTuij15RasZ2gqVGC38nMz30XHzBZtcMEGgSpq/s400/nick-jr-logo-2023_3.jpg",
+    streamUrl: "https://live20.bozztv.com/giatvplayout7/giatv-208314/playlist.m3u8",
+    logo: "https://i.pinimg.com/originals/d2/d0/c6/d2d0c69e6ec56ef717b9bbc23fc8e2fc.png",
     category: "Kids",
     Rating: "PG",
     infoPage: "N/A"
   },
   {
-    name: "Teen Nick",
+    name: "Filmrise anime",
     type: "m3u8",
-    streamUrl: "https://40.160.24.55/TEEN_NICK/index.m3u8",
-    logo: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhojXucO7YQMjJjynua9IX3BN1AZIFnoNeOqRBN2_9TIaFlMwmbMq6XrWhg5_wIKmAf9PcUxSI2etgz95Pmi12Foqxe4F_ghNctgEhbVflI7n6Lttq6pMdQXNhaf4_ho32HNfy32bV2lURpJfdTuij15RasZ2gqVGC38nMz30XHzBZtcMEGgSpq/s400/nick-jr-logo-2023_3.jpg",
+    streamUrl: "https://dvu7aia8rjlfm.cloudfront.net/master.m3u8",
+    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDQimAb9pCPStSeAUG8sO82Ojgl50aQOEoahe0i7ytbz1mQVj4BOcYdKsi&s=10",
+    category: "Kids",
+    Rating: "PG",
+    infoPage: "N/A"
+  },
+    {
+    name: "YuGi-Oh",
+    type: "m3u8",
+    streamUrl: "https://amg01796-amg01796c19-rakuten-gb-7486.playouts.now.amagi.tv/playlist/amg01796-fastmediafast-yugioh2en-rakutengb/playlist.m3u8",
+    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRenQ7zA4HLvYtsy7Gt2gS3qddQybvId3Ar8uqd5SIkdQ&s=10",
     category: "Kids",
     Rating: "PG",
     infoPage: "N/A"
@@ -979,6 +1026,15 @@ const channels = [
     type: "m3u8",
     streamUrl: "https://streams2.sofast.tv/ptnr-stirr/genre-Education/lang-English/ctgr-Kids/title-KIDDO-ENG/sofastplayout/8258122f-b4c0-416b-a2db-8407847f0c3c_1000015692_HLS/master.m3u8",
     logo: "https://play-lh.googleusercontent.com/Z1LsqXqvYMagG76953Fauhz5uOQehL3V-xCGRDDahc94mZYB-rMwoosoTbpqs_bGqpH8=w240-h480",
+    category: "Kids",
+    Rating: "GE",
+    infoPage: "N/A"
+  },
+  {
+    name: "PBS kids",
+    type: "m3u8",
+    streamUrl: "ttps://livestream.pbskids.org/out/v1/14507d931bbe48a69287e4850e53443c/est.m3u8",
+    logo: "https://images-na.ssl-images-amazon.com/images/I/71SJhmdG3sS._UL1200_.jpg",
     category: "Kids",
     Rating: "GE",
     infoPage: "N/A"
