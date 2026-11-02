@@ -1,5 +1,5 @@
-// Channel Configuration
-const channels = [
+
+var channels = [
   {
     "name": "NTV Kenya",
     "type": "youtube",
@@ -1048,75 +1048,3 @@ const channels = [
   }
 ];
 
-// Function to get sorted categories
-function getCategories() {
-  const categories = new Set();
-  channels.forEach(channel => {
-    categories.add(channel.category);
-  });
-
-  // Define the desired order
-  const categoryOrder = [
-    "National",
-    "Local",
-    "News",
-    "Sports",
-    "Motorsport",
-    "Movies",
-    "Music",
-    "Kids",
-    "Entertainment",
-    "Nature",
-    "Lifestyle",
-  ];
-
-  // Get array from set
-  const categoriesArray = Array.from(categories);
-
-  // Sort categories according to defined order
-  categoriesArray.sort((a, b) => {
-    const indexA = categoryOrder.indexOf(a);
-    const indexB = categoryOrder.indexOf(b);
-
-    // If both are in the order list, sort by their position
-    if (indexA !== -1 && indexB !== -1) {
-      return indexA - indexB;
-    }
-
-    // If only A is in the order list, it comes first
-    if (indexA !== -1) return -1;
-
-    // If only B is in the order list, it comes first
-    if (indexB !== -1) return 1;
-
-    // If neither is in the order list, sort alphabetically
-    return a.localeCompare(b);
-  });
-
-  return categoriesArray;
-}
-
-// Function to get sorted channels
-function getSortedChannels() {
-  const sortedChannels = [...channels];
-  const categoryOrder = getCategories();
-
-  sortedChannels.sort((a, b) => {
-    const indexA = categoryOrder.indexOf(a.category);
-    const indexB = categoryOrder.indexOf(b.category);
-
-    if (indexA !== indexB) {
-      return indexA - indexB;
-    }
-
-    // If same category, sort by name
-    return a.name.localeCompare(b.name);
-  });
-
-  return sortedChannels;
-}
-
-// Export for use in other files
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { channels, getCategories, getSortedChannels };
-}
