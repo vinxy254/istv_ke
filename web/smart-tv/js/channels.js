@@ -32,7 +32,7 @@ const channels = [
   },
   {
     name: "KTN Home",
-    //type: "stream",
+    type: "stream",
     channelUrl: "UCKVsdeoHExltrWMuK0hOWmg",
    // streamUrl: "https://www.youtube.com/embed/nOVv58sis3s?autoplay=1&rel=0&showinfo=0&enablejsapi=1&origin=https%3A%2F%2Fistvkenya.live",
     videoId: "aszsHfAKjfk",
