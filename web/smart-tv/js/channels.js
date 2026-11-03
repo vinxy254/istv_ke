@@ -4,7 +4,7 @@ const channels = [
     name: "NTV Kenya",
     type: "youtube",
     channelUrl: "UCqBJ47FjJcl61fmSbcadAVg",
-    videoId: "_wQ79STCPxQ",
+    videoId: "n65C6I_OYmc",
     logo: "https://static.ntvkenya.co.ke/assets/brand-logos/ntv-logo-white.png",
     category: "National",
     Rating: "N/A",
