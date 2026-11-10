@@ -12,9 +12,9 @@ const channels = [
   },
   {
     name: "Citizen TV",
-    type: "youtube",
+    type: "stream",
     channelUrl: "UChBQgieUidXV1CmDxSdRm3g",
-    //streamUrl: "https://www.youtube.com/embed/1Vm7lAjpZZM?autoplay=1&rel=0&showinfo=0&enablejsapi=1&origin=https%3A%2F%2Fwww.istvkenya.live",
+    streamUrl: "https://www.youtube.com/embed/jJM8WpkaJC8?autoplay=1&rel=0&showinfo=0&enablejsapi=1&origin=https%3A%2F%2Fwww.istvkenya.live",
     videoId: "QEPyPz8SJRE",
     logo: "https://static.wikia.nocookie.net/logopedia/images/7/70/Citizen_TV_%28Kenya%29_logo.png",
     category: "National",
