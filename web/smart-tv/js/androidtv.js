@@ -10,9 +10,9 @@ var channels = [
   },
   {
     "name": "Citizen TV",
-    "type": "youtube",
-    "url": "https://www.youtube.com/embed/gzw1hoiBK6Q",
-    "logo": "https://static.wikia.nocookie.net/logopedia/images/7/70/Citizen_TV_%28Kenya%29_logo.png",
+    "type": "stream",
+    "url": "https://www.youtube.com/embed/jJM8WpkaJC8?autoplay=1&rel=0&showinfo=0&enablejsapi=1&origin=https%3A%2F%2Fwww.istvkenya.live",
+    "logo": "images/Citizen_TV.webp",
     "rating": "N/A",
     "category": "National"
   },
@@ -72,10 +72,11 @@ var channels = [
     "rating": "N/A",
     "category": "National"
   },
+
   {
     "name": "TV 47",
-    "type": "youtube",
-    "url": "https://www.youtube.com/channel/UC_zA9UIWE1fB-jfFk_DBSYw",
+    "type": "m3u8",
+    "url": "https://wowstrm.xyz/hls/sk_D4lAF8E0YpHmsB3PMQ4wo65UQ42k1P9y/index.m3u8",
     "logo": "images/tv47.png",
     "rating": "N/A",
     "category": "National"
