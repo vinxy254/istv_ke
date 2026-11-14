@@ -3,7 +3,7 @@ var channels = [
   {
     "name": "NTV Kenya",
     "type": "youtube",
-    "url": "https://www.youtube.com/embed/_wQ79STCPxQ",
+    "url": "https://www.youtube.com/embed/8v5kIuPi45g",
     "logo": "https://static.ntvkenya.co.ke/assets/brand-logos/ntv-logo-white.png",
     "rating": "N/A",
     "category": "National"
