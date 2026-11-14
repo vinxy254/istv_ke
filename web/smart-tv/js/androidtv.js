@@ -27,7 +27,7 @@ var channels = [
   {
     "name": "KTN Home",
     "type": "stream",
-    "url": "https://www.youtube.com/embed/aszsHfAKjfk",
+    "url": "https://www.youtube.com/embed/hM0ny9Q-NFw",
     "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/e/ec/KTN.2014-present_logo.jpg/250px-KTN.2014-present_logo.jpg",
     "rating": "N/A",
     "category": "National"
