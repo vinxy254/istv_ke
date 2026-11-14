@@ -32,9 +32,9 @@ const channels = [
   },
   {
     name: "KTN Home",
-    type: "youtube",
-    channelUrl: "UCKVsdeoHExltrWMuK0hOWmg",
-   // streamUrl: "https://www.youtube.com/embed/nOVv58sis3s?autoplay=1&rel=0&showinfo=0&enablejsapi=1&origin=https%3A%2F%2Fistvkenya.live",
+    type: "stream",
+    //channelUrl: "UCKVsdeoHExltrWMuK0hOWmg",
+    streamUrl: "https://www.youtube.com/embed/hM0ny9Q-NFw?autoplay=1&rel=0&showinfo=0&enablejsapi=1&origin=https%3A%2F%2Fistvkenya.live",
     videoId: "E7SkI8eoZNU",
     logo: "https://upload.wikimedia.org/wikipedia/en/thumb/e/ec/KTN.2014-present_logo.jpg/250px-KTN.2014-present_logo.jpg",
     category: "National",
