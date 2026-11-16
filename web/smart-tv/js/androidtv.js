@@ -28,7 +28,7 @@ var channels = [
     "name": "KTN Home",
     "type": "stream",
     "url": "https://www.youtube.com/embed/hM0ny9Q-NFw",
-    "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/e/ec/KTN.2014-present_logo.jpg/250px-KTN.2014-present_logo.jpg",
+    "logo": "https://i.imgur.com/8TXbV2e.png",
     "rating": "N/A",
     "category": "National"
   },
@@ -480,6 +480,25 @@ var channels = [
     "rating": "PG",
     "category": "Entertainment"
   },
+
+    {
+    "name": "MTV",
+    "type": "m3u8",
+    "url": "https://jmp2.uk/plu-62cda0dfddc1040008fccacc.m3u8",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/MTV_2021_%28brand_version%29.svg/960px-MTV_2021_%28brand_version%29.svg.png",
+    "rating": "PG",
+    "category": "Entertainment"
+  },
+
+  {
+    "name": "Pimp My Ride",
+    "type": "m3u8",
+    "url": "https://jmp2.uk/plu-61c09a3894aa450007814aea.m3u8",
+    "logo": "https://i.imgur.com/n9bK6f2.png",
+    "rating": "PG",
+    "category": "Entertainment"
+  },
+  
   {
     "name": "nosey",
     "type": "m3u8",
