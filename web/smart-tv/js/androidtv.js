@@ -333,7 +333,7 @@ var channels = [
   {
     "name": "BeIN sports xtra",
     "type": "m3u8",
-    "url": "https://hdmovix.cc/api/live/proxy?url=https%3A%2F%2Fbein-xtra-bein.amagi.tv%2Fplaylist.m3u8",
+    "url": "https://tvsen6.aynaott.com/beinsports/index.m3u8 ",
     "logo": "https://dj7fdt04hl8tv.cloudfront.net/acm/media/shop/mar/bein-sports.png",
     "rating": "GE",
     "category": "Sports"
@@ -488,6 +488,17 @@ var channels = [
     "rating": "N/A",
     "category": "Entertainment"
   },
+
+    {
+    "name": "Discovery africa",
+    "type": "m3u8",
+    "url": "http://85.237.89.159:3342/ar-s/Discovery-HD/index.m3u8",
+    "logo": "https://www.tvsa.co.za/images/uploads/thumbs/0050418_215_150.pnge",
+    "rating": "N/A",
+    "category": "Entertainment"
+  },
+
+  
   {
     "name": "WWE Channel",
     "type": "m3u8",
@@ -555,7 +566,7 @@ var channels = [
   {
     "name": "Paramount",
     "type": "m3u8",
-    "url": "https://hdmovix.cc/api/live/proxy?url=http%3A%2F%2F40.160.24.55%2FPARAMOUNT_CHANNEL%2Findex.m3u8",
+    "url": "https://jmp2.uk/plu-5ff8c708653d080007361b14.m3u8",
     "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Paramount_Pictures_2022_%28Blue%29.svg/960px-Paramount_Pictures_2022_%28Blue%29.svg.png",
     "rating": "GE",
     "category": "Entertainment"
@@ -651,6 +662,47 @@ var channels = [
     "rating": "N/A",
     "category": "Movies"
   },
+    {
+    "name": "Kungfu tv",
+    "type": "m3u8",
+    "url": "https://jmp2.uk/plu-6728d33f030a2c0008edf4be.m3u8",
+    "logo": "https://images.pluto.tv/channels/6728d2be529ac9000830dc15/colorLogoPNG_1732110461260.png",
+    "rating": "N/A",
+    "category": "Movies"
+  },
+  {
+    "name": "Bolly Flix",
+    "type": "m3u8",
+    "url": "https://jmp2.uk/stvp-IN46000140Q",
+    "logo": "https://i.ibb.co/yF9MPTDK/blyflx.png",
+    "rating": "N/A",
+    "category": "Movies"
+  },
+    {
+    "name": "Movies Action",
+    "type": "m3u8",
+    "url": "https://shd-amg-fast.edgenextcdn.net/tx011/playlist.m3u8",
+    "logo": "https://i.imgur.com/NIVhISa.png",
+    "rating": "N/A",
+    "category": "Movies"
+  },
+
+  {
+    "name": "Movies Thriller",
+    "type": "m3u8",
+    "url": "https://shd-amg-fast.edgenextcdn.net/tx012/playlist.m3u8",
+    "logo": "https://i.imgur.com/JWihdcl.png",
+    "rating": "N/A",
+    "category": "Movies"
+  },
+   {
+    "name": "Start Action",
+    "type": "m3u8",
+    "url": "http://85.237.89.159:3342/ar-s/STAR-Action-HD/index.m3u8",
+    "logo": "https://i.imgur.com/Bv2qwgv.png",
+    "rating": "N/A",
+    "category": "Movies"
+  }, 
   {
     "name": "Charge tv",
     "type": "m3u8",
@@ -841,6 +893,22 @@ var channels = [
 
 
   //KIDS
+    {
+    "name": "Nickelodeon",
+    "type": "m3u8",
+    "url": "https://jmp2.uk/plu-654ca7f92c1d3300086b608c.m3u8",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Nick_Jr._logo_2023_(outline).svg/960px-Nick_Jr._logo_2023_(outline).svg.png",
+    "rating": "PG",
+    "category": "Kids"
+  },
+  {
+    "name": "TMNT",
+    "type": "m3u8",
+    "url": "https://jmp2.uk/plu-62e95265c9fd030007268fb9.m3u8",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Nick_Jr._logo_2023_(outline).svg/960px-Nick_Jr._logo_2023_(outline).svg.png",
+    "rating": "PG",
+    "category": "Kids"
+  },
   {
     "name": "Tom & Jerry",
     "type": "m3u8",
