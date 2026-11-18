@@ -14,7 +14,7 @@ const channels = [
     name: "Citizen TV",
     type: "stream",
     channelUrl: "UChBQgieUidXV1CmDxSdRm3g",
-    streamUrl: "https://www.youtube.com/embed/jJM8WpkaJC8?autoplay=1&rel=0&showinfo=0&enablejsapi=1&origin=https%3A%2F%2Fwww.istvkenya.live",
+    streamUrl: "https://www.youtube.com/watch?v=wU4ZKAfY5rM",
     videoId: "QEPyPz8SJRE",
     logo: "images/Citizen_TV.webp",
     category: "National",
