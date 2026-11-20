@@ -11,8 +11,8 @@ var channels = [
   {
     "name": "Citizen TV",
     "type": "youtube",
-    //"url": "https://www.youtube.com/embed/jJM8WpkaJC8?autoplay=1&rel=0&showinfo=0&enablejsapi=1&origin=https%3A%2F%2Fwww.istvkenya.live",
-    "url": "https://www.youtube.com/channel/UChBQgieUidXV1CmDxSdRm3g",
+    "url": "https://www.youtube.com/embed/2bIZjpYG-_s?autoplay=1&rel=0&showinfo=0&enablejsapi=1&origin=https%3A%2F%2Fwww.istvkenya.live",
+    //"url": "https://www.youtube.com/channel/UChBQgieUidXV1CmDxSdRm3g",
     "logo": "images/Citizen_TV.webp",
     "rating": "N/A",
     "category": "National"
