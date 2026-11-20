@@ -28,7 +28,8 @@ var channels = [
   {
     "name": "KTN Home",
     "type": "youtube",
-    "url": "https://www.youtube.com/channel/UCKVsdeoHExltrWMuK0hOWmg",
+    //"url": "https://www.youtube.com/channel/UCKVsdeoHExltrWMuK0hOWmg",
+    "url": "https://www.youtube.com/embed/8ptxgAEhUFM?autoplay=1&rel=0&showinfo=0&enablejsapi=1&origin=https%3A%2F%2Fwww.istvkenya.live",
     "logo": "https://i.imgur.com/8TXbV2e.png",
     "rating": "N/A",
     "category": "National"
