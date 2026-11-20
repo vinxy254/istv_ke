@@ -652,38 +652,6 @@ var channels = [
 
   //MOVIES
   {
-    "name": "Rakuten Action",
-    "type": "m3u8",
-    "url": "https://54045f0c40fd442c8b06df076aaf1e85.mediatailor.eu-west-1.amazonaws.com/v1/master/0547f18649bd788bec7b67b746e47670f558b6b2/production-LiveChannel-6065/master.m3u8",
-    "logo": "https://rakutenadvertising.com/wp-content/uploads/sites/2/2024/05/GMT-6002_2024_Web_Media_RakutenTV.png",
-    "rating": "N/A",
-    "category": "Movies"
-  },
-  {
-    "name": "Rakuten Comedy",
-    "type": "m3u8",
-    "url": "https://a300af98e00746e2acf2346f43e47bd1.mediatailor.eu-west-1.amazonaws.com/v1/master/0547f18649bd788bec7b67b746e47670f558b6b2/production-LiveChannel-6191/master.m3u8",
-    "logo": "https://rakutenadvertising.com/wp-content/uploads/sites/2/2024/05/GMT-6002_2024_Web_Media_RakutenTV.png",
-    "rating": "N/A",
-    "category": "Movies"
-  },
-  {
-    "name": "Rakuten Comedy 2",
-    "type": "m3u8",
-    "url": "https://9be783d652cd4b099cf63e1dc134c4a3.mediatailor.eu-west-1.amazonaws.com/v1/master/0547f18649bd788bec7b67b746e47670f558b6b2/production-LiveChannel-6181/master.m3u8",
-    "logo": "https://rakutenadvertising.com/wp-content/uploads/sites/2/2024/05/GMT-6002_2024_Web_Media_RakutenTV.png",
-    "rating": "N/A",
-    "category": "Movies"
-  },
-  {
-    "name": "Rakuten top movies",
-    "type": "m3u8",
-    "url": "https://0145451975a64b35866170fd2e8fa486.mediatailor.eu-west-1.amazonaws.com/v1/master/0547f18649bd788bec7b67b746e47670f558b6b2/production-LiveChannel-5987/master.m3u8",
-    "logo": "https://rakutenadvertising.com/wp-content/uploads/sites/2/2024/05/GMT-6002_2024_Web_Media_RakutenTV.png",
-    "rating": "N/A",
-    "category": "Movies"
-  },
-    {
     "name": "Kungfu tv",
     "type": "m3u8",
     "url": "https://jmp2.uk/plu-6728d33f030a2c0008edf4be.m3u8",
@@ -692,10 +660,10 @@ var channels = [
     "category": "Movies"
   },
   {
-    "name": "Bolly Flix",
+    "name": "24hr movie",
     "type": "m3u8",
-    "url": "https://jmp2.uk/stvp-IN46000140Q",
-    "logo": "https://i.ibb.co/yF9MPTDK/blyflx.png",
+    "url": "https://d1j2u714xk898n.cloudfront.net/scheduler/scheduleMaster/145.m3u8",
+    "logo": "https://i.imgur.com/iSVnzR1.png",
     "rating": "N/A",
     "category": "Movies"
   },
@@ -716,6 +684,39 @@ var channels = [
     "rating": "N/A",
     "category": "Movies"
   },
+  {
+    "name": "Rakuten Family",
+    "type": "m3u8",
+    "url": "https://e3207568b726401995c25670faaf32e4.mediatailor.eu-west-1.amazonaws.com/v1/master/0547f18649bd788bec7b67b746e47670f558b6b2/production-LiveChannel-6203/master.m3u8",
+    "logo": "https://rakutenadvertising.com/wp-content/uploads/sites/2/2024/05/GMT-6002_2024_Web_Media_RakutenTV.png",
+    "rating": "N/A",
+    "category": "Movies"
+  },
+  {
+    "name": "Rakuten Romance",
+    "type": "m3u8",
+    "url": "https://2c88ed8c4df9479aa0c7138dc42115e2.mediatailor.eu-west-1.amazonaws.com/v1/master/0547f18649bd788bec7b67b746e47670f558b6b2/production-LiveChannel-6194/master.m3u8",
+    "logo": "https://rakutenadvertising.com/wp-content/uploads/sites/2/2024/05/GMT-6002_2024_Web_Media_RakutenTV.png",
+    "rating": "N/A",
+    "category": "Movies"
+  },
+  {
+    "name": "Rakuten SciFi",
+    "type": "m3u8",
+    "url": "https://sci-fi-rakuten-tv-uk.fast.rakuten.tv/v1/master/0547f18649bd788bec7b67b746e47670f558b6b2/production-LiveChannel-6241/master.m3u8",
+    "logo": "https://rakutenadvertising.com/wp-content/uploads/sites/2/2024/05/GMT-6002_2024_Web_Media_RakutenTV.png",
+    "rating": "N/A",
+    "category": "Movies"
+  },
+  {
+    "name": "Rakuten Thrillers",
+    "type": "m3u8",
+    "url": "https://thriller-rakuten-tv-uk.fast.rakuten.tv/v1/master/0547f18649bd788bec7b67b746e47670f558b6b2/production-LiveChannel-6482/master.m3u8",
+    "logo": "https://rakutenadvertising.com/wp-content/uploads/sites/2/2024/05/GMT-6002_2024_Web_Media_RakutenTV.png",
+    "rating": "N/A",
+    "category": "Movies"
+  },
+
    {
     "name": "Start Action",
     "type": "m3u8",
