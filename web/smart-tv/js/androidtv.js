@@ -423,6 +423,22 @@ var channels = [
     "rating": "GE",
     "category": "Motorsport"
   },
+    {
+    "name": "Power Nation",
+    "type": "m3u8",
+    "url": "https://amg01258-raycomsports-powernationau-samsungau-18bwc.amagi.tv/playlist.m3u8",
+    "logo": "https://i.imgur.com/jguTO8E.png",
+    "rating": "GE",
+    "category": "Motorsport"
+  },
+  {
+    "name": "Top Gear",
+    "type": "m3u8",
+    "url": "https://aegis-cloudfront-1.tubi.video/33ccaca5-a666-4b28-8578-55a9ab9f06d5/720p-en-cc/index.m3u88",
+    "logo": "https://i.imgur.com/S6Su6QH.png",
+    "rating": "GE",
+    "category": "Motorsport"
+  },
   {
     "name": "Flo Racing",
     "type": "m3u8",
@@ -500,6 +516,14 @@ var channels = [
     "rating": "PG",
     "category": "Entertainment"
   },
+    {
+    "name": "American Ninja Warrior",
+    "type": "m3u8",
+    "url": "https://d4whmvwm0rdvi.cloudfront.net/10007/99993042/hls/master.m3u8?ads.afid=405342864&ads.asnw=169843&ads.channelId=99993042&ads.csid=lgchannels_us_nbcuamericanninjawarrior_ssai_cro&ads.sfid=19647852&ads.xumo_channelId=99993042&ads.xumo_contentId=4063&ads.xumo_contentName=NBCUAmericanNinjaWarrior&ads.xumo_providerId=4063&ads.xumo_providerName=NBCUAmericanNinjaWarrior",
+    "logo": "https://raw.githubusercontent.com/RoqueDJ/iptv-svg/main/1792421696158.png",
+    "rating": "PG",
+    "category": "Entertainment"
+  },
   
   {
     "name": "nosey",
@@ -561,10 +585,10 @@ var channels = [
     "category": "Entertainment"
   },
   {
-    "name": "Chopper town",
+    "name": "Funroads",
     "type": "m3u8",
-    "url": "https://linear-11.frequency.stream/dist/glewedtv/11/hls/master/playlist.m3u8",
-    "logo": "https://freecast.com/_next/image?url=https%3A%2F%2Fd3e3bui7xn67l.cloudfront.net%2Fcms_media%2Fmedia%2Flive%2Fchannel%2Fb2223358-4c8f-4192-a7e0-4c80b666f7bd.256x256.jpg&w=256&q=75",
+    "url": "https://www.funroads-hls1.com/funroads.m3u8",
+    "logo": "https://i.imgur.com/96ksfwJ.png",
     "rating": "GE",
     "category": "Entertainment"
   },
@@ -734,17 +758,9 @@ var channels = [
     "category": "Movies"
   },
   {
-    "name": "AMC Channel",
-    "type": "m3u8",
-    "url": "https://c5ca4726.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UGxleF9TdG9yaWVzQnlBTUNfQ01BRg/playlist.m3u8?ads.wurl_channel=1326&ads.wurl_name=StoriesByAMC&ads.coppa=0&ads.us_privacy=1YNN&ads.psid=&ads.targetopt=1&ads.plex_token=qBJATNESiUtfmBAPkULy&ads.plex_id=6391316371aa92c2f49dc234&ads.ua=Mozilla%2F5.0%20(X11%3B%20Linux%20x86_64%3B%20rv%3A134.0)%20Gecko%2F20100101%20Firefox%2F134.0&ads.app_bundle=com.plexapp.desktop&ads.app_store_url=https%3A%2F%2Fapp.plex.tv&ads.gdpr=0&ads.consent=0&ads.device_type=desktop&ads.device_id_type=",
-    "logo": "https://shop.amc.com/cdn/shop/files/AMC-ShopByShowTile-360x540-Option1_1080x.jpg?v=1649348443",
-    "rating": "N/A",
-    "category": "Movies"
-  },
-  {
     "name": "Wu Tang collection",
     "type": "m3u8",
-    "url": "https://livechannel.mdc.akamaized.net/stitch/livechannel/1279/master.m3u8?channel=live_stream_1279",
+    "url": "https://dbrb49pjoymg4.cloudfront.net/10001/99991745/hls/master.m3u8?ads.xumo_channelId=99991745",
     "logo": "https://images.plex.tv/photo?size=large-1920&scale=1&url=https%3A%2F%2Fprovider-static.plex.tv%2Fepg%2Fimages%2Fott_channels%2Farts%2Fwu-tang-collection.jpg",
     "rating": "PG",
     "category": "Movies"
@@ -757,11 +773,27 @@ var channels = [
     "rating": "PG",
     "category": "Movies"
   },
+    {
+    "name": "Cinemax Hits",
+    "type": "m3u8",
+    "url": "http://23.237.104.106:8080/USA_MOREMAX/index.m3u8",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/f/fb/Cinemax_Hits_Logo.png/960px-Cinemax_Hits_Logo.png",
+    "rating": "N/A",
+    "category": "Movies"
+  },
   {
     "name": "MovieSphere",
     "type": "m3u8",
     "url": "https://amg00353-lionsgatefilmsi-moviesphereaus-samsungau-7qzhf.amagi.tv/playlist/amg00353-lionsgatefilmsi-moviesphereaus-samsungau/playlist.m3u8",
     "logo": "https://static.wikia.nocookie.net/logopedia/images/4/40/MovieSphere_2020_logo.jpg/",
+    "rating": "N/A",
+    "category": "Movies"
+  },
+  {
+    "name": "BET Comedy",
+    "type": "m3u8",
+    "url": "https://jmp2.uk/plu-68c32d88f56983aba40052bd.m3u8",
+    "logo": "https://images.pluto.tv/channels/68c32d88f56983aba40052bd/colorLogoPNG_1759246622596.png",
     "rating": "N/A",
     "category": "Movies"
   },
@@ -936,6 +968,14 @@ var channels = [
     "type": "m3u8",
     "url": "https://live20.bozztv.com/giatvplayout7/giatv-208314/playlist.m3u8",
     "logo": "https://i.pinimg.com/originals/d2/d0/c6/d2d0c69e6ec56ef717b9bbc23fc8e2fc.png",
+    "rating": "PG",
+    "category": "Kids"
+  },
+    {
+    "name": "Mr.Bean animated",
+    "type": "m3u8",
+    "url": "https://amg00627-amg00627c28-rakuten-uk-3984.playouts.now.amagi.tv/playlist/amg00627-banijayfast-mrbeanukcc-rakutenuk/playlist.m3u83u8",
+    "logo": "https://static.wikia.nocookie.net/logopedia/images/2/25/Mr._Bean_Animated_Series_stacked_logo.png",
     "rating": "PG",
     "category": "Kids"
   },
