@@ -3,15 +3,16 @@ var channels = [
   {
     "name": "NTV Kenya",
     "type": "youtube",
-    "url": "https://www.youtube.com/embed/8v5kIuPi45g",
+    "url": "https://www.youtube.com/channel/UCqBJ47FjJcl61fmSbcadAVg",
     "logo": "https://static.ntvkenya.co.ke/assets/brand-logos/ntv-logo-white.png",
     "rating": "N/A",
     "category": "National"
   },
   {
     "name": "Citizen TV",
-    "type": "stream",
-    "url": "https://www.youtube.com/embed/jJM8WpkaJC8?autoplay=1&rel=0&showinfo=0&enablejsapi=1&origin=https%3A%2F%2Fwww.istvkenya.live",
+    "type": "youtube",
+    //"url": "https://www.youtube.com/embed/jJM8WpkaJC8?autoplay=1&rel=0&showinfo=0&enablejsapi=1&origin=https%3A%2F%2Fwww.istvkenya.live",
+    "url": "https://www.youtube.com/channel/UChBQgieUidXV1CmDxSdRm3g",
     "logo": "images/Citizen_TV.webp",
     "rating": "N/A",
     "category": "National"
@@ -26,8 +27,8 @@ var channels = [
   },
   {
     "name": "KTN Home",
-    "type": "stream",
-    "url": "https://www.youtube.com/embed/hM0ny9Q-NFw",
+    "type": "youtube",
+    "url": "https://www.youtube.com/channel/UCKVsdeoHExltrWMuK0hOWmg",
     "logo": "https://i.imgur.com/8TXbV2e.png",
     "rating": "N/A",
     "category": "National"
