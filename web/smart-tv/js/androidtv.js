@@ -27,9 +27,9 @@ var channels = [
   },
   {
     "name": "KTN Home",
-    "type": "youtube",
+    "type": "m3u8",
     //"url": "https://www.youtube.com/channel/UCKVsdeoHExltrWMuK0hOWmg",
-    "url": "https://www.youtube.com/embed/8ptxgAEhUFM?autoplay=1&rel=0&showinfo=0&enablejsapi=1&origin=https%3A%2F%2Fwww.istvkenya.live",
+    "url": "https://cdn-us-east-prod-ingest-infra-dacast-com.akamaized.net/26ad816e-bb72-9988-625c-5e6243e4ded1/720p/index.m3u8",
     "logo": "https://i.imgur.com/8TXbV2e.png",
     "rating": "N/A",
     "category": "National"
