@@ -567,7 +567,7 @@ const channels = [
   {
     name: "nosey",
     type: "m3u8",
-    streamUrl: "https://aegis-cloudfront-1.tubi.video/f111d6c2-02bf-45fb-9a90-2e55b18d9f70/playlist.m3u8",
+    streamUrl: "https://amg00514-amg00514c7-amgplt0022.playout.now3.amagi.tv/playlist.m3u8",
     logo: "https://images.crunchbase.com/image/upload/c_pad,h_160,w_160,f_auto,b_white,q_auto:eco,dpr_1/ekrujg3jauqksps6clsq?ik-sanitizeSvg=true",
     category: "Entertainment",
     Rating: "N/A",
