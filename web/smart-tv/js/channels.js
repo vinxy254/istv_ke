@@ -13,7 +13,7 @@ const channels = [
   },
   {
     name: "Citizen TV",
-    type: "stream",
+    type: "youtube",
     channelUrl: "UChBQgieUidXV1CmDxSdRm3g",
     streamUrl: "https://www.youtube.com/embed/wU4ZKAfY5rM?autoplay=1&rel=0&showinfo=0&enablejsapi=1&origin=https%3A%2F%2Fistvkenya.live",
     videoId: "QEPyPz8SJRE",
