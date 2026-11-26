@@ -2,9 +2,9 @@
 const channels = [
   {
     name: "NTV Kenya",
-    type: "youtube",
-    channelUrl: "UCqBJ47FjJcl61fmSbcadAVg",
-    //streamUrl: "https://www.youtube.com/embed/8qVmVbyGAr4?autoplay=1&rel=0&showinfo=0&enablejsapi=1&origin=https%3A%2F%2Fistvkenya.live",      
+    type: "stream",
+    //channelUrl: "UCqBJ47FjJcl61fmSbcadAVg",
+    streamUrl: "https://www.youtube.com/embed/Z9Lwmfojd1c?autoplay=1&rel=0&showinfo=0&enablejsapi=1&origin=https%3A%2F%2Fistvkenya.live",      
     videoId: "n65C6I_OYmc",
     logo: "https://static.ntvkenya.co.ke/assets/brand-logos/ntv-logo-white.png",
     category: "National",
