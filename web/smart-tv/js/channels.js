@@ -2,7 +2,7 @@
 const channels = [
   {
     name: "NTV Kenya",
-    type: "stream",
+    type: "youtube",
     channelUrl: "UCqBJ47FjJcl61fmSbcadAVg",
     //streamUrl: "https://www.youtube.com/embed/8qVmVbyGAr4?autoplay=1&rel=0&showinfo=0&enablejsapi=1&origin=https%3A%2F%2Fistvkenya.live",      
     videoId: "n65C6I_OYmc",
